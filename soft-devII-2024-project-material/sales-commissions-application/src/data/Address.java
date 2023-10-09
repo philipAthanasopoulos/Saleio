@@ -1,5 +1,7 @@
 package data;
 
+import java.util.ArrayList;
+
 public class Address {
 	private String country;
 	private String city;
@@ -47,6 +49,7 @@ public class Address {
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	
 }
 

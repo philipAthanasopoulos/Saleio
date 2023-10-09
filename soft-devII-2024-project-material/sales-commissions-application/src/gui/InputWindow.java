@@ -66,7 +66,6 @@ public class InputWindow extends JDialog {
 	}
 
 	public InputWindow(){
-		
 		initialise();
 	}
 	
@@ -213,7 +212,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"Ο αντιπρόσωπος υπάρχει ήδη στη λίστα");
+				JOptionPane.showMessageDialog(null,"οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 			}
 			else{
@@ -224,10 +223,10 @@ public class InputWindow extends JDialog {
 			
 		}catch (NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"Δεν επιλέχθηκε κανένα αρχείο");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"Προέκυψε κάποιο πρόβλημα κατά την ανάγνωση του αρχείου");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 		}
 		
 	}
@@ -253,7 +252,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"Ο αντιπρόσωπος υπάρχει ήδη στη λίστα");
+				JOptionPane.showMessageDialog(null,"οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 			}
 			else{
@@ -263,7 +262,7 @@ public class InputWindow extends JDialog {
 			}
 		}catch (IllegalArgumentException e){
 		
-			JOptionPane.showMessageDialog(null,"Δεν επιλέχθηκε κανένα αρχείο");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 		}
         
@@ -291,7 +290,7 @@ public class InputWindow extends JDialog {
 	
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
-			JOptionPane.showMessageDialog(null,"Δεν έχετε επιλέξει αντιπρόσωπο");
+			JOptionPane.showMessageDialog(null,"οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½");
 
 		}
 		else{
