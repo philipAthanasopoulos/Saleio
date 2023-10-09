@@ -48,9 +48,11 @@ public class InputWindow extends JDialog {
 	@SuppressWarnings("unused")
 	private File inputFile;
 	private String fileTypeFlag;
+
 	/**
 	 * Launch the application.
 	 */
+	//comment
 	public static void main(String[] args) {
 		try {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
