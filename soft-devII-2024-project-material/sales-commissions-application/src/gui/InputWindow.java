@@ -48,6 +48,7 @@ public class InputWindow extends JDialog {
 	@SuppressWarnings("unused")
 	private File inputFile;
 	private String fileTypeFlag;
+
 	/**
 	 * Launch the application.
 	 */
