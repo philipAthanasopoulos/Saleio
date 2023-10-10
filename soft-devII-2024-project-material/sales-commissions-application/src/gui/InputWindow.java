@@ -53,6 +53,7 @@ public class InputWindow extends JDialog {
 	 * Launch the application.
 	 */
 	//comment
+	//hello from new branch
 	public static void main(String[] args) {
 		try {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
