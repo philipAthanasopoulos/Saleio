@@ -16,7 +16,7 @@ public abstract class FileAppender {
 	protected String country;
 	protected String city;
 	protected String street;
-	protected String number;
+	protected String number; 
 		
 	public abstract void appendFile();
 	public abstract void setFileToAppend(File fileToAppend); 
