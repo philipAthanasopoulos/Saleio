@@ -1,8 +1,9 @@
 package gui;
+
+import data.Agent;
+
 import input.TXTInput;
 import input.XMLInput;
-
-import java.awt.BorderLayout;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -12,27 +13,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.io.File;
+
 import java.util.Vector;
-import java.awt.Color;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.border.LineBorder;
-
-import java.awt.Font;
-import java.awt.SystemColor;
-
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import data.Agent;
-
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InputWindow extends JDialog {
 
@@ -254,7 +253,6 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				// JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
 				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
 
 			}
@@ -264,37 +262,26 @@ public class InputWindow extends JDialog {
 				fileTypeFlag = "XML";
 			}
 		}catch (IllegalArgumentException e){
-		
-			// JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
 			JOptionPane.showMessageDialog(null,"Δεν επιλέξατε αρχείο");
-
-		}
-        
-             
+		}      
 	}
 	
 	
 	private void selectAgent(MouseEvent e){
-		
 		String agentName;
         if(agentsList.getSelectedIndex()>=0){
-        	
             agentName = agentsList.getSelectedValue().toString();
             for(int i=0; i<allAgents.size(); i++){
                 if(agentName.equals(allAgents.get(i).getName())){
-                	
-                		selectedAgent = allAgents.get(i);
-                		break;
-                		
+					selectedAgent = allAgents.get(i);
+					break;
                 }
             }
-        	
         }
 	}
 	
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
-			// JOptionPane.showMessageDialog(null,"��� ����� �������� �����������");
 			JOptionPane.showMessageDialog(null,"Δεν έχετε επιλέξει αντιπρόσωπο");
 
 		}
