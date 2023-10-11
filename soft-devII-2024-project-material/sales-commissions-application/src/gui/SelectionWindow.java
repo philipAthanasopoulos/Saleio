@@ -81,60 +81,60 @@ public class SelectionWindow extends JDialog {
 		selectionWindowPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(selectionWindowPanel);
 		selectionWindowPanel.setLayout(null);
-		totalSalesCheckBox = new JCheckBox("\u03A3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03AE \u03B1\u03BE\u03AF\u03B1 \u03C0\u03C9\u03BB\u03AE\u03C3\u03B5\u03C9\u03BD");
+		totalSalesCheckBox = new JCheckBox("Ξ£Ο…Ξ½ΞΏΞ»ΞΉΞΊΞ® Ξ±ΞΎΞ―Ξ± Ο€Ο‰Ξ»Ξ®ΟƒΞµΟ‰Ξ½");
 		totalSalesCheckBox.setBackground(SystemColor.controlHighlight);
 		totalSalesCheckBox.setBounds(52, 129, 169, 25);
 		totalSalesCheckBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(totalSalesCheckBox);
 		
-		totalItemsCheckBox = new JCheckBox("\u03A3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03CC\u03C2 \u03B1\u03C1\u03B9\u03B8\u03BC\u03CC\u03C2 \u03C0\u03C9\u03BB\u03AE\u03C3\u03B5\u03C9\u03BD");
+		totalItemsCheckBox = new JCheckBox("Ξ£Ο…Ξ½ΞΏΞ»ΞΉΞΊΟΟ‚ Ξ±ΟΞΉΞΈΞΌΟΟ‚ Ο€Ο‰Ξ»Ξ®ΟƒΞµΟ‰Ξ½");
 		totalItemsCheckBox.setBackground(SystemColor.controlHighlight);
 		totalItemsCheckBox.setBounds(52, 170, 204, 25);
 		totalItemsCheckBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(totalItemsCheckBox);
 		
-		categoryCheckBox = new JCheckBox("\u03A0\u03C9\u03BB\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C3\u03C5\u03B3\u03BA\u03B5\u03BA\u03C1\u03B9\u03BC\u03AD\u03BD\u03B7\u03C2 \u03BA\u03B1\u03C4\u03B7\u03B3\u03BF\u03C1\u03AF\u03B1\u03C2");
+		categoryCheckBox = new JCheckBox("Ξ Ο‰Ξ»Ξ®ΟƒΞµΞΉΟ‚ ΟƒΟ…Ξ³ΞΊΞµΞΊΟΞΉΞΌΞ­Ξ½Ξ·Ο‚ ΞΊΞ±Ο„Ξ·Ξ³ΞΏΟΞ―Ξ±Ο‚");
 		categoryCheckBox.setBackground(SystemColor.controlHighlight);
 		
 		categoryCheckBox.setBounds(52, 214, 257, 25);
 		categoryCheckBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(categoryCheckBox);
 		
-		shirtRadio = new JRadioButton("\u039C\u03C0\u03BB\u03BF\u03CD\u03B6\u03B5\u03C2");
+		shirtRadio = new JRadioButton("ΞΟ€Ξ»ΞΏΟΞ¶ΞµΟ‚");
 		shirtRadio.setBackground(SystemColor.controlHighlight);
 		shirtRadio.setEnabled(false);
 		shirtRadio.setBounds(119, 242, 125, 25);
 		shirtRadio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(shirtRadio);
 		
-		trousersRadio = new JRadioButton("\u03A0\u03B1\u03BD\u03C4\u03B5\u03BB\u03CC\u03BD\u03B9\u03B1");
+		trousersRadio = new JRadioButton("Ξ Ξ±Ξ½Ο„ΞµΞ»ΟΞ½ΞΉΞ±");
 		trousersRadio.setBackground(SystemColor.controlHighlight);
 		trousersRadio.setEnabled(false);
 		trousersRadio.setBounds(119, 270, 125, 25);
 		trousersRadio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(trousersRadio);
 		
-		coatRadio = new JRadioButton("\u03A0\u03B1\u03BB\u03C4\u03AC");
+		coatRadio = new JRadioButton("Ξ Ξ±Ξ»Ο„Ο");
 		coatRadio.setBackground(SystemColor.controlHighlight);
 		coatRadio.setEnabled(false);
 		coatRadio.setBounds(119, 298, 125, 25);
 		coatRadio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(coatRadio);
 		
-		skirtRadio = new JRadioButton("\u03A6\u03BF\u03CD\u03C3\u03C4\u03B5\u03C2");
+		skirtRadio = new JRadioButton("Ξ¦ΞΏΟΟƒΟ„ΞµΟ‚");
 		skirtRadio.setBackground(SystemColor.controlHighlight);
 		skirtRadio.setEnabled(false);
 		skirtRadio.setBounds(119, 326, 125, 25);
 		skirtRadio.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(skirtRadio);
 		
-		commissionCheckBox = new JCheckBox("\u0395\u03BC\u03C6\u03AC\u03BD\u03B9\u03C3\u03B7 \u03A0\u03C1\u03BF\u03BC\u03AE\u03B8\u03B5\u03B9\u03B1\u03C2");
+		commissionCheckBox = new JCheckBox("Ξ•ΞΌΟ†Ξ¬Ξ½ΞΉΟƒΞ· Ξ ΟΞΏΞΌΞ®ΞΈΞµΞΉΞ±Ο‚");
 		commissionCheckBox.setBackground(SystemColor.controlHighlight);
 		commissionCheckBox.setBounds(52, 375, 204, 25);
 		commissionCheckBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		getContentPane().add(commissionCheckBox);
 		
-		final JToggleButton addReceiptToggleButton = new JToggleButton("\u03A0\u03C1\u03BF\u03C3\u03B8\u03AE\u03BA\u03B7 \u03BD\u03AD\u03B1\u03C2 \u03B1\u03C0\u03CC\u03B4\u03B5\u03B9\u03BE\u03B7\u03C2");
+		final JToggleButton addReceiptToggleButton = new JToggleButton("Ξ ΟΞΏΟƒΞΈΞ®ΞΊΞ· Ξ½Ξ­Ξ±Ο‚ Ξ±Ο€ΟΞ΄ΞµΞΉΞΎΞ·Ο‚");
 		addReceiptToggleButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		addReceiptToggleButton.setBackground(new Color(135, 206, 235));
 		
@@ -261,14 +261,14 @@ public class SelectionWindow extends JDialog {
 		numberLabel.setBounds(470, 448, 63, 14);
 		getContentPane().add(numberLabel);
 		
-		final JButton addReceiptButton = new JButton("\u03A0\u03C1\u03BF\u03C3\u03B8\u03AE\u03BA\u03B7");
+		final JButton addReceiptButton = new JButton("Ξ ΟΞΏΟƒΞΈΞ®ΞΊΞ·");
 		addReceiptButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		
 		addReceiptButton.setVisible(false);
 		addReceiptButton.setBounds(519, 482, 105, 39);
 		getContentPane().add(addReceiptButton);
 		
-		JLabel lblNewLabel_10 = new JLabel("\u0391\u03C0\u03BF\u03B4\u03B5\u03AF\u03BE\u03B5\u03B9\u03C2 \u03C0\u03BF\u03C5 \u03C0\u03C1\u03BF\u03C3\u03B8\u03AD\u03B8\u03B7\u03BA\u03B1\u03BD:");
+		JLabel lblNewLabel_10 = new JLabel("Ξ‘Ο€ΞΏΞ΄ΞµΞ―ΞΎΞµΞΉΟ‚ Ο€ΞΏΟ… Ο€ΟΞΏΟƒΞΈΞ­ΞΈΞ·ΞΊΞ±Ξ½:");
 		lblNewLabel_10.setBounds(469, 532, 157, 14);
 		getContentPane().add(lblNewLabel_10);
 		
@@ -300,12 +300,12 @@ public class SelectionWindow extends JDialog {
 		cancelButton.setBounds(147, 483, 94, 32);
 		getContentPane().add(cancelButton);
 		
-		JLabel lblNewLabel_11 = new JLabel("\u0395\u03C0\u03B9\u03BB\u03AD\u03BE\u03C4\u03B5 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2 \u03C0\u03C1\u03BF\u03C2 \u03B5\u03BC\u03C6\u03AC\u03BD\u03B9\u03C3\u03B7");
+		JLabel lblNewLabel_11 = new JLabel("Ξ•Ο€ΞΉΞ»Ξ­ΞΎΟ„Ξµ Ο€Ξ»Ξ·ΟΞΏΟ†ΞΏΟΞ―ΞµΟ‚ Ο€ΟΞΏΟ‚ ΞµΞΌΟ†Ξ¬Ξ½ΞΉΟƒΞ·");
 		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_11.setBounds(0, 75, 271, 29);
 		getContentPane().add(lblNewLabel_11);
 		
-		JLabel agentNameLabel = new JLabel("\u0391\u03BD\u03C4\u03B9\u03C0\u03C1\u03CC\u03C3\u03C9\u03C0\u03BF\u03C2:");
+		JLabel agentNameLabel = new JLabel("Ξ‘Ξ½Ο„ΞΉΟ€ΟΟΟƒΟ‰Ο€ΞΏΟ‚:");
 		agentNameLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		agentNameLabel.setBounds(0, 8, 129, 25);
 		getContentPane().add(agentNameLabel);
@@ -386,7 +386,7 @@ public class SelectionWindow extends JDialog {
 			agentNameTextField.setText(selectedAgent.getName());
 		}catch(NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"Προέκυψε κάποιο πρόβλημα, προσπαθήστε ξανά");
+			JOptionPane.showMessageDialog(null,"Ξ”ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΞµΟ€ΞΉΞ»Ξ­ΞΎΞµΞΉ Ξ±Ξ½Ο„ΞΉΟ€ΟΟΟƒΟ‰Ο€ΞΏ, Ο€Ξ±ΟΞ±ΞΊΞ±Ξ»Ο ΞµΟ€ΞΉΞ»Ξ­ΞΎΟ„Ξµ.");
 
 		}
 		
@@ -442,15 +442,15 @@ public class SelectionWindow extends JDialog {
 				&& itemsTextField.getText().isEmpty() && companyTextField.getText().isEmpty()
 				&& countryTextField.getText().isEmpty() && cityTextField.getText().isEmpty()
 				&& streetTextField.getText().isEmpty() && numberTextField.getText().isEmpty()){
-			JOptionPane.showMessageDialog(null,"Πρέπει να συμπληρώσετε όλα τα πεδία");
+			JOptionPane.showMessageDialog(null,"Ξ”ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΟƒΟ…ΞΌΟ€Ξ»Ξ·ΟΟΟƒΞµΞΉ ΞΊΞ¬Ο€ΞΏΞΉΞΏ Ο€ΞµΞ΄Ξ―ΞΏ");
 			
 		}
 		/*else if(kindTextField.toString().equalsIgnoreCase("Coats") == false && 
 				kindTextField.toString().equalsIgnoreCase("Shirts") == false &&
 				kindTextField.toString().equalsIgnoreCase("Skirts") == false &&
 				kindTextField.toString().equalsIgnoreCase("Trousers") == false){
-			JOptionPane.showMessageDialog(null,"To είδος που πρηκτολογήσατε δεν έιναι έγκυρο. Προσπαθήστε"
-					+ " ξανά συμπληρώνοντας το πεδίο kind Coats ή Shirts ή Skirts ή Trousers");
+			JOptionPane.showMessageDialog(null,"To οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½. οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½"
+					+ " οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ kind Coats οΏ½ Shirts οΏ½ Skirts οΏ½ Trousers");
 
 		}*/
 			
@@ -512,11 +512,10 @@ public class SelectionWindow extends JDialog {
 			selectedAgent.getReceipts().add(receipt);
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
-			JOptionPane.showMessageDialog(null,"Η απόδειξη προσθέθηκε επιτυχώς");
+			JOptionPane.showMessageDialog(null,"Ξ— Ξ±Ο€ΟΞ΄ΞµΞΉΞΎΞ· Ο€ΟΞΏΟƒΟ„Ξ­ΞΈΞ·ΞΊΞµ");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"Δεν συμπληρώσατε σωστά κάποιο πεδίο, προσπαθήστε ξανά");
-
+			JOptionPane.showMessageDialog(null,"Ξ”ΞµΞ½ Ξ­Ο‡ΞµΟ„Ξµ ΟƒΟ…ΞΌΟ€Ξ»Ξ·ΟΟΟƒΞµΞΉ ΞΊΞ¬Ο€ΞΏΞΉΞΏ Ο€ΞµΞ΄Ξ―ΞΏ");
 		}
 	}
 	
