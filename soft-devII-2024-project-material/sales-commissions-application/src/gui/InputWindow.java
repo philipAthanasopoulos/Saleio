@@ -52,7 +52,6 @@ public class InputWindow extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	//commit from new feature branch
 	public static void main(String[] args) {
 		try {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -82,18 +81,18 @@ public class InputWindow extends JDialog {
 		getContentPane().add(inputWindowPanel, BorderLayout.CENTER);
 		
 				
-				JButton buttonTXTInput = new JButton("\u0395\u03B9\u03C3\u03B1\u03B3\u03C9\u03B3\u03AE \u03B1\u03C0\u03CC TXT");
+				JButton buttonTXTInput = new JButton("Εισαγωγή από TXT");
 				buttonTXTInput.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 				buttonTXTInput.setBackground(UIManager.getColor("InternalFrame.borderLight"));
 				buttonTXTInput.setFocusPainted(false);
 				
-				JButton buttonXMLInput = new JButton("\u0395\u03B9\u03C3\u03B1\u03B3\u03C9\u03B3\u03AE \u03B1\u03C0\u03CC XML");
+				JButton buttonXMLInput = new JButton("Εισαγωγή από XML");
 				buttonXMLInput.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 				buttonXMLInput.setBackground(UIManager.getColor("InternalFrame.borderLight"));
 				buttonXMLInput.setFocusPainted(false);
 				
 				
-				JLabel label = new JLabel("\u0395\u03C0\u03B9\u03BB\u03AD\u03BE\u03C4\u03B5 \u03B5\u03AF\u03B4\u03BF\u03C2 \u03B1\u03C1\u03C7\u03B5\u03AF\u03BF\u03C5 \u03B3\u03B9\u03B1 \u03C6\u03CC\u03C1\u03C4\u03C9\u03C3\u03B7 \u03B1\u03C0\u03BF\u03B4\u03B5\u03AF\u03BE\u03B5\u03C9\u03BD:");
+				JLabel label = new JLabel("Λίστα αντιπρόσωπων");
 				label.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 				agentsList.addMouseListener(new MouseAdapter() {
 					@Override
@@ -107,7 +106,8 @@ public class InputWindow extends JDialog {
 				agentsList.setBorder(new LineBorder(new Color(0, 0, 0)));
 				
 				
-				JLabel label_1 = new JLabel("\u039B\u03B9\u03C3\u03C4\u03B1 \u0391\u03BD\u03C4\u03B9\u03C0\u03C1\u03BF\u03C3\u03CE\u03C0\u03C9\u03BD");
+				// JLabel label_1 = new JLabel("\u039B\u03B9\u03C3\u03C4\u03B1 \u0391\u03BD\u03C4\u03B9\u03C0\u03C1\u03BF\u03C3\u03CE\u03C0\u03C9\u03BD");
+				JLabel label_1 = new JLabel("Λίστα Αντιπροσώπων");
 				label_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 				
 				JButton button = new JButton("OK");
@@ -214,7 +214,7 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
+				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
 
 			}
 			else{
@@ -225,10 +225,10 @@ public class InputWindow extends JDialog {
 			
 		}catch (NullPointerException e){
 			
-			JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
+			JOptionPane.showMessageDialog(null,"Δεν επιλέξατε αρχείο");
 
 		}catch (NumberFormatException e){
-			JOptionPane.showMessageDialog(null,"�������� ������ �������� ���� ��� �������� ��� �������");
+			JOptionPane.showMessageDialog(null,"Λάθος αρχείο");
 		}
 		
 	}
@@ -254,7 +254,8 @@ public class InputWindow extends JDialog {
 				}
 			}
 			if(agentDuplicate == true){
-				JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
+				// JOptionPane.showMessageDialog(null,"� ������������ ������� ��� ��� �����");
+				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
 
 			}
 			else{
@@ -264,7 +265,8 @@ public class InputWindow extends JDialog {
 			}
 		}catch (IllegalArgumentException e){
 		
-			JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
+			// JOptionPane.showMessageDialog(null,"��� ���������� ������ ������");
+			JOptionPane.showMessageDialog(null,"Δεν επιλέξατε αρχείο");
 
 		}
         
@@ -292,7 +294,8 @@ public class InputWindow extends JDialog {
 	
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
-			JOptionPane.showMessageDialog(null,"��� ����� �������� �����������");
+			// JOptionPane.showMessageDialog(null,"��� ����� �������� �����������");
+			JOptionPane.showMessageDialog(null,"Δεν έχετε επιλέξει αντιπρόσωπο");
 
 		}
 		else{
