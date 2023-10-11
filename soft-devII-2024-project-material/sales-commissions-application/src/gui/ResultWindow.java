@@ -67,7 +67,8 @@ public class ResultWindow extends JDialog {
 		getContentPane().add(resultWindowPanel, BorderLayout.CENTER);
 		resultWindowPanel.setLayout(null);
 		{
-			JButton xmlReportButton = new JButton("\u0395\u03BE\u03B1\u03B3\u03C9\u03B3\u03AE \u03C3\u03B5 XML");
+			JButton xmlReportButton = new JButton("Εξαγωγή σε XML");
+			
 			xmlReportButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					outputXMLButtonPressed(evt);
@@ -79,7 +80,7 @@ public class ResultWindow extends JDialog {
 			resultWindowPanel.add(xmlReportButton);
 		}
 		{
-			JButton txtReportButton = new JButton("\u0395\u03BE\u03B1\u03B3\u03C9\u03B3\u03AE \u03C3\u03B5 TXT");
+			JButton txtReportButton = new JButton("Εξαγωγή σε TXT");
 			txtReportButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					outputTXTButtonPressed(evt);
@@ -91,43 +92,43 @@ public class ResultWindow extends JDialog {
 			resultWindowPanel.add(txtReportButton);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("\u03A3\u03C5\u03BD\u03BF\u03BB\u03B9\u03BA\u03AE \u03B1\u03BE\u03AF\u03B1");
+			JLabel lblNewLabel = new JLabel("Συνολική αξία");
 			lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel.setBounds(60, 41, 84, 43);
 			resultWindowPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblNewLabel_1 = new JLabel("\u03A3\u03CD\u03BD\u03BF\u03BB\u03BF \u03C0\u03C9\u03BB\u03AE\u03C3\u03B5\u03C9\u03BD");
+			JLabel lblNewLabel_1 = new JLabel("Σύνολο πωλήσεων");
 			lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_1.setBounds(60, 95, 124, 14);
 			resultWindowPanel.add(lblNewLabel_1);
 		}
 		{
-			JLabel lblNewLabel_2 = new JLabel("\u03A0\u03C9\u03BB\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C0\u03B1\u03BD\u03C4\u03B5\u03BB\u03BF\u03BD\u03B9\u03CE\u03BD");
+			JLabel lblNewLabel_2 = new JLabel("Πωλήσεις παντελονιών");
 			lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_2.setBounds(60, 138, 138, 14);
 			resultWindowPanel.add(lblNewLabel_2);
 		}
 		{
-			JLabel lblNewLabel_3 = new JLabel("\u03A0\u03C9\u03BB\u03AE\u03C3\u03B5\u03B9\u03C2 \u039C\u03C0\u03BB\u03BF\u03C5\u03B6\u03CE\u03BD");
+			JLabel lblNewLabel_3 = new JLabel("Πωλήσεις μπλουζών");
 			lblNewLabel_3.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_3.setBounds(60, 178, 124, 14);
 			resultWindowPanel.add(lblNewLabel_3);
 		}
 		{
-			JLabel lblNewLabel_4 = new JLabel("\u03A0\u03C9\u03BB\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C0\u03B1\u03BB\u03C4\u03CE\u03BD");
+			JLabel lblNewLabel_4 = new JLabel("Πωλήσεις παλτών");
 			lblNewLabel_4.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_4.setBounds(60, 220, 124, 14);
 			resultWindowPanel.add(lblNewLabel_4);
 		}
 		{
-			JLabel lblNewLabel_5 = new JLabel("\u03A0\u03C9\u03BB\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C6\u03BF\u03C5\u03C3\u03C4\u03CE\u03BD");
+			JLabel lblNewLabel_5 = new JLabel("Πωλήσεις φούστων");
 			lblNewLabel_5.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_5.setBounds(60, 255, 124, 14);
 			resultWindowPanel.add(lblNewLabel_5);
 		}
 		{
-			JLabel lblNewLabel_6 = new JLabel("\u03A0\u03C1\u03BF\u03BC\u03AE\u03B8\u03B5\u03B9\u03B1");
+			JLabel lblNewLabel_6 = new JLabel("Προμήθεια");
 			lblNewLabel_6.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			lblNewLabel_6.setBounds(60, 301, 101, 14);
 			resultWindowPanel.add(lblNewLabel_6);
@@ -235,14 +236,14 @@ public class ResultWindow extends JDialog {
 	private void outputTXTButtonPressed(ActionEvent evt) {
 		TXTReport makeTXTFile = new TXTReport(selectedAgent);
 		makeTXTFile.saveFile();
-		JOptionPane.showMessageDialog(null,"� ������� ������������ ��������");
+		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
 		XMLReport makeXMLFile = new XMLReport(selectedAgent);
 		makeXMLFile.saveFile();
-		JOptionPane.showMessageDialog(null,"� ������� ������������ ��������");		
+		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");	
 	}
 	private void okButtonPressed(ActionEvent evt) {
 		System.exit(0);		
