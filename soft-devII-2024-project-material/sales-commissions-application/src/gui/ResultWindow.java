@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
+import data.Agent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -9,16 +9,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
-import java.awt.Font;
-
 import javax.swing.UIManager;
 
 import output.TXTReport;
 import output.XMLReport;
-import data.Agent;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -176,7 +174,7 @@ public class ResultWindow extends JDialog {
 		resultWindowPanel.add(commissionTextField);
 		commissionTextField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("\u039F\u039A");
+		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				okButtonPressed(evt);
@@ -186,7 +184,7 @@ public class ResultWindow extends JDialog {
 		btnNewButton.setBounds(246, 360, 101, 33);
 		resultWindowPanel.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
+		JButton btnNewButton_1 = new JButton("Ακύρωση");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cancelButtonPressed(evt);
