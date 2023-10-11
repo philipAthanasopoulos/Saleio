@@ -105,7 +105,6 @@ public class InputWindow extends JDialog {
 				agentsList.setBorder(new LineBorder(new Color(0, 0, 0)));
 				
 				
-				// JLabel label_1 = new JLabel("\u039B\u03B9\u03C3\u03C4\u03B1 \u0391\u03BD\u03C4\u03B9\u03C0\u03C1\u03BF\u03C3\u03CE\u03C0\u03C9\u03BD");
 				JLabel label_1 = new JLabel("Λίστα Αντιπροσώπων");
 				label_1.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 				
