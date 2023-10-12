@@ -1,5 +1,12 @@
 package gui;
 
+import data.Agent;
+import data.Coat;
+import data.Receipt;
+import data.Shirt;
+import data.Skirt;
+import data.Trouser;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -7,24 +14,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
-
-import java.awt.Font;
-
 import javax.swing.JToggleButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
 
-import data.Agent;
-import data.Coat;
-import data.Receipt;
-import data.Shirt;
-import data.Skirt;
-import data.Trouser;
 
 public class SelectionWindow extends JDialog {
 	private static final long serialVersionUID = 1L;
