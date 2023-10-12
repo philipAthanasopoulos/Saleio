@@ -12,17 +12,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-
-import java.io.File;
-
-import java.util.Vector;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.border.LineBorder;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.io.File;
+
+import java.util.Vector;
 
 import java.awt.Color;
 import java.awt.BorderLayout;
@@ -208,12 +207,10 @@ public class InputWindow extends JDialog {
 			for(int i = 0; i< listModel.getSize(); i++){
 				if(agent.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
-
 				}
 			}
 			if(agentDuplicate == true){
 				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
-
 			}
 			else{
 				listModel.addElement(agent.getName());
@@ -222,13 +219,10 @@ public class InputWindow extends JDialog {
 			}
 			
 		}catch (NullPointerException e){
-			
 			JOptionPane.showMessageDialog(null,"Δεν επιλέξατε αρχείο");
-
 		}catch (NumberFormatException e){
 			JOptionPane.showMessageDialog(null,"Λάθος αρχείο");
 		}
-		
 	}
 	
 	private void insertFromXML(ActionEvent evt2){
@@ -248,12 +242,10 @@ public class InputWindow extends JDialog {
 			for(int i = 0; i< listModel.getSize(); i++){
 				if(agent.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
-
 				}
 			}
 			if(agentDuplicate == true){
 				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
-
 			}
 			else{
 				listModel.addElement(agent.getName());
@@ -282,7 +274,6 @@ public class InputWindow extends JDialog {
 	private void okButtonPressed(ActionEvent evt) {
 		if(agentsList.isSelectionEmpty()){
 			JOptionPane.showMessageDialog(null,"Δεν έχετε επιλέξει αντιπρόσωπο");
-
 		}
 		else{
 			SelectionWindow sw = new SelectionWindow(dialog,selectedAgent,fileTypeFlag);
@@ -290,5 +281,4 @@ public class InputWindow extends JDialog {
 			sw.setVisible(true);
 		}	
 	}	
-
 }

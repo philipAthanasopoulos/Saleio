@@ -1,6 +1,5 @@
 package gui;
 
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -27,10 +26,7 @@ import data.Shirt;
 import data.Skirt;
 import data.Trouser;
 
-
 public class SelectionWindow extends JDialog {
-
-	
 	private static final long serialVersionUID = 1L;
 	private final JPanel selectionWindowPanel = new JPanel();
 	private JTextField dateTextField;
@@ -71,8 +67,8 @@ public class SelectionWindow extends JDialog {
 		selectedAgent = agent;
 		fileType = fileTypeFlag;
 		initialise();
-		
 	}
+	
 	public void initialise(){
 		getContentPane().setBackground(SystemColor.controlHighlight);
 		setBounds(100, 100, 717, 597);
@@ -299,6 +295,7 @@ public class SelectionWindow extends JDialog {
 		cancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		cancelButton.setBounds(147, 483, 94, 32);
 		getContentPane().add(cancelButton);
+
 		
 		JLabel lblNewLabel_11 = new JLabel("Επιλέξτε πληροφορίες προς εμφάνιση");
 		lblNewLabel_11.setFont(new Font("Tahoma", Font.BOLD, 12));

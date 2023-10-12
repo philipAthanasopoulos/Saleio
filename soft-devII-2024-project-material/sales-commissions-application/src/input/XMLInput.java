@@ -77,8 +77,8 @@ public class XMLInput extends Input {
             
         } catch (Exception e) {
         	JOptionPane.showMessageDialog
-			(null,"Προέκυψε κάποιο πρόβλημα κατά το διάβασμα του αρχείου");
-		} 
+			(null,"Ξ£Ο†Ξ¬Ξ»ΞΌΞ± ΞΊΞ±Ο„Ξ¬ Ο„Ξ·Ξ½ Ξ±Ξ½Ξ¬Ξ³Ξ½Ο‰ΟƒΞ· Ο„ΞΏΟ… Ξ±ΟΟ‡ΞµΞ―ΞΏΟ…");
+			} 
     }
     
 }

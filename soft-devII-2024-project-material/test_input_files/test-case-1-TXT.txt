@@ -68,14 +68,3 @@ Country: Greece
 City: Ioannina
 Street: Kaloudi 
 Number: 10
-
-Receipt ID: 1
-Date: 2022
-Kind: nigger
-Sales: 5
-Items: 1
-Company: niggaballs
-Country: Nigeria
-City: nigger
-Street: nig
-Number: 69
