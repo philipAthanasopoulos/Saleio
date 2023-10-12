@@ -7,7 +7,8 @@ public class Agent {
 	private String name;
 	private String afm;
 	private Vector <Receipt> allReceipts;
-	private FileAppender fileAppender;
+	private FileAppender fileAppender; // agent shouldnt have a file appender
+									// it should be used by the gui
 	
 	
 	public Agent(){
