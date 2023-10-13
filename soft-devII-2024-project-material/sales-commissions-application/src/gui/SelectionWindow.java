@@ -1,11 +1,11 @@
 package gui;
 
-import data.Agent;
-import data.Coat;
-import data.Receipt;
-import data.Shirt;
-import data.Skirt;
-import data.Trouser;
+import domain.Agent;
+import domain.Coat;
+import domain.Receipt;
+import domain.Shirt;
+import domain.Skirt;
+import domain.Trouser;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;

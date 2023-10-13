@@ -1,6 +1,6 @@
 package gui;
 
-import data.Agent;
+import domain.Agent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,8 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import output.TXTReport;
-import output.XMLReport;
+import reporter.TXTReporter;
+import reporter.XMLReporter;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -232,14 +232,14 @@ public class ResultWindow extends JDialog {
 				
 	}
 	private void outputTXTButtonPressed(ActionEvent evt) {
-		TXTReport makeTXTFile = new TXTReport(selectedAgent);
+		TXTReporter makeTXTFile = new TXTReporter(selectedAgent);
 		makeTXTFile.saveFile();
 		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
-		XMLReport makeXMLFile = new XMLReport(selectedAgent);
+		XMLReporter makeXMLFile = new XMLReporter(selectedAgent);
 		makeXMLFile.saveFile();
 		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");	
 	}

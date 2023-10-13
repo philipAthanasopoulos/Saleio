@@ -1,9 +1,9 @@
 package gui;
 
-import data.Agent;
+import domain.Agent;
 
-import input.TXTInput;
-import input.XMLInput;
+import parser.TXTParser;
+import parser.XMLParser;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -198,7 +198,7 @@ public class InputWindow extends JDialog {
 		boolean agentDuplicate = false;
 		try{
 			File recieptFileTXT = TXTFileChooser.getSelectedFile();
-			TXTInput inputFileTXT = new TXTInput(recieptFileTXT);	
+			TXTParser inputFileTXT = new TXTParser(recieptFileTXT);
 			inputFileTXT.readFile();
 			agent = inputFileTXT.getAgent();
 			agent.setFileType("TXT");
@@ -233,7 +233,7 @@ public class InputWindow extends JDialog {
 		boolean agentDuplicate = false;
 		try{
 			File recieptFileXML = XMLFileChooser.getSelectedFile();
-			XMLInput inputFileXML = new XMLInput(recieptFileXML);	
+			XMLParser inputFileXML = new XMLParser(recieptFileXML);
 			inputFileXML.readFile();
 			agent = inputFileXML.getAgent();
 			agent.setFileType("XML");

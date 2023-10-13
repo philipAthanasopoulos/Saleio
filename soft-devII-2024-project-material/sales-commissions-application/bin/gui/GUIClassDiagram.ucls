@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="data.Agent" project="phase1" file="/phase1/src/data/Agent.java" binary="false" 
+  <class id="4" language="java" name="domain.Agent" project="phase1" file="/phase1/src/domain/Agent.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="612" y="-476"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
