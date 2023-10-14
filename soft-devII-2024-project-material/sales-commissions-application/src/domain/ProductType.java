@@ -1,7 +1,8 @@
 package domain;
 
-public class ProductType {
-    public enum productTypes{
-        COAT, TROUSER, SKIRT, SHIRT
-    }
+public enum ProductType {
+    COAT,
+    SHIRT,
+    SKIRT,
+    TROUSERS
 }

@@ -496,7 +496,7 @@ public class SelectionWindow extends JDialog {
 			receipt.setDate(dateTextField.getText());
 			receipt.setSales(Double.parseDouble(salesTextField.getText()));
 			receipt.setItems(Integer.parseInt(itemsTextField.getText()));
-			receipt.getCompany().setName(companyTextField.getText());
+			receipt.getCompany().setCompanyName(companyTextField.getText());
 			receipt.getCompany().getCompanyAddress().setCountry(countryTextField.getText());
 			receipt.getCompany().getCompanyAddress().setCity(cityTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreet(streetTextField.getText());

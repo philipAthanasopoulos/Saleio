@@ -61,7 +61,7 @@ public abstract class Parser {
 			receipt.setDate(date);
 			receipt.setSales(sales);
 			receipt.setItems(items);
-			receipt.getCompany().setName(companyName);
+			receipt.getCompany().setCompanyName(companyName);
 			receipt.getCompany().getCompanyAddress().setCountry(companyCountry);
 			receipt.getCompany().getCompanyAddress().setCity(companyCity);
 			receipt.getCompany().getCompanyAddress().setStreet(companyStreet);

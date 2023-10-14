@@ -1,18 +1,19 @@
 package domain;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Associate {
 	private String name;
 	private String afm;
-	private Vector <Receipt> allReceipts;
-	private FileAppender fileAppender; // associate shouldnt have a file appender
+	private List<Receipt> receipts;
+	private FileAppender fileAppender; // associate shouldn't have a file appender
 									// it should be used by the gui
-	
-	
+
 	public Associate(){
-		allReceipts = new Vector<Receipt>();
+		receipts = new ArrayList<Receipt>();
 	}
 	
 	public void setFileType(String fileType) {
@@ -23,76 +24,48 @@ public class Associate {
 			fileAppender = new FileAppenderXML();
 		}	
 	}
-	public Vector<Receipt> getReceipts(){
-		return allReceipts;
-
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAfm() {
-		return afm;
-	}
-	public void setAfm(String afm) {
-		this.afm = afm;
-	}
 
 	public double calculateTotalSales(){
 		double sumSales = 0;
-		for(int i = 0; i< allReceipts.size(); i++){
-			sumSales += allReceipts.get(i).getSales();
-		}
+		for(Receipt receipt : receipts) sumSales += receipt.getSales();
 		return sumSales;
 	}
 	
 
 	public int calculateTotalItems(){
 		int sumItems = 0;
-		for(int i = 0; i< allReceipts.size(); i++){
-			sumItems += allReceipts.get(i).getItems();
-		}
+		for(Receipt receipt : receipts) sumItems += receipt.getItems();
 		return sumItems;
 	}
 	
 	public float calculateSkirtsSales(){
 		float skirtSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Skirt")){
-				skirtSum += allReceipts.get(i).getItems();
-			}
+		for(Receipt receipt : receipts) {
+			if(receipt.getKind().equals("Skirt")) skirtSum += receipt.getItems();
 		}
 		return skirtSum;
 	}
 
 	public float calculateCoatsSales(){
 		float coatsSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-				if(allReceipts.get(i).getKind().equals("Coat")){
-					coatsSum += allReceipts.get(i).getItems();
-				}
-		}		
+		for(Receipt receipt : receipts) {
+			if(receipt.getKind().equals("Coat")) coatsSum += receipt.getItems();
+		}
 		return coatsSum;
 	}
 	
 	public float calculateTrouserSales(){
 		float trousersSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Trouser")){
-				trousersSum += allReceipts.get(i).getItems();
-			}	
+		for(Receipt receipt : receipts) {
+			if(receipt.getKind().equals("Trouser")) trousersSum += receipt.getItems();
 		}
 		return trousersSum;
 	}
 	
 	public float calculateShirtsSales(){
 		float shirtSum = 0;
-		for (int i = 0; i< allReceipts.size(); i++){
-			if(allReceipts.get(i).getKind().equals("Shirt")){				
-				shirtSum += allReceipts.get(i).getItems();
-			}
+		for(Receipt receipt : receipts) {
+			if(receipt.getKind().equals("Shirt")) shirtSum += receipt.getItems();
 		}
 		return shirtSum;
 	}
@@ -111,10 +84,35 @@ public class Associate {
 		return commission;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAfm() {
+		return afm;
+	}
+
+	public void setAfm(String afm) {
+		this.afm = afm;
+	}
+
+	public List<Receipt> getReceipts() {
+		return receipts;
+	}
+
+	public void setReceipts(List<Receipt> receipts) {
+		this.receipts = receipts;
+	}
 
 	public FileAppender getFileAppender() {
 		return fileAppender;
 	}
 
-
+	public void setFileAppender(FileAppender fileAppender) {
+		this.fileAppender = fileAppender;
+	}
 }
