@@ -1,0 +1,177 @@
+<Agent>
+<Name> Vassileios Zarras </Name>
+<AFM> 130456097 </AFM>
+
+<Receipts>
+
+<Receipt>
+<ReceiptID> 1 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Coats </Kind>
+<Sales> 2000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 2 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Coats </Kind>
+<Sales> 4000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 3 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Shirts </Kind>
+<Sales> 4000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 4 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Skirts </Kind>
+<Sales> 1000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 5 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Skirts </Kind>
+<Sales> 1000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 6 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Trousers </Kind>
+<Sales> 5000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 7 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Coats </Kind>
+<Sales> 2000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 8 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Coats </Kind>
+<Sales> 4000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 9 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Shirts </Kind>
+<Sales> 4000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 10 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Skirts </Kind>
+<Sales> 1000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 11 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Skirts </Kind>
+<Sales> 1000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 12 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Trousers </Kind>
+<Sales> 5000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+<Receipt>
+<ReceiptID> 14 </ReceiptID>
+<Date> 25/2/2014 </Date>
+<Kind> Trousers </Kind>
+<Sales> 7000 </Sales>
+<Items> 10 </Items>
+<Company> Hand Made Clothes </Company>
+<Country> Greece </Country>
+<City> Ioannina </City>
+<Street> Kaloudi </Street>
+<Number> 10 </Number>
+</Receipt>
+
+</Receipts>
+</Agent>
