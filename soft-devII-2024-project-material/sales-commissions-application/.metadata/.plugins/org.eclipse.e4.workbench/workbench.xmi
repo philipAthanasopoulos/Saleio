@@ -1644,7 +1644,7 @@
   <commands xmi:id="_T7eVx0ZVEe6-INHh2zKUAw" elementId="org.eclipse.egit.ui.commit.UnifiedDiffCommand" commandName="Show Unified Diff" category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eVyEZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.edit.move" commandName="Move..." description="Move the selected item" category="_T7UkqkZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eVyUZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.refactor.migrate.jar" commandName="Migrate JAR File" description="Migrate a JAR File to a new version" category="_T7UkykZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eVykZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.show.outline" commandName="Quick Outline" description="Show the quick outline for the editor parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eVykZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.show.outline" commandName="Quick Outline" description="Show the quick outline for the editor main.parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eVy0ZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.jsdt.ui.commands.openElementInEditor" commandName="Open JavaScript Element" description="Open a JavaScript element in its editor" category="_T7Ukw0ZVEe6-INHh2zKUAw">
     <parameters xmi:id="_T7eVzEZVEe6-INHh2zKUAw" elementId="elementRef" name="JavaScript element reference" typeId="org.eclipse.wst.jsdt.ui.commands.javaElementReference" optional="false"/>
   </commands>
@@ -1740,7 +1740,7 @@
   <commands xmi:id="_T7eWI0ZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.jsdt.ui.edit.text.java.organize.imports" commandName="Organize Imports" description="Evaluate all required imports and replace the current imports" category="_T7UkpUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWJEZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.remove.block.comment" commandName="Remove Block Comment" description="Remove the block comment enclosing the selection" category="_T7Uk1kZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWJUZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.open.implementation" commandName="Open Implementation" description="Opens the Implementations of a method or a type in its hierarchy" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eWJkZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.junit.gotoTest" commandName="Referring Tests" description="Referring Tests" category="_T7Ukz0ZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eWJkZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.junit.gotoTest" commandName="Referring test" description="Referring test" category="_T7Ukz0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWJ0ZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.find.broken.nls.keys" commandName="Find Broken Externalized Strings" description="Finds undefined, duplicate and unused externalized string keys in property files" category="_T7Uk1kZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWKEZVEe6-INHh2zKUAw" elementId="org.eclipse.eclemma.ui.openSessionExecutionData" commandName="Open Execution Data" category="_T7UkqUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWKUZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.commands.showElementInPackageView" commandName="Show Java Element in Package Explorer" description="Select Java element in the Package Explorer view" category="_T7Ukw0ZVEe6-INHh2zKUAw">
@@ -1756,7 +1756,7 @@
     <parameters xmi:id="_T7eWMkZVEe6-INHh2zKUAw" elementId="org.eclipse.egit.ui.command.projectNameParameter" name="Project" optional="false"/>
   </commands>
   <commands xmi:id="_T7eWM0ZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.convert.anonymous.to.nested" commandName="Convert Anonymous Class to Nested" description="Convert an anonymous class to a nested class" category="_T7UkykZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eWNEZVEe6-INHh2zKUAw" elementId="org.eclipse.pde.ui.quickOutline" commandName="Quick Outline" description="Open a quick outline popup dialog for a given editor parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eWNEZVEe6-INHh2zKUAw" elementId="org.eclipse.pde.ui.quickOutline" commandName="Quick Outline" description="Open a quick outline popup dialog for a given editor main.parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWNUZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.window.fullscreenmode" commandName="Toggle Full Screen" description="Toggles the window between full screen and normal" category="_T7UkrEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWNkZVEe6-INHh2zKUAw" elementId="org.eclipse.equinox.p2.ui.sdk.installationDetails" commandName="Installation Details" category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eWN0ZVEe6-INHh2zKUAw" elementId="org.eclipse.team.ui.synchronizeAll" commandName="Synchronize..." description="Synchronize resources in the workspace with another location" category="_T7Uku0ZVEe6-INHh2zKUAw"/>
@@ -1960,7 +1960,7 @@
   <commands xmi:id="_T7eW9kZVEe6-INHh2zKUAw" elementId="org.eclipse.egit.ui.team.ApplyPatch" commandName="Apply Patch" category="_T7Uk0EZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eW90ZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.JavaPerspective" commandName="Java" description="Show the Java perspective" category="_T7Uk0kZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eW-EZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.indent" commandName="Correct Indentation" description="Corrects the indentation of the selected lines" category="_T7Uk1kZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eW-UZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.ide.copyConfigCommand" commandName="Copy Configuration Data To Clipboard" description="Copies the configuration domain (system properties, installed bundles, etc) to the clipboard." category="_T7UkoEZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eW-UZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.ide.copyConfigCommand" commandName="Copy Configuration Data To Clipboard" description="Copies the configuration main.domain (system properties, installed bundles, etc) to the clipboard." category="_T7UkoEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eW-kZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.navigate.forwardHistory" commandName="Forward History" description="Move forward in the editor navigation history" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eW-0ZVEe6-INHh2zKUAw" elementId="codemr.commands.setDefaultSettingsCommand" commandName="Set As Default" category="_T7UkqEZVEe6-INHh2zKUAw">
     <parameters xmi:id="_T7eW_EZVEe6-INHh2zKUAw" elementId="codemr.commands.settingsCommand.Parameter" name="codemr.commands.settingsCommand.Parameter"/>
@@ -2053,7 +2053,7 @@
   <commands xmi:id="_T7eXTUZVEe6-INHh2zKUAw" elementId="org.eclipse.egit.ui.PushHeadToGerrit" commandName="Push Current Head to Gerrit" category="_T7Uk0EZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eXTkZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.edit.selectAll" commandName="Select All" description="Select all" category="_T7UkoEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eXT0ZVEe6-INHh2zKUAw" elementId="org.eclipse.eclemma.ui.swtBotJunitShortcut.coverage" commandName="Coverage SWTBot Test" description="Coverage SWTBot Test" category="_T7UksEZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eXUEZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.show.outline" commandName="Quick Outline" description="Show the quick outline for the editor parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eXUEZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.show.outline" commandName="Quick Outline" description="Show the quick outline for the editor main.parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eXUUZVEe6-INHh2zKUAw" elementId="org.eclipse.jst.jsp.ui.refactor.move" commandName="Move" description="Move a Java Element to another package" category="_T7UkoEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eXUkZVEe6-INHh2zKUAw" elementId="codemr.commands.clusterCommand" commandName="Cluster" category="_T7UkrUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eXU0ZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.goto.next.member" commandName="Go to Next Member" description="Move the caret to the next member of the compilation unit" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
@@ -2216,7 +2216,7 @@
     <parameters xmi:id="_T7eX6EZVEe6-INHh2zKUAw" elementId="repositoryUri" name="Repository URI"/>
   </commands>
   <commands xmi:id="_T7eX6UZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.edit.text.clear.mark" commandName="Clear Mark" description="Clear the mark" category="_T7Uko0ZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7eX6kZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.sse.ui.quick_outline" commandName="Quick Outline" description="Show the quick outline for the editor parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7eX6kZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.sse.ui.quick_outline" commandName="Quick Outline" description="Show the quick outline for the editor main.parser" category="_T7Ukw0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eX60ZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.edit.text.java.add.textblock" commandName="Add Text Block" description="Adds Text Block" category="_T7Uk1kZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7eX7EZVEe6-INHh2zKUAw" elementId="codemr.commands.exportSettingsCommand" commandName="Export" category="_T7UkqEZVEe6-INHh2zKUAw">
     <parameters xmi:id="_T7eX7UZVEe6-INHh2zKUAw" elementId="codemr.commands.settingsCommand.Parameter" name="codemr.commands.settingsCommand.Parameter"/>
@@ -2445,7 +2445,7 @@
   <commands xmi:id="_T7oHLEZVEe6-INHh2zKUAw" elementId="org.eclipse.debug.ui.command.gotoaddress" commandName="Go to Address" description="Go to Address" category="_T7UksEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7oHLUZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.window.maximizePart" commandName="Maximize Active View or Editor" description="Toggles maximize/restore state of active view or editor" category="_T7UkrEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7oHLkZVEe6-INHh2zKUAw" elementId="org.eclipse.jdt.ui.correction.qualifyField" commandName="Quick Fix - Qualify field access" description="Invokes quick assist and selects 'Qualify field access'" category="_T7Uk1kZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_T7oHL0ZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.window.newEditor" commandName="Clone Editor" description="Open another editor on the active editor's parser" category="_T7UkrEZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_T7oHL0ZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.window.newEditor" commandName="Clone Editor" description="Open another editor on the active editor's main.parser" category="_T7UkrEZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7oHMEZVEe6-INHh2zKUAw" elementId="org.eclipse.wst.sse.ui.format" commandName="Format" category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7oHMUZVEe6-INHh2zKUAw" elementId="org.eclipse.search.ui.openSearchDialog" commandName="Open Search Dialog" description="Open the Search dialog" category="_T7Ukz0ZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_T7oHMkZVEe6-INHh2zKUAw" elementId="org.eclipse.ui.edit.text.contentAssist.proposals" commandName="Content Assist" description="Content Assist" category="_T7UkoEZVEe6-INHh2zKUAw"/>
@@ -2785,8 +2785,8 @@
   <commands xmi:id="_UeXAVkZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.NameMatchMappingActionID" commandName="Match Mapping by Name" description="Create child mappings automatically by name." category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_UeXAV0ZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.CreateOneSidedMappingActionID" commandName="Create One-sided Mapping" description="Create a new mapping for the selected object." category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_UeXAWEZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.action.CreateMappingActionID" commandName="Create Mapping" description="Create a new mapping between the selected objects." category="_T7UkuUZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_UeXAWUZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddOuputRootActionID" commandName="Add Output Root..." description="Add new reporter root." category="_T7UkuUZVEe6-INHh2zKUAw"/>
-  <commands xmi:id="_UeXAWkZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddInputRootActionID" commandName="Add Input Root..." description="Add new parser root." category="_T7UkuUZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_UeXAWUZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddOuputRootActionID" commandName="Add Output Root..." description="Add new main.reporter root." category="_T7UkuUZVEe6-INHh2zKUAw"/>
+  <commands xmi:id="_UeXAWkZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreContributionID/org.eclipse.emf.mapping.ecore2ecore.action.AddInputRootActionID" commandName="Add Input Root..." description="Add new main.parser root." category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_UeXAW0ZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.jdt.debug.CompilationUnitEditor.BreakpointRulerActions/org.eclipse.jdt.debug.ui.actions.ManageBreakpointRulerAction" commandName="Toggle Breakpoint" category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_UeXAXEZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.jdt.debug.CompilationUnitEditor.BreakpointRulerActions/org.eclipse.jdt.debug.ui.actions.RunToLineRulerActionDelegate" commandName="Run to Line" category="_T7UkuUZVEe6-INHh2zKUAw"/>
   <commands xmi:id="_UeXAXUZVEe6-INHh2zKUAw" elementId="AUTOGEN:::org.eclipse.jdt.debug.ClassFileEditor.BreakpointRulerActions/org.eclipse.jdt.debug.ui.actions.ManageBreakpointRulerAction" commandName="Toggle Breakpoint" category="_T7UkuUZVEe6-INHh2zKUAw"/>
