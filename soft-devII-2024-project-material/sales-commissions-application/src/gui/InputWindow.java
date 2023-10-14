@@ -1,6 +1,6 @@
 package gui;
 
-import domain.Agent;
+import domain.Associate;
 
 import parser.TXTParser;
 import parser.XMLParser;
@@ -39,9 +39,9 @@ public class InputWindow extends JDialog {
 	private final JPanel inputWindowPanel = new JPanel();
 	private DefaultListModel <String> listModel = new DefaultListModel <String>();
 	private JList <String> agentsList = new JList <String>();
-	private Vector <Agent> allAgents;
-	private  Agent agent = new Agent();
-	private Agent selectedAgent = null;
+	private Vector <Associate> allAssociates;
+	private Associate associate = new Associate();
+	private Associate selectedAssociate = null;
 	static InputWindow dialog = new InputWindow();
 	@SuppressWarnings("unused")
 	private File inputFile;
@@ -69,7 +69,7 @@ public class InputWindow extends JDialog {
 	}
 	
 	public void initialise() {
-		allAgents = new Vector <Agent>();
+		allAssociates = new Vector <Associate>();
 		
 		setBackground(new Color(0, 0, 0));
 		setBounds(100, 100, 736, 472);
@@ -200,12 +200,12 @@ public class InputWindow extends JDialog {
 			File recieptFileTXT = TXTFileChooser.getSelectedFile();
 			TXTParser inputFileTXT = new TXTParser(recieptFileTXT);
 			inputFileTXT.readFile();
-			agent = inputFileTXT.getAgent();
-			agent.setFileType("TXT");
-			agent.getFileAppender().setFileToAppend(recieptFileTXT);				
-			allAgents.add(agent);
+			associate = inputFileTXT.getAgent();
+			associate.setFileType("TXT");
+			associate.getFileAppender().setFileToAppend(recieptFileTXT);
+			allAssociates.add(associate);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(agent.getName().equals(listModel.getElementAt(i))){
+				if(associate.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 				}
 			}
@@ -213,7 +213,7 @@ public class InputWindow extends JDialog {
 				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
 			}
 			else{
-				listModel.addElement(agent.getName());
+				listModel.addElement(associate.getName());
 				agentsList.setModel(listModel);
 				fileTypeFlag = "TXT";
 			}
@@ -235,12 +235,12 @@ public class InputWindow extends JDialog {
 			File recieptFileXML = XMLFileChooser.getSelectedFile();
 			XMLParser inputFileXML = new XMLParser(recieptFileXML);
 			inputFileXML.readFile();
-			agent = inputFileXML.getAgent();
-			agent.setFileType("XML");
-			agent.getFileAppender().setFileToAppend(recieptFileXML);				
-			allAgents.add(agent);
+			associate = inputFileXML.getAgent();
+			associate.setFileType("XML");
+			associate.getFileAppender().setFileToAppend(recieptFileXML);
+			allAssociates.add(associate);
 			for(int i = 0; i< listModel.getSize(); i++){
-				if(agent.getName().equals(listModel.getElementAt(i))){
+				if(associate.getName().equals(listModel.getElementAt(i))){
 					agentDuplicate = true;
 				}
 			}
@@ -248,7 +248,7 @@ public class InputWindow extends JDialog {
 				JOptionPane.showMessageDialog(null,"Υπάρχει ήδη αντιπρόσωπος με αυτό το όνομα");
 			}
 			else{
-				listModel.addElement(agent.getName());
+				listModel.addElement(associate.getName());
 				agentsList.setModel(listModel);
 				fileTypeFlag = "XML";
 			}
@@ -262,9 +262,9 @@ public class InputWindow extends JDialog {
 		String agentName;
         if(agentsList.getSelectedIndex()>=0){
             agentName = agentsList.getSelectedValue().toString();
-            for(int i=0; i<allAgents.size(); i++){
-                if(agentName.equals(allAgents.get(i).getName())){
-					selectedAgent = allAgents.get(i);
+            for(int i = 0; i< allAssociates.size(); i++){
+                if(agentName.equals(allAssociates.get(i).getName())){
+					selectedAssociate = allAssociates.get(i);
 					break;
                 }
             }
@@ -276,7 +276,7 @@ public class InputWindow extends JDialog {
 			JOptionPane.showMessageDialog(null,"Δεν έχετε επιλέξει αντιπρόσωπο");
 		}
 		else{
-			SelectionWindow sw = new SelectionWindow(dialog,selectedAgent,fileTypeFlag);
+			SelectionWindow sw = new SelectionWindow(dialog, selectedAssociate,fileTypeFlag);
 			this.setVisible(false);
 			sw.setVisible(true);
 		}	

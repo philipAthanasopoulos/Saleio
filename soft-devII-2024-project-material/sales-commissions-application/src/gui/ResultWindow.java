@@ -1,6 +1,6 @@
 package gui;
 
-import domain.Agent;
+import domain.Associate;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -33,7 +33,7 @@ public class ResultWindow extends JDialog {
 	private JTextField skirtSalesTextField;
 	private JTextField commissionTextField;
 	private SelectionWindow selectionWindow;
-	private Agent selectedAgent;
+	private Associate selectedAssociate;
 	private double totalSales;
 	private int totalItems;
 	private float shirtSales;
@@ -43,10 +43,10 @@ public class ResultWindow extends JDialog {
 	private double commission;
 
 
-	public ResultWindow(final SelectionWindow sw, Agent agent,double tSales,int tItems,
-			float shirtS,float skirtS,float trousersS,float coatsS,double com) {
+	public ResultWindow(final SelectionWindow sw, Associate associate, double tSales, int tItems,
+                        float shirtS, float skirtS, float trousersS, float coatsS, double com) {
 		selectionWindow = sw;
-		selectedAgent = agent;
+		selectedAssociate = associate;
 		totalSales = tSales;
 		totalItems = tItems;
 		shirtSales = shirtS;
@@ -232,14 +232,14 @@ public class ResultWindow extends JDialog {
 				
 	}
 	private void outputTXTButtonPressed(ActionEvent evt) {
-		TXTReporter makeTXTFile = new TXTReporter(selectedAgent);
+		TXTReporter makeTXTFile = new TXTReporter(selectedAssociate);
 		makeTXTFile.saveFile();
 		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");
 
 		
 	}
 	private void outputXMLButtonPressed(ActionEvent evt) {
-		XMLReporter makeXMLFile = new XMLReporter(selectedAgent);
+		XMLReporter makeXMLFile = new XMLReporter(selectedAssociate);
 		makeXMLFile.saveFile();
 		JOptionPane.showMessageDialog(null,"Το αρχείο αποθηκεύτηκε στον φάκελο του προγράμματος");	
 	}

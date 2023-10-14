@@ -3,16 +3,12 @@ package parser;
 
 import java.io.File;
 
-import domain.Agent;
-import domain.Coat;
-import domain.Receipt;
-import domain.Shirt;
-import domain.Skirt;
-import domain.Trouser;
+import domain.*;
+import domain.Associate;
 
 public abstract class Parser {
 	
-	protected Agent agent;
+	protected Associate associate;
 	protected File inputFile;
 	protected String inputFilePath;
 	protected String name;
@@ -32,15 +28,15 @@ public abstract class Parser {
 
 	
 	public Parser() {
-		agent = new Agent();
+		associate = new Associate();
 		kind  = new String("");
 	}
 	
 
 	
 	public void addAgent() {
-		agent.setName(name);
-		agent.setAfm(afm);
+		associate.setName(name);
+		associate.setAfm(afm);
 	}
 	
 	public void addReceipt( ){
@@ -70,10 +66,10 @@ public abstract class Parser {
 			receipt.getCompany().getCompanyAddress().setCity(companyCity);
 			receipt.getCompany().getCompanyAddress().setStreet(companyStreet);
 			receipt.getCompany().getCompanyAddress().setStreetNumber(companyStreetNumber);
-			agent.getReceipts().add(receipt);
+			associate.getReceipts().add(receipt);
 	}
-	public Agent getAgent() {
-		return agent;
+	public Associate getAgent() {
+		return associate;
 	}
 
 	

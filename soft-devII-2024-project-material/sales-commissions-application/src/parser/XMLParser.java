@@ -1,21 +1,22 @@
 package parser;
 
 import java.io.File;
+
 import javax.swing.JOptionPane;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-
 
 public class XMLParser extends Parser {
  
 	public XMLParser(File receiptFileXML ){
 		inputFile = receiptFileXML;
-		
 	}
+
     public void readFile() {
         try {
         	DocumentBuilderFactory docBuilderFactory 
@@ -25,7 +26,7 @@ public class XMLParser extends Parser {
         	Document doc = docBuilder.parse(inputFile);
         	 
         	doc.getDocumentElement().normalize();
-            NodeList nodeLst = doc.getElementsByTagName("Agent");
+            NodeList nodeLst = doc.getElementsByTagName("Associate");
 			
         	name = ((Element) nodeLst.item(0)).getElementsByTagName("Name").
 			item(0).getChildNodes().item(0).getNodeValue().trim();
@@ -70,17 +71,11 @@ public class XMLParser extends Parser {
             	
 				addReceipt();
             }
-
-        	
-            
-        
-            
         } catch (Exception e) {
         	JOptionPane.showMessageDialog
 			(null,"Σφάλμα κατά την ανάγνωση του αρχείου");
-			} 
+		} 
     }
-    
 }
 
 

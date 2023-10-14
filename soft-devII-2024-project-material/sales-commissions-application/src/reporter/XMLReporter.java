@@ -15,12 +15,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import domain.Agent;
+import domain.Associate;
 
 public class XMLReporter extends Reporter {
 		
-	public XMLReporter(Agent agent){
-		this.agent = agent;
+	public XMLReporter(Associate associate){
+		this.associate = associate;
 	}	
 
 	@Override
@@ -31,39 +31,39 @@ public class XMLReporter extends Reporter {
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 			Document document = documentBuilder.newDocument();
 			// root element
-			Element agentElem = document.createElement("Agent");
+			Element agentElem = document.createElement("Associate");
 			document.appendChild(agentElem);
 			
 			Element name = document.createElement("Name");
-			name.appendChild(document.createTextNode(agent.getName()));
+			name.appendChild(document.createTextNode(associate.getName()));
 			agentElem.appendChild(name);
 			
 			Element afm = document.createElement("AFM");
-			afm.appendChild(document.createTextNode(agent.getAfm()));	
+			afm.appendChild(document.createTextNode(associate.getAfm()));
 			agentElem.appendChild(afm);
 			
 			Element totalSales = document.createElement("TotalSales");
-			totalSales.appendChild(document.createTextNode(Double.toString(agent.calculateTotalSales())));
+			totalSales.appendChild(document.createTextNode(Double.toString(associate.calculateTotalSales())));
 			agentElem.appendChild(totalSales);
 			
 			Element trouserSales = document.createElement("TrouserSales");
-			trouserSales.appendChild(document.createTextNode(Float.toString(agent.calculateTrouserSales())));
+			trouserSales.appendChild(document.createTextNode(Float.toString(associate.calculateTrouserSales())));
 			agentElem.appendChild(trouserSales);
 			
 			Element skirtsSales = document.createElement("SkirtsSales");
-			skirtsSales.appendChild(document.createTextNode(Float.toString(agent.calculateSkirtsSales())));
+			skirtsSales.appendChild(document.createTextNode(Float.toString(associate.calculateSkirtsSales())));
 			agentElem.appendChild(skirtsSales);
 			
 			Element shirtsSales = document.createElement("ShirtsSales");
-			shirtsSales.appendChild(document.createTextNode(Float.toString(agent.calculateShirtsSales())));
+			shirtsSales.appendChild(document.createTextNode(Float.toString(associate.calculateShirtsSales())));
 			agentElem.appendChild(shirtsSales);
 			
 			Element coatsSales = document.createElement("CoatsSales");
-			coatsSales.appendChild(document.createTextNode(Float.toString(agent.calculateCoatsSales())));
+			coatsSales.appendChild(document.createTextNode(Float.toString(associate.calculateCoatsSales())));
 			agentElem.appendChild(coatsSales);
 			
 			Element commission = document.createElement("Commission");
-			commission.appendChild(document.createTextNode(Double.toString(agent.calculateCommission())));
+			commission.appendChild(document.createTextNode(Double.toString(associate.calculateCommission())));
 			agentElem.appendChild(commission);
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -76,7 +76,7 @@ public class XMLReporter extends Reporter {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
-			JOptionPane.showMessageDialog(null,"Πρόβλημα κατά την αποθήκευση του αρχείου");
+			JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

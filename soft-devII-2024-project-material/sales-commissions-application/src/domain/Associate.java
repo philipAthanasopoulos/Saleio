@@ -3,15 +3,15 @@ package domain;
 
 import java.util.Vector;
 
-public class Agent {
+public class Associate {
 	private String name;
 	private String afm;
 	private Vector <Receipt> allReceipts;
-	private FileAppender fileAppender; // agent shouldnt have a file appender
+	private FileAppender fileAppender; // associate shouldnt have a file appender
 									// it should be used by the gui
 	
 	
-	public Agent(){
+	public Associate(){
 		allReceipts = new Vector<Receipt>();
 	}
 	

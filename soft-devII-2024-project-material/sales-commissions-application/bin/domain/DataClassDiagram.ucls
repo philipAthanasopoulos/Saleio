@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.5" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="domain.Agent" project="phase1" file="/phase1/src/domain/Agent.java" binary="false"
+  <class id="1" language="java" name="domain.Associate" project="phase1" file="/phase1/src/domain/Agent.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="344" y="131"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
