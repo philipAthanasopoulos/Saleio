@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.5" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="domain.Associate" project="phase1" file="/phase1/src/domain/Agent.java" binary="false"
+  <class id="1" language="java" name="main.domain.Associate" project="phase1" file="/phase1/src/main.domain/Agent.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="344" y="131"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="domain.Address" project="phase1" file="/phase1/src/domain/Address.java" binary="false"
+  <class id="2" language="java" name="main.domain.Address" project="phase1" file="/phase1/src/main.domain/Address.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1104" y="208"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="domain.Receipt" project="phase1" file="/phase1/src/domain/Receipt.java" binary="false"
+  <class id="3" language="java" name="main.domain.Receipt" project="phase1" file="/phase1/src/main.domain/Receipt.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="593" y="192"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="domain.Shirt" project="phase1" file="/phase1/src/domain/Shirt.java" binary="false"
+  <class id="4" language="java" name="main.domain.Shirt" project="phase1" file="/phase1/src/main.domain/Shirt.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="456" y="459"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="domain.Skirt" project="phase1" file="/phase1/src/domain/Skirt.java" binary="false"
+  <class id="5" language="java" name="main.domain.Skirt" project="phase1" file="/phase1/src/main.domain/Skirt.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="647" y="457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="domain.Trouser" project="phase1" file="/phase1/src/domain/Trouser.java" binary="false"
+  <class id="6" language="java" name="main.domain.Trouser" project="phase1" file="/phase1/src/main.domain/Trouser.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="750" y="452"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -55,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="domain.Coat" project="phase1" file="/phase1/src/domain/Coat.java" binary="false"
+  <class id="7" language="java" name="main.domain.Coat" project="phase1" file="/phase1/src/main.domain/Coat.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="839" y="353"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -64,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="domain.Company" project="phase1" file="/phase1/src/domain/Company.java" binary="false"
+  <class id="8" language="java" name="main.domain.Company" project="phase1" file="/phase1/src/main.domain/Company.java" binary="false"
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="849" y="188"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="domain.FileAppender" project="phase1" file="/phase1/src/domain/FileAppender.java"
+  <class id="9" language="java" name="main.domain.FileAppender" project="phase1" file="/phase1/src/main.domain/FileAppender.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="139" y="257"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -82,8 +82,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="domain.FileAppenderTXT" project="phase1"
-    file="/phase1/src/domain/FileAppenderTXT.java" binary="false" corner="BOTTOM_RIGHT">
+  <class id="10" language="java" name="main.domain.FileAppenderTXT" project="phase1"
+    file="/phase1/src/main.domain/FileAppenderTXT.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="-84" y="464"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -91,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="domain.FileAppenderXML" project="phase1"
-    file="/phase1/src/domain/FileAppenderXML.java" binary="false" corner="BOTTOM_RIGHT">
+  <class id="11" language="java" name="main.domain.FileAppenderXML" project="phase1"
+    file="/phase1/src/main.domain/FileAppenderXML.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="-78" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

@@ -12,16 +12,21 @@ public class Associate {
 									// it should be used by the main.gui
 
 	public Associate(){
-		receipts = new ArrayList<Receipt>();
+		receipts = new ArrayList<>();
 	}
 	
 	public void setFileType(String fileType) {
-		if(fileType.equals("TXT")){
-			fileAppender = new FileAppenderTXT();
-		}	
-		else{
-			fileAppender = new FileAppenderXML();
-		}	
+		switch(fileType){
+			case "txt":
+				fileAppender = new FileAppenderTXT();
+				break;
+			case "xml":
+				fileAppender = new FileAppenderXML();
+				break;
+			default:
+				fileAppender = new FileAppenderTXT();
+				break;
+		}
 	}
 
 	public double calculateTotalSales(){
@@ -29,7 +34,6 @@ public class Associate {
 		for(Receipt receipt : receipts) sumSales += receipt.getSales();
 		return sumSales;
 	}
-	
 
 	public int calculateTotalItems(){
 		int sumItems = 0;
@@ -37,32 +41,32 @@ public class Associate {
 		return sumItems;
 	}
 	
-	public float calculateSkirtsSales(){
-		float skirtSum = 0;
+	public double calculateSkirtsSales(){
+		double skirtSum = 0;
 		for(Receipt receipt : receipts) {
 			if(receipt.getKind().equals("Skirt")) skirtSum += receipt.getItems();
 		}
 		return skirtSum;
 	}
 
-	public float calculateCoatsSales(){
-		float coatsSum = 0;
+	public double calculateCoatsSales(){
+		double coatsSum = 0;
 		for(Receipt receipt : receipts) {
 			if(receipt.getKind().equals("Coat")) coatsSum += receipt.getItems();
 		}
 		return coatsSum;
 	}
 	
-	public float calculateTrouserSales(){
-		float trousersSum = 0;
+	public double calculateTrouserSales(){
+		double trousersSum = 0;
 		for(Receipt receipt : receipts) {
 			if(receipt.getKind().equals("Trouser")) trousersSum += receipt.getItems();
 		}
 		return trousersSum;
 	}
 	
-	public float calculateShirtsSales(){
-		float shirtSum = 0;
+	public double calculateShirtsSales(){
+		double shirtSum = 0;
 		for(Receipt receipt : receipts) {
 			if(receipt.getKind().equals("Shirt")) shirtSum += receipt.getItems();
 		}

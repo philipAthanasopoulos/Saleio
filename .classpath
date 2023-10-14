@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="soft-devII-2024-project-material/sales-commissions-application/src"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/apiguardian-api-1.1.2.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-jupiter-5.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-jupiter-api-5.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-jupiter-engine-5.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-jupiter-params-5.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-platform-commons-1.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/junit-platform-engine-1.8.1.jar"/>
+	<classpathentry kind="lib" path="soft-devII-2024-project-material/sales-commissions-application/lib/opentest4j-1.2.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

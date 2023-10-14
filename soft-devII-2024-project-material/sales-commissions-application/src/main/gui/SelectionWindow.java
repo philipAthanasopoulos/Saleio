@@ -47,10 +47,10 @@ public class SelectionWindow extends JDialog {
 	private JRadioButton trousersRadio;
 	private JRadioButton coatRadio;
 	private int totalItems;
-	private float shirtSales;
-	private float skirtSales;
-	private float coatsSales;
-	private float trousersSales;
+	private double shirtSales;
+	private double skirtSales;
+	private double coatsSales;
+	private double trousersSales;
 	private double commission;
 	private InputWindow inputDialog;
 	private Associate selectedAssociate;

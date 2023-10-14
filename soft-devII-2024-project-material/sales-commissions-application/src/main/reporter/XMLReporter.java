@@ -47,19 +47,19 @@ public class XMLReporter extends Reporter {
 			agentElem.appendChild(totalSales);
 			
 			Element trouserSales = document.createElement("TrouserSales");
-			trouserSales.appendChild(document.createTextNode(Float.toString(associate.calculateTrouserSales())));
+			trouserSales.appendChild(document.createTextNode(Double.toString(associate.calculateTrouserSales())));
 			agentElem.appendChild(trouserSales);
 			
 			Element skirtsSales = document.createElement("SkirtsSales");
-			skirtsSales.appendChild(document.createTextNode(Float.toString(associate.calculateSkirtsSales())));
+			skirtsSales.appendChild(document.createTextNode(Double.toString(associate.calculateSkirtsSales())));
 			agentElem.appendChild(skirtsSales);
 			
 			Element shirtsSales = document.createElement("ShirtsSales");
-			shirtsSales.appendChild(document.createTextNode(Float.toString(associate.calculateShirtsSales())));
+			shirtsSales.appendChild(document.createTextNode(Double.toString(associate.calculateShirtsSales())));
 			agentElem.appendChild(shirtsSales);
 			
 			Element coatsSales = document.createElement("CoatsSales");
-			coatsSales.appendChild(document.createTextNode(Float.toString(associate.calculateCoatsSales())));
+			coatsSales.appendChild(document.createTextNode(Double.toString(associate.calculateCoatsSales())));
 			agentElem.appendChild(coatsSales);
 			
 			Element commission = document.createElement("Commission");

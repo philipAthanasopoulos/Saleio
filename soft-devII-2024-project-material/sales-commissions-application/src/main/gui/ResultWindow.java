@@ -36,15 +36,15 @@ public class ResultWindow extends JDialog {
 	private Associate selectedAssociate;
 	private double totalSales;
 	private int totalItems;
-	private float shirtSales;
-	private float skirtSales;
-	private float trousersSales;
-	private float coatsSales;
+	private double shirtSales;
+	private double skirtSales;
+	private double trousersSales;
+	private double coatsSales;
 	private double commission;
 
 
 	public ResultWindow(final SelectionWindow sw, Associate associate, double tSales, int tItems,
-                        float shirtS, float skirtS, float trousersS, float coatsS, double com) {
+                        double shirtS, double skirtS, double trousersS, double coatsS, double com) {
 		selectionWindow = sw;
 		selectedAssociate = associate;
 		totalSales = tSales;
@@ -209,19 +209,19 @@ public class ResultWindow extends JDialog {
 		else 
 			totalItemsTextField.setEnabled(false);
 		if(shirtSales>=0)
-			shirtSalesTextField.setText(Float.toString(shirtSales));
+			shirtSalesTextField.setText(Double.toString(shirtSales));
 		else 
 			shirtSalesTextField.setEnabled(false);
 		if(skirtSales>=0)
-			skirtSalesTextField.setText(Float.toString(skirtSales));
+			skirtSalesTextField.setText(Double.toString(skirtSales));
 		else 
 			skirtSalesTextField.setEnabled(false);
 		if(coatsSales>=0)
-			coatSalesTextField.setText(Float.toString(coatsSales));
+			coatSalesTextField.setText(Double.toString(coatsSales));
 		else 
 			coatSalesTextField.setEnabled(false);
 		if(trousersSales>=0)
-			trouserSalesTextField.setText(Float.toString(trousersSales));
+			trouserSalesTextField.setText(Double.toString(trousersSales));
 		else 
 			shirtSalesTextField.setEnabled(false);
 		if(commission>=0)
