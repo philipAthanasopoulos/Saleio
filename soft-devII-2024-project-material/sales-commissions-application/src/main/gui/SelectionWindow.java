@@ -2,6 +2,7 @@ package main.gui;
 
 import main.domain.*;
 import main.domain.Associate;
+import main.domain.ProductType;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -480,26 +481,38 @@ public class SelectionWindow extends JDialog {
 	}
 	
 	private void addReceipt(){
-		Receipt receipt = new Receipt();
+
+		ProductType productType = ProductType.INVALID; //temporary solution because choosing is not available
+
 		if(kindTextField.equals("Shirts"))		
-			receipt= new Shirt();
+			productType = ProductType.SHIRT;
 		else if (kindTextField.equals("Skirts"))
-			receipt = new Skirt();
+			productType = ProductType.SKIRT;
 		else if (kindTextField.equals("Trousers"))
-			receipt = new Trouser();
+			productType = ProductType.TROUSERS;
 		else if(kindTextField.equals("Coats"))				
-			receipt = new Coat();
+			productType = ProductType.COAT;
 		try{
-			receipt.setReceiptID(Integer.parseInt(receiptIDTextField.getText()));			
-			receipt.setDate(dateTextField.getText());
-			receipt.setSales(Double.parseDouble(salesTextField.getText()));
-			receipt.setItems(Integer.parseInt(itemsTextField.getText()));
+			//TODO : SOMEHOW MAKE THIS READABLE PLEASE OH GOD
+
+			Receipt receipt = new Receipt(
+								productType,
+								Integer.parseInt(receiptIDTextField.getText()),
+								dateTextField.getText(),
+								Double.parseDouble(salesTextField.getText()),
+								Integer.parseInt(itemsTextField.getText()),
+								new Company());
+
+			// TODO set company stuff -- later
 			receipt.getCompany().setCompanyName(companyTextField.getText());
 			receipt.getCompany().getCompanyAddress().setCountry(countryTextField.getText());
 			receipt.getCompany().getCompanyAddress().setCity(cityTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreet(streetTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreetNumber(Integer.parseInt(numberTextField.getText()));
+
+			//This is where they add the receipt in the associate repository!!!
 			selectedAssociate.getReceipts().add(receipt);
+			
 			numOfReceipts++;
 			numOfReceiptsTextField.setText(Integer.toString(numOfReceipts));
 			JOptionPane.showMessageDialog(null,"Η απόδειξη προστέθηκε");

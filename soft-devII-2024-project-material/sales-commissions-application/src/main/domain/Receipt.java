@@ -1,19 +1,33 @@
 package main.domain;
-
 public class Receipt {
-	protected int receiptID;
-	protected String date;
-	protected double sales;
-	protected int items;
-	protected Company company;
-	protected String kind;
+
 	private ProductType productType;
-		
+	private int receiptID;
+	private String purchaseDate;
+	private double totalSales;
+	private int purchasedItems;
+	private Company company;
 	
-	public Receipt(){
-		kind = new String("No specific kind");
-		company  = new Company();
-		productType = ProductType.TROUSERS;
+	public Receipt(ProductType productType, 
+			int receiptID, 
+			String purchaseDate, 
+			double totalSales, 
+			int purchasedItems, 
+			Company company){
+
+		this.productType = productType; 
+		this.receiptID = receiptID;
+		this.purchaseDate = purchaseDate;
+		this.totalSales = totalSales;
+		this.purchasedItems = purchasedItems;
+		//TODO : fix company constructor, so that it actually works.
+		this.company  = company;
+	}
+
+	public Receipt(){ //empty overwrite
+		
+		productType = ProductType.INVALID;
+		company = new Company();
 	}
 
 	public int getReceiptID() {
@@ -24,51 +38,27 @@ public class Receipt {
 		this.receiptID = receiptID;
 	}
 
-	public String getDate() {
-		return date;
+	public String getPurchaseDate() {
+		return purchaseDate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public double getSales() {
+	public double getTotalSales() {
 		return sales;
 	}
 
-	public void setSales(double sales) {
-		this.sales = sales;
-	}
-
-	public int getItems() {
+	public int getPurchasedItems() {
 		return items;
-	}
-
-	public void setItems(int items) {
-		this.items = items;
 	}
 
 	public Company getCompany() {
 		return company;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-
 	public ProductType getProductType() {
 		return productType;
 	}
 
-	public void setProductType(ProductType productType) {
-		this.productType = productType;
+	public String toString(){
+		return("ID : "+getReceiptID()+", "+getPurchaseDate());
 	}
 }

@@ -6,6 +6,7 @@ public class Company {
 	public Company(){
 		companyAddress = new Address();
 	}
+	
 	public Company(String companyName, Address companyAddress){
 		this.companyName = companyName;
 		this.companyAddress = companyAddress;
