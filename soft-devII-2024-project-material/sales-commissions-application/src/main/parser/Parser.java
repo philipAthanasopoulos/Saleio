@@ -40,24 +40,8 @@ public abstract class Parser {
 		associate.setAfm(afm);
 	}
 	
-	public void addReceipt( ){
-		Receipt receipt;			
-		if(kind.equals("Shirts")) {
-			receipt= new Shirt();
-
-		}
-		else if (kind.equals("Skirts")) {
-			receipt = new Skirt();
-
-		}
-		else if (kind.equals("Trousers")) {
-			receipt = new Trouser();
-
-		}
-		else {
-			receipt = new Coat();
-		}
-
+	public void addReceipt(){
+		Receipt receipt = new Receipt();
 		receipt.setReceiptID(receiptID);
 		receipt.setDate(date);
 		receipt.setSales(sales);

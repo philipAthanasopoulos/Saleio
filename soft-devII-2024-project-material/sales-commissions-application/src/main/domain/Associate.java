@@ -12,25 +12,9 @@ public class Associate {
 	private String name;
 	private String afm;
 	private List<Receipt> receipts;
-	private FileAppender fileAppender; // associate shouldn't have a file appender
-									// it should be used by the main.gui
 
 	public Associate(){
 		receipts = new ArrayList<>();
-	}
-	
-	public void setFileType(String fileType) {
-		switch(fileType){
-			case "TXT":
-				fileAppender = new FileAppenderTXT();
-				break;
-			case "XML":
-				fileAppender = new FileAppenderXML();
-				break;
-			default:
-				System.out.println("Invalid file type");
-				break;
-		}
 	}
 
 	public double calculateTotalSales(){
@@ -113,13 +97,5 @@ public class Associate {
 
 	public void setReceipts(List<Receipt> receipts) {
 		this.receipts = receipts;
-	}
-
-	public FileAppender getFileAppender() {
-		return fileAppender;
-	}
-
-	public void setFileAppender(FileAppender fileAppender) {
-		this.fileAppender = fileAppender;
 	}
 }
