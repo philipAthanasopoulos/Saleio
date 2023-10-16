@@ -2,6 +2,7 @@ package main.parser;
 
 
 import java.io.File;
+import java.io.IOException;
 
 import main.domain.*;
 import main.domain.Associate;
@@ -24,7 +25,7 @@ public abstract class Parser {
 	protected String companyStreet;
 	protected int companyStreetNumber;
 
-	public abstract void readFile();
+	public abstract void readFile() throws IOException;
 
 	
 	public Parser() {

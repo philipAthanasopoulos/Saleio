@@ -1,4 +1,4 @@
-package main.domain;
+package main.fileAppender;
 
 import java.io.File;
 

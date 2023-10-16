@@ -1,6 +1,10 @@
 package main.domain;
 
 
+import main.fileAppender.FileAppender;
+import main.fileAppender.FileAppenderTXT;
+import main.fileAppender.FileAppenderXML;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +21,14 @@ public class Associate {
 	
 	public void setFileType(String fileType) {
 		switch(fileType){
-			case "txt":
+			case "TXT":
 				fileAppender = new FileAppenderTXT();
 				break;
-			case "xml":
+			case "XML":
 				fileAppender = new FileAppenderXML();
 				break;
 			default:
-				fileAppender = new FileAppenderTXT();
+				System.out.println("Invalid file type");
 				break;
 		}
 	}

@@ -481,8 +481,6 @@ public class SelectionWindow extends JDialog {
 	
 	private void addReceipt(){
 		Receipt receipt = new Receipt();
-		
-		
 		if(kindTextField.equals("Shirts"))		
 			receipt= new Shirt();
 		else if (kindTextField.equals("Skirts"))

@@ -73,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="main.domain.FileAppender" project="phase1" file="/phase1/src/main.domain/FileAppender.java"
+  <class id="9" language="java" name="main.fileAppender.FileAppender" project="phase1" file="/phase1/src/main.domain/FileAppender.java"
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="139" y="257"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -82,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="main.domain.FileAppenderTXT" project="phase1"
+  <class id="10" language="java" name="main.fileAppender.FileAppenderTXT" project="phase1"
     file="/phase1/src/main.domain/FileAppenderTXT.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="-84" y="464"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -91,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="main.domain.FileAppenderXML" project="phase1"
+  <class id="11" language="java" name="main.fileAppender.FileAppenderXML" project="phase1"
     file="/phase1/src/main.domain/FileAppenderXML.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="-78" y="106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

@@ -1,4 +1,4 @@
-package main.domain;
+package main.fileAppender;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -128,7 +128,5 @@ public class FileAppenderTXT extends FileAppender{
 		fileAppenderTXT.setStreet("Kifisias");
 		fileAppenderTXT.setNumber("200");
 		fileAppenderTXT.appendFile();
-
 	}
-
 }
