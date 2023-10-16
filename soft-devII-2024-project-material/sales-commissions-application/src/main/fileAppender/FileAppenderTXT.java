@@ -7,17 +7,13 @@ import java.io.IOException;
 public class FileAppenderTXT extends FileAppender{
 
 	public  void setFileToAppend(File fileToAppend) {
-		
 		this.fileToAppend = fileToAppend;
-		
 	}
 
 	public void appendFile(){
 		System.out.println("Mpike sto TXT");
 		System.out.println(fileToAppend.getAbsolutePath());
-
 		try {
-			
 			FileWriter fileWriter = new FileWriter(fileToAppend,true);		
 			fileWriter.write("\n");
 			fileWriter.write("Receipt ID: ");
@@ -44,7 +40,6 @@ public class FileAppenderTXT extends FileAppender{
 			fileWriter.write(company);
 			fileWriter.write("\n");
 
-
 			fileWriter.write("Country: ");
 			fileWriter.write(country);
 			fileWriter.write("\n");
@@ -64,7 +59,6 @@ public class FileAppenderTXT extends FileAppender{
 			fileWriter.close();
 		
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}
@@ -117,6 +111,24 @@ public class FileAppenderTXT extends FileAppender{
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public static void main(String[] args) {
+		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\newFile.txt");
+		FileAppenderTXT fileAppenderTXT = new FileAppenderTXT();
+		fileAppenderTXT.setFileToAppend(file);
+		fileAppenderTXT.setReceiptID("123");
+		fileAppenderTXT.setDate("12/12/12");
+		fileAppenderTXT.setKind("Skirt");
+		fileAppenderTXT.setSales("123");
+		fileAppenderTXT.setItems("123");
+		fileAppenderTXT.setCompany("Zara");
+		fileAppenderTXT.setCountry("Greece");
+		fileAppenderTXT.setCity("Athens");
+		fileAppenderTXT.setStreet("Kifisias");
+		fileAppenderTXT.setNumber("200");
+		fileAppenderTXT.appendFile();
+
 	}
 
 }

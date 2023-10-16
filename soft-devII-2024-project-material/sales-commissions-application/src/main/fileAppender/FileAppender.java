@@ -2,10 +2,11 @@ package main.domain;
 
 import java.io.File;
 
-
+//for now , the file appender is used when i want to add a new receipt
+//to a specific associate
+//
 
 public abstract class FileAppender {
-
 	protected File fileToAppend;
 	protected String receiptID;
 	protected String date;
