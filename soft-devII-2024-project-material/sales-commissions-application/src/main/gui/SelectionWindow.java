@@ -3,6 +3,7 @@ package main.gui;
 import main.domain.*;
 import main.domain.Associate;
 import main.domain.ProductType;
+import main.fileAppender.*;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -501,14 +502,20 @@ public class SelectionWindow extends JDialog {
 								dateTextField.getText(),
 								Double.parseDouble(salesTextField.getText()),
 								Integer.parseInt(itemsTextField.getText()),
-								new Company());
+								new Company(
+									companyTextField.getText(),
+									new Address()
+									)
+								);
 
-			// TODO set company stuff -- later
-			receipt.getCompany().setCompanyName(companyTextField.getText());
+			// TODO set  address and company stuff -- later
+
+			/*
 			receipt.getCompany().getCompanyAddress().setCountry(countryTextField.getText());
 			receipt.getCompany().getCompanyAddress().setCity(cityTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreet(streetTextField.getText());
 			receipt.getCompany().getCompanyAddress().setStreetNumber(Integer.parseInt(numberTextField.getText()));
+ 			*/
 
 			//This is where they add the receipt in the associate repository!!!
 			selectedAssociate.getReceipts().add(receipt);

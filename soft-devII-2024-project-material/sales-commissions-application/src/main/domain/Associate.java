@@ -19,20 +19,25 @@ public class Associate {
 
 	public double calculateTotalSales(){
 		double sumSales = 0;
-		for(Receipt receipt : receipts) sumSales += receipt.getSales();
+		for(Receipt receipt : receipts) sumSales += receipt.getTotalSales();
 		return sumSales;
 	}
 
 	public int calculateTotalItems(){
 		int sumItems = 0;
-		for(Receipt receipt : receipts) sumItems += receipt.getItems();
+		for(Receipt receipt : receipts) sumItems += receipt.getPurchasedItems();
 		return sumItems;
 	}
 	
+
+
+	
+
+	//TODO : MERGE THESE FOUR METHODS
 	public double calculateSkirtsSales(){
 		double skirtSum = 0;
 		for(Receipt receipt : receipts) {
-			if(receipt.getKind().equals("Skirt")) skirtSum += receipt.getItems();
+			if(receipt.getProductType() == ProductType.SKIRT) skirtSum += receipt.getPurchasedItems();
 		}
 		return skirtSum;
 	}
@@ -40,7 +45,7 @@ public class Associate {
 	public double calculateCoatsSales(){
 		double coatsSum = 0;
 		for(Receipt receipt : receipts) {
-			if(receipt.getKind().equals("Coat")) coatsSum += receipt.getItems();
+			if(receipt.getProductType() == ProductType.COAT) coatsSum += receipt.getPurchasedItems();
 		}
 		return coatsSum;
 	}
@@ -48,7 +53,7 @@ public class Associate {
 	public double calculateTrouserSales(){
 		double trousersSum = 0;
 		for(Receipt receipt : receipts) {
-			if(receipt.getKind().equals("Trouser")) trousersSum += receipt.getItems();
+			if(receipt.getProductType() == ProductType.TROUSERS) trousersSum += receipt.getPurchasedItems();
 		}
 		return trousersSum;
 	}
@@ -56,11 +61,17 @@ public class Associate {
 	public double calculateShirtsSales(){
 		double shirtSum = 0;
 		for(Receipt receipt : receipts) {
-			if(receipt.getKind().equals("Shirt")) shirtSum += receipt.getItems();
+			if(receipt.getProductType() == ProductType.SHIRT) shirtSum += receipt.getPurchasedItems();
 		}
 		return shirtSum;
 	}
+	// ^^				^^
+	// || MERGEEEEEEE   ||
 	
+
+
+
+
 	public double calculateCommission(){
 		double commission = 0;
 		if( this.calculateTotalSales() > 6000 && this.calculateTotalSales()<= 10000){

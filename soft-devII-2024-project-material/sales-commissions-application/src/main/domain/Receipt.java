@@ -20,13 +20,15 @@ public class Receipt {
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;
 		this.purchasedItems = purchasedItems;
+
 		//TODO : fix company constructor, so that it actually works.
 		this.company  = company;
 	}
 
-	public Receipt(){ //empty overwrite
+	public Receipt(){ //empty overwrite, still temporary
 		
 		productType = ProductType.INVALID;
+
 		company = new Company();
 	}
 
