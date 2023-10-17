@@ -5,21 +5,21 @@ public class Receipt {
 	private int receiptID;
 	private String purchaseDate;
 	private double totalSales;
-	private int purchasedItems;
+	private int numberOfItems;
 	private Company company;
 	
 	public Receipt(ProductType productType, 
 			int receiptID, 
 			String purchaseDate, 
 			double totalSales, 
-			int purchasedItems, 
+			int numberOfItems, 
 			Company company){
 
 		this.productType = productType; 
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;
-		this.purchasedItems = purchasedItems;
+		this.numberOfItems = numberOfItems;
 
 		//TODO : fix company constructor, so that it actually works.
 		this.company  = company;
@@ -45,11 +45,11 @@ public class Receipt {
 	}
 
 	public double getTotalSales() {
-		return sales;
+		return totalSales;
 	}
 
-	public int getPurchasedItems() {
-		return items;
+	public int getNumberOfItems() {
+		return numberOfItems;
 	}
 
 	public Company getCompany() {
