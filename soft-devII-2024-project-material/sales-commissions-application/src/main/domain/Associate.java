@@ -7,11 +7,6 @@ public class Associate {
 	private String name;
 	private String afm;
 	private List<Receipt> receipts;
-	private double skirtSales;
-	private double coatSales;
-	private double trouserSales;
-	private double shirtSales;
-	private double commission;
 
 	public Associate(){
 		receipts = new ArrayList<>();
@@ -29,30 +24,12 @@ public class Associate {
 		return sumItems;
 	}
 
-	public void calculateSalesOfAllItems(){
-		double skirtSum = 0, coatSum = 0, trouserSum = 0, shirtSum = 0;
-		for(Receipt receipt : receipts) {
-			switch(receipt.getProductType()){
-				case SKIRT:
-					skirtSum += receipt.getTotalSales();
-					break;
-				case COAT:
-					coatSum += receipt.getTotalSales();
-					break;
-				case TROUSERS:
-					trouserSum += receipt.getTotalSales();
-					break;
-				case SHIRT:
-					shirtSum += receipt.getTotalSales();
-					break;
-				default:
-					break;
-			}
+	public double getSalesOfItem(ProductType productType){
+		double sum = 0;
+		for(Receipt receipt : receipts){
+			if(receipt.getProductType() == productType) sum += receipt.getTotalSales();
 		}
-		skirtSales = skirtSum;
-		coatSales = coatSum;
-		trouserSales = trouserSum;
-		shirtSales = shirtSum;
+		return sum;
 	}
 	
 	public double calculateCommission(){
@@ -92,46 +69,5 @@ public class Associate {
 
 	public void setReceipts(List<Receipt> receipts) {
 		this.receipts = receipts;
-	}
-
-	public double getSkirtSales() {
-		return this.skirtSales;
-	}
-
-	public void setSkirtSales(double skirtSales) {
-		this.skirtSales = skirtSales;
-	}
-
-	public double getCoatSales() {
-		return this.coatSales;
-	}
-
-	public void setCoatSales(double coatSales) {
-		this.coatSales = coatSales;
-	}
-
-	public double getTrouserSales() {
-		return this.trouserSales;
-	}
-
-	public void setTrouserSales(double trouserSales) {
-		this.trouserSales = trouserSales;
-	}
-
-	public double getShirtSales() {
-		return this.shirtSales;
-	}
-
-	public void setShirtSales(double shirtSales) {
-		this.shirtSales = shirtSales;
-	}
-
-	public double getCommission() {
-		return this.commission;
-	}
-
-	public void setCommission(double commission) {
-		this.commission = commission;
-	}
-	
+	}	
 }
