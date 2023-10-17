@@ -6,7 +6,7 @@ Let me know.
 */
 
 
-/*
+
 public class Address {
 	
 	private String country;
@@ -15,8 +15,12 @@ public class Address {
 	private int streetNumber;
 	private int phoneNumber;
 
-	public Address(String country, String city, String street, int streetNumber, int phoneNumber)
-	{
+	public Address(String country,
+					String city,
+					String street, 
+					int streetNumber,
+					int phoneNumber){
+		
 		this.country = country;
 		this.city = city;
 		this.street = street;
@@ -66,4 +70,4 @@ public class Address {
 
 	
 }
-*/
+
