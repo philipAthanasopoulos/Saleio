@@ -19,17 +19,17 @@ public class Associate {
 	}
 
 	public int calculateTotalItems(){
-		int sumItems = 0;
-		for(Receipt receipt : receipts) sumItems += receipt.getNumberOfItems();
-		return sumItems;
+		int numOfItems = 0;
+		for(Receipt receipt : receipts) numOfItems += receipt.getNumberOfItems();
+		return numOfItems;
 	}
 
 	public double getSalesOfItem(ProductType productType){
-		double sum = 0;
+		double sumOfItemSales = 0;
 		for(Receipt receipt : receipts){
-			if(receipt.getProductType() == productType) sum += receipt.getTotalSales();
+			if(receipt.getProductType() == productType) sumOfItemSales += receipt.getTotalSales();
 		}
-		return sum;
+		return sumOfItemSales;
 	}
 	
 	public double calculateCommission(){
@@ -45,7 +45,6 @@ public class Associate {
 		}
 		return commission;
 	}
-
 
 	public String getName() {
 		return this.name;

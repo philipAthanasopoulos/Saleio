@@ -9,25 +9,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JList;
 import java.awt.Font;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
-import javax.swing.JComboBox;
 import java.awt.Color;
-import java.util.*;
 import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 public class App extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private String applicationName = "Sales Commissions Application";
 
 	/**
 	 * Launch the application.
@@ -37,6 +31,7 @@ public class App extends JFrame {
 			public void run() {
 				try {
 					App frame = new App();
+					frame.setTitle(frame.applicationName);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -181,6 +176,7 @@ public class App extends JFrame {
 				"Street: Kaloudi \r\n" + //
 				"Number: 10");
 		scrollPane.setViewportView(textPane);
+		textPane.setCaretPosition(0);
 		
 		JLabel lblNewLabel = new JLabel("Associates");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));

@@ -7,8 +7,8 @@ import java.io.IOException;
 import main.domain.*;
 import main.domain.Associate;
 
+//TODO: Rework, the parser doesnt need all these fields
 public abstract class Parser {
-	
 	protected Associate associate;
 	protected File inputFile;
 	protected String inputFilePath;
@@ -32,8 +32,6 @@ public abstract class Parser {
 		associate = new Associate();
 		kind  = new String("");
 	}
-	
-
 	
 	public void addAgent() {
 		associate.setName(name);

@@ -1,26 +1,13 @@
 package main.domain;
 
-/*SO! I had this idea to implement class Address as a PRIVATE class inside the company class. AFTER looking everywhere,
-i cannot find another call of Address inside the whole program. So packing it inside company, or even COMPLETELY erasing it seems kinda optimal.
-Let me know.
-*/
-
-
-
 public class Address {
-	
 	private String country;
 	private String city;
 	private String street;
 	private int streetNumber;
 	private int phoneNumber;
 
-	public Address(String country,
-					String city,
-					String street, 
-					int streetNumber,
-					int phoneNumber){
-		
+	public Address(String country, String city, String street, int streetNumber, int phoneNumber) {
 		this.country = country;
 		this.city = city;
 		this.street = street;
@@ -67,7 +54,5 @@ public class Address {
 	public void setPhoneNumber(int phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
-	
 }
 

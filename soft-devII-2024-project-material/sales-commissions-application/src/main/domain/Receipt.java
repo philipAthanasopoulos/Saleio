@@ -1,6 +1,6 @@
 package main.domain;
-public class Receipt {
 
+public class Receipt {
 	private ProductType productType;
 	private int receiptID;
 	private String purchaseDate;
@@ -8,28 +8,17 @@ public class Receipt {
 	private int numberOfItems;
 	private Company company;
 	
-	public Receipt(ProductType productType, 
-			int receiptID, 
-			String purchaseDate, 
-			double totalSales, 
-			int numberOfItems, 
-			Company company){
-
+	public Receipt(ProductType productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company){
 		this.productType = productType; 
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;
 		this.numberOfItems = numberOfItems;
-
-		//TODO : fix company constructor, so that it actually works.
 		this.company  = company;
 	}
 
-	public Receipt(){ //empty overwrite, still temporary
-		
+	public Receipt() {
 		productType = ProductType.INVALID;
-
-		company = new Company();
 	}
 
 	public int getReceiptID() {
@@ -61,6 +50,13 @@ public class Receipt {
 	}
 
 	public String toString(){
-		return("ID : "+getReceiptID()+", "+getPurchaseDate());
+		return("ID : " + getReceiptID() + ", " + getPurchaseDate());
+	}
+
+	public static void main(String[] args) {
+		Address address = new Address("Greece", "Athens", "Kifisias", 123, 123456789);
+		Company company = new Company("Company", address);
+		Receipt receipt = new Receipt(ProductType.SKIRT, 123, "12/12/2012", 123.123, 123, company);
+		System.out.println(receipt);
 	}
 }

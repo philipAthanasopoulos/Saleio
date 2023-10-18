@@ -6,19 +6,19 @@ import java.io.File;
  * @author Philip Athanasopoulos
  * The Entry class represents a single entry in the GUI application.
  * When the user enters a file, a new entry is created.
- * The entry contains the associate and the file containing their receipts.
- * This way, there can be multiple uploaded receipt files for the same associate.
- * @param associate : the associate
- * @param file : the file with the receipts
+ * The entry consists of an associate and the file containing their receipts.
  */
 
-
+/*TODO:
+ * When a new entry is created, a parser should be called to extract 
+ * the associate's name and the receipts from the file. Then create a new
+ * associate object and add it to the entry.
+ */
 public class Entry {
     private Associate associate;
     private File file;
 
     public Entry(File file) {
-        this.associate = associate;
         this.file = file;
     }
 

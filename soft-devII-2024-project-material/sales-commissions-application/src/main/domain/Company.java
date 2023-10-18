@@ -9,25 +9,8 @@ public class Company {
 		this.companyAddress = companyAddress;
 	}
 
-	public Company(String companyName,
-					String country,
-					String city,
-					String street,
-					int streetNumber,
-					int phoneNumber){
-		
-		this.companyName = companyName;
-		this.companyAddress = new Address(country, city, street, streetNumber, phoneNumber);
-	}
-
-	public Company(){
-		//Empty Constructor temporary
-
-		return;
-	}
-
 	public String getCompanyName() {
-		return companyName;
+		return this.companyName;
 	}
 
 	public void setCompanyName(String companyName) {
@@ -35,10 +18,11 @@ public class Company {
 	}
 
 	public Address getCompanyAddress() {
-		return companyAddress;
+		return this.companyAddress;
 	}
 
 	public void setCompanyAddress(Address companyAddress) {
 		this.companyAddress = companyAddress;
 	}
+	
 }
