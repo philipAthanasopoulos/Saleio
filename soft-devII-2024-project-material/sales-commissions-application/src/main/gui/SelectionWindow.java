@@ -496,6 +496,8 @@ public class SelectionWindow extends JDialog {
 		try{
 			//TODO : SOMEHOW MAKE THIS READABLE PLEASE OH GOD
 
+			// TODO : When moving in the new UI, make sure that data is easier to access!!!!
+
 			Receipt receipt = new Receipt(
 								productType,
 								Integer.parseInt(receiptIDTextField.getText()),
@@ -504,11 +506,11 @@ public class SelectionWindow extends JDialog {
 								Integer.parseInt(itemsTextField.getText()),
 								new Company(
 									companyTextField.getText(),
-									new Address()
-									)
-								);
-
-			// TODO set  address and company stuff -- later
+									new Address(countryTextField.getText(),
+									cityTextField.getText(),
+									streetTextField.getText(),
+									Integer.parseInt(numberTextField.getText()),
+									12456789/*Apo pou tha paroume to thlefwno re*/)));
 
 			/*
 			receipt.getCompany().getCompanyAddress().setCountry(countryTextField.getText());

@@ -14,7 +14,7 @@ public class Receipt {
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;
 		this.numberOfItems = numberOfItems;
-		this.company  = company;
+		this.company  = company; //TODO : Where is company constructed? Let's work on this
 	}
 
 	public Receipt() {
