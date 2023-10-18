@@ -18,8 +18,9 @@ public class Entry {
     private Associate associate;
     private File file;
 
-    public Entry(File file) {
+    public Entry(File file, Associate associate) {
         this.file = file;
+        this.associate = associate;
     }
 
     public Associate getAssociate() {
@@ -30,4 +31,11 @@ public class Entry {
         return file;
     }
 
+    public void setAssociate(Associate associate) {
+        this.associate = associate;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 }

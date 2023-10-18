@@ -4,12 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
-
-
 
 public class TXTParser extends Parser {
 
@@ -17,6 +14,7 @@ public class TXTParser extends Parser {
 		this.inputFile = receiptFileTXT;
 		inputFilePath =  inputFile.getAbsolutePath();
 	}
+	
 	@Override
 	public void readFile()  {
 		try{
@@ -24,7 +22,8 @@ public class TXTParser extends Parser {
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
 			String line;
 			while((line = bufferedReader.readLine()) != null){
-				line = line.replaceAll(":\\s+",":");
+				//trim all spaces for that values do not contain any after splitting
+				line = line.replaceAll("\\s+","");
 				String[] words = line.split(":");
 				wordsOfFile.addAll(Arrays.asList(words));
 			}
@@ -75,6 +74,7 @@ public class TXTParser extends Parser {
 				}
 				addAgent();
 				addReceipt();
+				bufferedReader.close();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -82,7 +82,6 @@ public class TXTParser extends Parser {
 	}
 
 	public static void main(String[] args) {
-
 		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\sales-commissions-application\\resources\\test-case-1-TXT.txt");
 		TXTParser parser = new TXTParser(file);
 		parser.readFile();
