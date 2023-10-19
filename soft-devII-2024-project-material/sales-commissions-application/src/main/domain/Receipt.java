@@ -8,7 +8,7 @@ public class Receipt {
 	private int numberOfItems;
 	private Company company;
 	
-	public Receipt(ProductType productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company){
+	public Receipt(ProductType productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company) {
 		this.productType = productType; 
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
@@ -49,8 +49,17 @@ public class Receipt {
 		return productType;
 	}
 
-	public String toString(){
-		return("ID : " + getReceiptID() + ", " + getPurchaseDate());
+	public String toString() {
+		return "Receipt ID: " + receiptID + "\n" +
+			   "Date: " + purchaseDate + "\n" +
+			   "Kind: " + productType + "\n" +
+			   "Sales: " + totalSales + "\n" +
+			   "Items: " + numberOfItems + "\n" +
+			   "Company: " + company.getCompanyName() + "\n" +
+			   "Country: " + company.getCompanyAddress().getCountry() + "\n" +
+			   "City: " + company.getCompanyAddress().getCity() + "\n" +
+			   "Street: " + company.getCompanyAddress().getStreet() + "\n" +
+			   "Number: " + numberOfItems + "\n";
 	}
 
 	public static void main(String[] args) {

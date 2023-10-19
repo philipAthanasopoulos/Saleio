@@ -1,6 +1,5 @@
 package main.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Associate {
@@ -8,8 +7,10 @@ public class Associate {
 	private String afm;
 	private List<Receipt> receipts;
 
-	public Associate(){
-		receipts = new ArrayList<>();
+	public Associate(String name, String afm, List<Receipt> receipts) {
+		this.name = name;
+		this.afm = afm;
+		this.receipts = receipts;
 	}
 
 	public double calculateTotalSales(){
@@ -31,6 +32,10 @@ public class Associate {
 		}
 		return sumOfItemSales;
 	}
+
+	public void addReceipt(Receipt receipt) {
+		receipts.add(receipt);
+	}	
 	
 	public double calculateCommission(){
 		double commission = 0;
@@ -68,5 +73,5 @@ public class Associate {
 
 	public void setReceipts(List<Receipt> receipts) {
 		this.receipts = receipts;
-	}	
+	}
 }

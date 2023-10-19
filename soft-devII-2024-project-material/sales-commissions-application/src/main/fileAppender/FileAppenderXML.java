@@ -12,127 +12,74 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+
+import main.domain.Receipt;
 
 public class FileAppenderXML  extends FileAppender{
 
-public  void setFileToAppend(File fileToAppend) {
-		
-		this.fileToAppend = fileToAppend;
-		
-	}
-	public void appendFile(){
+	@Override
+    public void appendReceipt(Receipt receipt, File receiptFile) {
+        try {
+            //parse the XML file
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(receiptFile);
 
-		try{
-		
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.parse(fileToAppend);
-		
-			Node agent = doc.getFirstChild();
+            //create a new Receipt element
+            Element receiptElement = doc.createElement("Receipt");
 
-			Element receiptElem = doc.createElement("Receipt");
-			agent.appendChild(receiptElem);		
-		
-			Element receiptIDElem = doc.createElement("ReceiptID");
-			receiptIDElem.appendChild(doc.createTextNode(receiptID));
-			receiptElem.appendChild(receiptIDElem);
+            //create child elements and add them to the Receipt element
+            Element receiptID = doc.createElement("ReceiptID");
+            receiptID.setTextContent(String.valueOf(receipt.getReceiptID()));
+            receiptElement.appendChild(receiptID);
 
-	       	Element dateElem = doc.createElement("Date");
-	       	dateElem.appendChild(doc.createTextNode(date));
-	       	receiptElem.appendChild(dateElem);
-       	
-	       	Element kindElem = doc.createElement("Kind");
-	       	kindElem.appendChild(doc.createTextNode(kind));
-	       	receiptElem.appendChild(kindElem);
-	       	
-	       	Element salesElem = doc.createElement("Sales");
-	       	salesElem.appendChild(doc.createTextNode(sales));
-	       	receiptElem.appendChild(salesElem);
-	       	
-	       	Element itemsElem = doc.createElement("Items");
-	       	itemsElem.appendChild(doc.createTextNode(items));
-	       	receiptElem.appendChild(itemsElem);
-	       	
-	       	Element companyElem = doc.createElement("Company");
-			companyElem.appendChild(doc.createTextNode(company));
-			receiptElem.appendChild(companyElem);
-	       	
-	       	Element countryElem = doc.createElement("Country");
-	       	countryElem.appendChild(doc.createTextNode(country));
-	       	receiptElem.appendChild(countryElem);
-	       	
-	       	Element cityElem = doc.createElement("City");
-	       	cityElem.appendChild(doc.createTextNode(city));
-	       	receiptElem.appendChild(cityElem);
-	       	
-	       	Element streetElem = doc.createElement("Street");
-	       	streetElem.appendChild(doc.createTextNode(street));
-	       	receiptElem.appendChild(streetElem);
-	       	
-	       	Element numberElem = doc.createElement("Number");
-	       	numberElem.appendChild(doc.createTextNode(number));
-	       	receiptElem.appendChild(numberElem);
-	    
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-	   	 	transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(fileToAppend);
-			transformer.transform(source, result);
+            Element date = doc.createElement("Date");
+            date.setTextContent(receipt.getPurchaseDate());
+            receiptElement.appendChild(date);
 
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-	}
-		
-	public void setReceiptID(String receiptID) {
-		this.receiptID = receiptID;
-	}
+            Element kind = doc.createElement("Kind");
+            kind.setTextContent(receipt.getProductType().toString());
+            receiptElement.appendChild(kind);
 
+            Element sales = doc.createElement("Sales");
+            sales.setTextContent(String.valueOf(receipt.getTotalSales()));
+            receiptElement.appendChild(sales);
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+            Element items = doc.createElement("Items");
+            items.setTextContent(String.valueOf(receipt.getNumberOfItems()));
+            receiptElement.appendChild(items);
 
+            Element company = doc.createElement("Company");
+            company.setTextContent(receipt.getCompany().getCompanyName());
+            receiptElement.appendChild(company);
 
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
+            Element country = doc.createElement("Country");
+            country.setTextContent(receipt.getCompany().getCompanyAddress().getCountry());
+            receiptElement.appendChild(country);
 
+            Element city = doc.createElement("City");
+            city.setTextContent(receipt.getCompany().getCompanyAddress().getCity());
+            receiptElement.appendChild(city);
 
-	public void setSales(String sales) {
-		this.sales = sales;
-	}
+            Element street = doc.createElement("Street");
+            street.setTextContent(receipt.getCompany().getCompanyAddress().getStreet());
+            receiptElement.appendChild(street);
 
+            Element number = doc.createElement("Number");
+            number.setTextContent(String.valueOf(receipt.getNumberOfItems()));
+            receiptElement.appendChild(number);
 
-	public void setItems(String items) {
-		this.items = items;
-	}
+            //add the Receipt element to the root element of the document
+            doc.getDocumentElement().appendChild(receiptElement);
 
-
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
+            //write the updated document back to the file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(receiptFile);
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 }
