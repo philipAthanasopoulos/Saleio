@@ -1,5 +1,10 @@
 package main.fileAppender;
 
+import main.domain.Address;
+import main.domain.Company;
+import main.domain.ProductType;
+import main.domain.Receipt;
+
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,74 +17,101 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
-import main.domain.Receipt;
+
+/*TODO: when appending a new receipt, the new one is correctly added but the old ones get spaced away
+*probably because of transformer propetries at the end of the method
+*PLS FIX
+*/
 
 public class FileAppenderXML  extends FileAppender{
 
 	@Override
     public void appendReceipt(Receipt receipt, File receiptFile) {
         try {
-            //parse the XML file
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(receiptFile);
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(receiptFile);
+            document.getDocumentElement().normalize();
 
-            //create a new Receipt element
-            Element receiptElement = doc.createElement("Receipt");
+            NodeList receiptsList = document.getElementsByTagName("Receipts");
 
-            //create child elements and add them to the Receipt element
-            Element receiptID = doc.createElement("ReceiptID");
-            receiptID.setTextContent(String.valueOf(receipt.getReceiptID()));
-            receiptElement.appendChild(receiptID);
+            Element receiptToAdd = document.createElement("Receipt");
 
-            Element date = doc.createElement("Date");
-            date.setTextContent(receipt.getPurchaseDate());
-            receiptElement.appendChild(date);
+            Element receiptId = document.createElement("ReceiptID");
+            receiptId.setTextContent(Integer.toString(receipt.getReceiptID()));
+            receiptToAdd.appendChild(receiptId);
 
-            Element kind = doc.createElement("Kind");
-            kind.setTextContent(receipt.getProductType().toString());
-            receiptElement.appendChild(kind);
+            Element receiptDate = document.createElement("Date");
+            receiptDate.setTextContent(receipt.getPurchaseDate());
+            receiptToAdd.appendChild(receiptDate);
 
-            Element sales = doc.createElement("Sales");
-            sales.setTextContent(String.valueOf(receipt.getTotalSales()));
-            receiptElement.appendChild(sales);
+            Element receiptKind = document.createElement("Kind");
+            receiptKind.setTextContent(receipt.getProductType().toString());
+            receiptToAdd.appendChild(receiptKind);
 
-            Element items = doc.createElement("Items");
-            items.setTextContent(String.valueOf(receipt.getNumberOfItems()));
-            receiptElement.appendChild(items);
+            Element receiptNumberOfItems = document.createElement("Items");
+            receiptNumberOfItems.setTextContent(Integer.toString(receipt.getNumberOfItems()));
+            receiptToAdd.appendChild(receiptNumberOfItems);
 
-            Element company = doc.createElement("Company");
-            company.setTextContent(receipt.getCompany().getCompanyName());
-            receiptElement.appendChild(company);
+            Element receiptCompany = document.createElement("Company");
+            receiptCompany.setTextContent(receipt.getCompany().getCompanyName());
+            receiptToAdd.appendChild(receiptCompany);
 
-            Element country = doc.createElement("Country");
-            country.setTextContent(receipt.getCompany().getCompanyAddress().getCountry());
-            receiptElement.appendChild(country);
+            Element receiptCompanyCountry = document.createElement("Country");
+            receiptCompanyCountry.setTextContent(receipt.getCompany().getCompanyAddress().getCountry());
+            receiptToAdd.appendChild(receiptCompanyCountry);
 
-            Element city = doc.createElement("City");
-            city.setTextContent(receipt.getCompany().getCompanyAddress().getCity());
-            receiptElement.appendChild(city);
+            Element receiptCompanyCity = document.createElement("City");
+            receiptCompanyCity.setTextContent(receipt.getCompany().getCompanyAddress().getCity());
+            receiptToAdd.appendChild(receiptCompanyCity);
 
-            Element street = doc.createElement("Street");
-            street.setTextContent(receipt.getCompany().getCompanyAddress().getStreet());
-            receiptElement.appendChild(street);
+            Element receiptCompanyStreet = document.createElement("Street");
+            receiptCompanyStreet.setTextContent(receipt.getCompany().getCompanyAddress().getStreet());
+            receiptToAdd.appendChild(receiptCompanyStreet);
 
-            Element number = doc.createElement("Number");
-            number.setTextContent(String.valueOf(receipt.getNumberOfItems()));
-            receiptElement.appendChild(number);
+            Element receiptCompanyNumber = document.createElement("Number");
+            receiptCompanyNumber.setTextContent(Integer.toString(receipt.getCompany().getCompanyAddress().getStreetNumber()));
+            receiptToAdd.appendChild(receiptCompanyNumber);
 
-            //add the Receipt element to the root element of the document
-            doc.getDocumentElement().appendChild(receiptElement);
+            receiptsList.item(0).appendChild(receiptToAdd);
 
-            //write the updated document back to the file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(receiptFile);
-            transformer.transform(source, result);
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(receiptFile);
+            transformer.transform(domSource, streamResult);
+
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+            //print line of error
+            System.out.println("Line: " + e.getStackTrace()[0].getLineNumber());
         }
+    }
+    public static void main(String[] args) {
+        FileAppenderXML fileAppenderXML = new FileAppenderXML();
+        String filePath = "C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-XML.xml";
+        File file = new File(filePath);
+        Receipt receipt = new Receipt(
+            ProductType.SKIRT,
+            123456,
+            "2022-01-01",
+            99.99,
+            2,
+            new Company(
+                "Acme Inc.",
+                new Address(
+                    "USA",
+                    "New York",
+                    "Broadway",
+                    123,
+                    10001
+                )
+            )
+        );
+        fileAppenderXML.appendReceipt(receipt, file);
     }
 }

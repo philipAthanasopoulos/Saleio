@@ -59,7 +59,7 @@ public class Receipt {
 			   "Country: " + company.getCompanyAddress().getCountry() + "\n" +
 			   "City: " + company.getCompanyAddress().getCity() + "\n" +
 			   "Street: " + company.getCompanyAddress().getStreet() + "\n" +
-			   "Number: " + numberOfItems + "\n";
+			   "Number: " + company.getCompanyAddress().getStreetNumber() + "\n";
 	}
 
 	public static void main(String[] args) {

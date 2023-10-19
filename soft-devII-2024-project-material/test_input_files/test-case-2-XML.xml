@@ -1,4 +1,4 @@
-<Agent>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Agent>
 <Name> Vassileios Zarras </Name>
 <AFM> 130456097 </AFM>
 
@@ -173,5 +173,5 @@
 <Number> 10 </Number>
 </Receipt>
 
-</Receipts>
+<Receipt><ReceiptID>123456</ReceiptID><Date>2022-01-01</Date><Kind>SKIRT</Kind><Items>2</Items><Company>Acme Inc.</Company><Country>USA</Country><City>New York</City><Street>Broadway</Street><Number>123</Number></Receipt><Receipt><ReceiptID>123456</ReceiptID><Date>2022-01-01</Date><Kind>SKIRT</Kind><Items>2</Items><Company>Acme Inc.</Company><Country>USA</Country><City>New York</City><Street>Broadway</Street><Number>123</Number></Receipt></Receipts>
 </Agent>
