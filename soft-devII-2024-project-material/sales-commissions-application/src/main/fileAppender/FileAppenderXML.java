@@ -6,6 +6,14 @@ import main.domain.ProductType;
 import main.domain.Receipt;
 
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,6 +26,12 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 
 
 /*TODO: when appending a new receipt, the new one is correctly added but the old ones get spaced away
@@ -76,21 +90,45 @@ public class FileAppenderXML  extends FileAppender{
             receiptToAdd.appendChild(receiptCompanyNumber);
 
             receiptsList.item(0).appendChild(receiptToAdd);
-
+            
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource domSource = new DOMSource(document);
             StreamResult streamResult = new StreamResult(receiptFile);
             transformer.transform(domSource, streamResult);
 
+            cleanBreakLines(receiptFile);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             //print line of error
             System.out.println("Line: " + e.getStackTrace()[0].getLineNumber());
         }
     }
+
+    //temporay fix for the new line problem
+    public void cleanBreakLines(File receiptFile) {
+        //remove empty lines
+        try {
+            BufferedReader fileReader = new BufferedReader(new FileReader(receiptFile));
+            BufferedWriter fileWriter = new BufferedWriter(new FileWriter(receiptFile.getAbsolutePath() + ".tmp"));
+            String line;
+            while((line = fileReader.readLine()) != null) {
+                if(line.trim().length() > 0) {
+                    fileWriter.write(line + System.getProperty("line.separator"));
+                }
+            }
+            fileReader.close();
+            fileWriter.close();
+            Files.move(Paths.get(receiptFile.getAbsolutePath() + ".tmp"), Paths.get(receiptFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
     public static void main(String[] args) {
         FileAppenderXML fileAppenderXML = new FileAppenderXML();
         String filePath = "C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-XML.xml";
