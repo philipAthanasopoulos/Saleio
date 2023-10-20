@@ -34,7 +34,7 @@ public abstract class Parser {
 	public abstract void readFile() throws IOException;
 
 	public Parser() {
-		associate = new Associate();
+//		associate = new Associate();
 		kind  = new String("");
 	}
 	
@@ -46,9 +46,9 @@ public abstract class Parser {
 	public void addReceipt(){
 		Receipt receipt = new Receipt();
 		receipt.setReceiptID(receiptID);
-		receipt.setDate(date);
-		receipt.setSales(sales);
-		receipt.setItems(items);
+//		receipt.setDate(date);
+//		receipt.setSales(sales);
+//		receipt.setItems(items);
 		receipt.getCompany().setCompanyName(companyName);
 		receipt.getCompany().getCompanyAddress().setCountry(companyCountry);
 		receipt.getCompany().getCompanyAddress().setCity(companyCity);

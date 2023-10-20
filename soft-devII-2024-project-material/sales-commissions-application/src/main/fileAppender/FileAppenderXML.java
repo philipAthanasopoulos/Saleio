@@ -110,7 +110,6 @@ public class FileAppenderXML  extends FileAppender{
 
     //temporay fix for the new line problem
     public void cleanBreakLines(File receiptFile) {
-        //remove empty lines
         try {
             BufferedReader fileReader = new BufferedReader(new FileReader(receiptFile));
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(receiptFile.getAbsolutePath() + ".tmp"));

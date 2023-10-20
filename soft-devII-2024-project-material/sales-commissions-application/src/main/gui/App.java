@@ -16,6 +16,25 @@ import java.awt.Color;
 import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GradientPaint;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import java.awt.Cursor;
+import java.awt.ComponentOrientation;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.JTextField;
+import javax.swing.DebugGraphics;
+
+
+
 
 /**
  * The App class is the main class of the application. It is responsible for
@@ -28,6 +47,8 @@ public class App extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String applicationName = "Sales Commissions Application";
+	private JPanel panel_1;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -45,72 +66,29 @@ public class App extends JFrame {
 			}
 		});
 	}
+	
+	
+
 
 	/**
 	 * Create the frame.
 	 */
 	public App() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1160, 746);
+		setBounds(100, 100, 1269, 746);
 		contentPane = new JPanel();
+		contentPane.setFocusable(false);
+		contentPane.setFocusTraversalKeysEnabled(false);
+		contentPane.setForeground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setOpaque(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 156, 707);
-		contentPane.add(panel);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JButton btnNewButton_1 = new JButton("Import File");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(128, 0, 255));
-		panel.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Export as");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBackground(new Color(128, 0, 255));
-		panel.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Add receipt");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBackground(new Color(128, 0, 255));
-		panel.add(btnNewButton_3);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBackground(new Color(128, 0, 255));
-		panel.add(btnNewButton);
-		
-		JList list_1 = new JList();
-		list_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		list_1.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Nikos Papadopoulos", "Apostolos Nikolaou"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list_1.setBounds(219, 199, 353, 342);
-		contentPane.add(list_1);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(638, 199, 456, 342);
+		scrollPane.setBounds(763, 208, 456, 471);
 		contentPane.add(scrollPane);
 		
 		JTextPane textPane = new JTextPane();
@@ -185,13 +163,151 @@ public class App extends JFrame {
 		textPane.setCaretPosition(0);
 		
 		JLabel lblNewLabel = new JLabel("Associates");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(344, 174, 116, 14);
+		lblNewLabel.setIconTextGap(10);
+		lblNewLabel.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-account-24.png")));
+		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblNewLabel.setBounds(448, 172, 148, 25);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Receipts");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(834, 163, 103, 25);
-		contentPane.add(lblNewLabel_1);
+		lblNewLabel_1.setIconTextGap(10);
+		lblNewLabel_1.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-receipt-24.png")));
+		lblNewLabel_1.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(926, 172, 163, 25);
+		contentPane.add(lblNewLabel_1);	
+		
+		JPanel panel = new JPanel();
+		panel_1 = new GradientPanel();
+		panel_1.setBounds(0, 0, 322, 707);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
+		panel_2.setBounds(0, 169, 322, 267);
+		panel_1.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JButton btnNewButton = new JButton("Import file");
+		btnNewButton.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
+		btnNewButton.setFocusable(false);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setFocusTraversalKeysEnabled(false);
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.setIconTextGap(10);
+		btnNewButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		btnNewButton.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-add-file-24.png")));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnNewButton.setBorder(null);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(0, 128, 128));
+		btnNewButton.setOpaque(false);
+		panel_2.add(btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("Export as");
+		btnNewButton_2.setFocusable(false);
+		btnNewButton_2.setFocusTraversalKeysEnabled(false);
+		btnNewButton_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_2.setIconTextGap(10);
+		btnNewButton_2.setHorizontalTextPosition(SwingConstants.LEFT);
+		btnNewButton_2.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-export-24.png")));
+		btnNewButton_2.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnNewButton_2.setBorder(null);
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setBackground(new Color(0, 128, 128));
+		btnNewButton_2.setOpaque(false);
+		panel_2.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Add receipt");
+		btnNewButton_3.setFocusable(false);
+		btnNewButton_3.setFocusTraversalKeysEnabled(false);
+		btnNewButton_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_3.setIconTextGap(10);
+		btnNewButton_3.setHorizontalTextPosition(SwingConstants.LEFT);
+		btnNewButton_3.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-add-receipt-24.png")));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_3.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnNewButton_3.setBorder(null);
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.setBackground(new Color(0, 128, 128));
+		btnNewButton_3.setOpaque(false);
+		panel_2.add(btnNewButton_3);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setFocusable(false);
+		btnNewButton_1.setFocusTraversalKeysEnabled(false);
+		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnNewButton_1.setBorder(null);
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.setBackground(new Color(0, 128, 128));
+		btnNewButton_1.setOpaque(false);
+		panel_2.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Sales Management");
+		lblNewLabel_2.setIconTextGap(25);
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\icons8-company-48.png"));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 22));
+		lblNewLabel_2.setBounds(10, 11, 274, 42);
+		panel_1.add(lblNewLabel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(255, 255, 255));
+		panel_3.setBounds(322, 0, 931, 50);
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton btnNewButton_4 = new JButton("");
+		btnNewButton_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton_4.setBorder(null);
+		btnNewButton_4.setFocusPainted(false);
+		btnNewButton_4.setFocusTraversalKeysEnabled(false);
+		btnNewButton_4.setFocusable(false);
+		btnNewButton_4.setRolloverEnabled(false);
+		btnNewButton_4.setRequestFocusEnabled(false);
+		btnNewButton_4.setBackground(new Color(255, 255, 255));
+		btnNewButton_4.setOpaque(false);
+		btnNewButton_4.setIcon(new ImageIcon(App.class.getResource("/resources/icons8-search-24.png")));
+		btnNewButton_4.setBounds(0, 0, 50, 50);
+		panel_3.add(btnNewButton_4);
+		
+		textField = new JTextField();
+		textField.setFocusCycleRoot(true);
+		textField.setFocusTraversalPolicyProvider(true);
+		textField.setBackground(new Color(225, 225, 225));
+		textField.setBorder(null);
+		textField.setAutoscrolls(false);
+		textField.setToolTipText("");
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textField.setBounds(50, 0, 881, 50);
+		panel_3.add(textField);
+		textField.setColumns(10);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(346, 208, 369, 471);
+		contentPane.add(scrollPane_1);
+		
+		JList list = new JList();
+		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"Chloe Davis", "Henry Wilson", "Grace Lee", "Samuel Brown", "Ella Rodriguez", "Benjamin Martinez", "Scarlett Anderson", "William Wright", "Victoria Mitchell", "Owen Scott", "Penelope Green", "Isaac Baker", "Audrey King", "Gabriel Young", "Hazel Turner", "Alexander Hill", "Ruby Cooper", "Daniel Collins", "Emily Rodriguez", "Benjamin Kim", "Sophia Patel", "William Nguyen", "Isabella Singh", "Ethan Lee", "Mia Chen", "Alexander Brown", "Olivia Davis", "Samuel Wilson", "Ava Garcia", "Daniel Martinez", "Charlotte Anderson", "Lucas Hernandez", "Grace Wright", "Jackson Scott", "Victoria Thompson", "Owen Green", "Scarlett Baker", "Gabriel Turner"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		scrollPane_1.setViewportView(list);
+		
+		
 	}
 }
