@@ -2,7 +2,7 @@ package main.reporter;
 
 import main.domain.Associate;
 
-import java.io.File;
+import java.io.*;
 
 import javax.swing.JFileChooser;
 
@@ -19,6 +19,7 @@ public abstract class Reporter {
 	public abstract void composeReportFile(String path); // maybe a better name?
 	
 	public void saveFile(){
+        
 		JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a directory to save your file: ");
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

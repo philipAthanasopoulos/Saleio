@@ -52,7 +52,7 @@ public class Receipt {
 	public String toString() {
 		return "Receipt ID: " + receiptID + "\n" +
 			   "Date: " + purchaseDate + "\n" +
-			   "Kind: " + productType + "\n" +
+			   "Kind: " + productTypeToString() + "\n" +
 			   "Sales: " + totalSales + "\n" +
 			   "Items: " + numberOfItems + "\n" +
 			   "Company: " + company.getCompanyName() + "\n" +
@@ -60,6 +60,11 @@ public class Receipt {
 			   "City: " + company.getCompanyAddress().getCity() + "\n" +
 			   "Street: " + company.getCompanyAddress().getStreet() + "\n" +
 			   "Number: " + company.getCompanyAddress().getStreetNumber() + "\n";
+	}
+
+	public String productTypeToString(){
+		String[] types = {null, "Coats", "Shirts", "Skirts", "Trousers"};
+		return types[productType.ordinal()];
 	}
 
 	public static void main(String[] args) {
