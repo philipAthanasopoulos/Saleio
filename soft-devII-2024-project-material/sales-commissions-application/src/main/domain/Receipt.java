@@ -63,9 +63,9 @@ public class Receipt {
 	}
 
 	public static void main(String[] args) {
-		Address address = new Address("Greece", "Athens", "Kifisias", 123, 123456789);
+		Address address = new Address("Greece", "Athens", "Kifisias", 123);
 		Company company = new Company("Company", address);
-		Receipt receipt = new Receipt(ProductType.SKIRT, 123, "12/12/2012", 123.123, 123, company);
+		Receipt receipt = new Receipt(ProductType.Skirts, 123, "12/12/2012", 123.123, 123, company);
 		System.out.println(receipt);
 	}
 }

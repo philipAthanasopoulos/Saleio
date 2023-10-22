@@ -133,7 +133,7 @@ public class FileAppenderXML  extends FileAppender{
         String filePath = "C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-XML.xml";
         File file = new File(filePath);
         Receipt receipt = new Receipt(
-            ProductType.SKIRT,
+            ProductType.Skirts,
             123456,
             "2022-01-01",
             99.99,
@@ -144,8 +144,7 @@ public class FileAppenderXML  extends FileAppender{
                     "USA",
                     "New York",
                     "Broadway",
-                    123,
-                    10001
+                    123
                 )
             )
         );

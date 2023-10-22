@@ -3,8 +3,11 @@ import main.fileAppender.FileAppender;
 import main.fileAppender.FileAppenderTXT;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JFileChooser;
 
 /**
@@ -24,8 +27,8 @@ public class Entry {
     private File receiptsFile;
     private FileAppender fileAppender;
 
-    public Entry(File receiptFile, Associate associate) {
-        this.receiptsFile = receiptFile;
+    public Entry(File receiptsFile, Associate associate) {
+        this.receiptsFile = receiptsFile;
         this.associate = associate;
         this.fileAppender = new FileAppenderTXT();
     }
@@ -33,6 +36,22 @@ public class Entry {
     public void addReceipt(Receipt receipt) {
         associate.addReceipt(receipt);
         fileAppender.appendReceipt(receipt,receiptsFile);
+    }
+
+    public String getFileAsString() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(receiptsFile));
+            String result = "";
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
+                result += line + "\n";
+            }
+            return result;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public Associate getAssociate() {
@@ -69,8 +88,8 @@ public class Entry {
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = fileChooser.getSelectedFile();
                 Associate associate = new Associate("Philip", "123456789", new ArrayList<Receipt>());
-                Entry entry = new Entry(selectedFile, associate);
-                Receipt receipt = new Receipt(ProductType.SKIRT, 123, "12/12/2012", 123.123, 123, new Company("Company", new Address("Greece", "Athens", "Kifisias", 123, 123456789)));
+                Entry entry = new Entry(selectedFile,associate);
+                Receipt receipt = new Receipt(ProductType.Skirts, 123, "12/12/2012", 123.123, 123, new Company("Company", new Address("Greece", "Athens", "Kifisias", 123)));
                 entry.addReceipt(receipt);
             }
         } catch (NullPointerException e) {
