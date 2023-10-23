@@ -181,12 +181,7 @@ public class ReceiptForm extends JFrame {
 		btnNewButton = new JButton("ADD");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//get file type
-				String fileType = entry.getFileType();
-				if(fileType.equals("txt")) fileAppender = new FileAppenderTXT();
-				else if (fileType.equals("xml")) fileAppender = new FileAppenderXML();
-
-				
+				//add logic
 			}
 		});
 		btnNewButton.setBounds(51, 443, 89, 23);
