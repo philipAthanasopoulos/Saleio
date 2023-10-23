@@ -17,7 +17,6 @@ public class TXTReporter extends Reporter {
     public void composeReportFile(String path){
         try {
             BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.txt"));
-    
 
             writeStream.write(String.format("Name: %s%n", associate.getName()));
             writeStream.write(String.format("AFM: %s%n%n", associate.getAfm()));
@@ -27,10 +26,7 @@ public class TXTReporter extends Reporter {
                 writeStream.write(receipt.toString()+"\n");
             }
             writeStream.close();
-
-
         } catch (Exception e) {
-            // TODO: handle exception
             JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -1,9 +1,12 @@
 package main.gui;
 
+import main.domain.Associate;
 import main.domain.Entry;
 import main.parser.Parser;
 import main.parser.TXTParser;
 import main.parser.XMLParser;
+import main.reporter.Reporter;
+import main.reporter.TXTReporter;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -193,6 +196,24 @@ public class AppGUI extends JFrame {
 		panel_2.add(addReceiptButton);
 		
 		JButton exportFileButton = new JButton("Export as");
+		exportFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//ask user for file type
+				String[] options = {"TXT", "XML"};
+				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export file", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				if (result == JOptionPane.CLOSED_OPTION) return;
+				String fileType = options[result].toLowerCase();
+
+				Reporter reporter;
+				Associate selectedAssociate = entries.get(list.getSelectedIndex()).getAssociate();
+
+				if(fileType.equals("txt")) reporter = new TXTReporter(selectedAssociate);
+				else if(fileType.equals("xml")) reporter = new TXTReporter(selectedAssociate);
+				else throw new IllegalArgumentException("Unsupported file type");
+
+				reporter.saveFile();
+			}
+		});
 		exportFileButton.setFocusable(false);
 		exportFileButton.setFocusTraversalKeysEnabled(false);
 		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
