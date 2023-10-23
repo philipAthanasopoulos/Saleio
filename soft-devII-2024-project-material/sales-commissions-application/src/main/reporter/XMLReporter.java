@@ -2,6 +2,8 @@ package main.reporter;
 
 import java.io.File;
 
+import main.domain.*;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -31,7 +33,7 @@ public class XMLReporter extends Reporter {
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 			Document document = documentBuilder.newDocument();
 			// root element
-			Element agentElem = document.createElement("Associate");
+			Element agentElem = document.createElement("Agent");
 			document.appendChild(agentElem);
 			
 			Element name = document.createElement("Name");
@@ -42,34 +44,61 @@ public class XMLReporter extends Reporter {
 			afm.appendChild(document.createTextNode(associate.getAfm()));
 			agentElem.appendChild(afm);
 			
-			Element totalSales = document.createElement("TotalSales");
-			totalSales.appendChild(document.createTextNode(Double.toString(associate.calculateTotalSales())));
-			agentElem.appendChild(totalSales);
+			Element Receipts = document.createElement("Receipts");
+			agentElem.appendChild(Receipts);
 			
-//			Element trouserSales = document.createElement("TrouserSales");
-//			trouserSales.appendChild(document.createTextNode(Double.toString(associate.calculateTrouserSales())));
-//			agentElem.appendChild(trouserSales);
-//
-//			Element skirtsSales = document.createElement("SkirtsSales");
-//			skirtsSales.appendChild(document.createTextNode(Double.toString(associate.calculateSkirtsSales())));
-//			agentElem.appendChild(skirtsSales);
-//
-//			Element shirtsSales = document.createElement("ShirtsSales");
-//			shirtsSales.appendChild(document.createTextNode(Double.toString(associate.calculateShirtsSales())));
-//			agentElem.appendChild(shirtsSales);
-//
-//			Element coatsSales = document.createElement("CoatsSales");
-//			coatsSales.appendChild(document.createTextNode(Double.toString(associate.calculateCoatsSales())));
-//			agentElem.appendChild(coatsSales);
-			
-			Element commission = document.createElement("Commission");
-			commission.appendChild(document.createTextNode(Double.toString(associate.calculateCommission())));
-			agentElem.appendChild(commission);
+			for (Receipt receipt : associate.getReceipts()){
+				Element receiptElement = document.createElement("Receipt");
+				Receipts.appendChild(receiptElement);
+
+				Element receiptId = document.createElement("ReceiptID");
+				receiptId.appendChild(document.createTextNode(String.valueOf(receipt.getReceiptID())));
+				receiptElement.appendChild(receiptId);
+
+				Element date = document.createElement("Date");
+				date.appendChild(document.createTextNode(receipt.getPurchaseDate()));
+				receiptElement.appendChild(date);
+
+				Element kind = document.createElement("Kind");
+				kind.appendChild(document.createTextNode(receipt.productTypeToString()));
+				receiptElement.appendChild(kind);
+
+				Element sales = document.createElement("Sales");
+				sales.appendChild(document.createTextNode(String.valueOf(receipt.getTotalSales())));
+				receiptElement.appendChild(sales);
+
+				Element items = document.createElement("Items");
+				items.appendChild(document.createTextNode(String.valueOf(receipt.getNumberOfItems())));
+				receiptElement.appendChild(items);
+
+				String companyName = receipt.getCompany().getCompanyName();
+				Element companyNameElement = document.createElement("Company");
+				companyNameElement.appendChild(document.createTextNode(companyName));
+				receiptElement.appendChild(companyNameElement);
+
+				Address companyAddress = receipt.getCompany().getCompanyAddress();
+				Element country = document.createElement("Country");
+				country.appendChild(document.createTextNode(companyAddress.getCountry()));
+				receiptElement.appendChild(country);
+
+				Element city = document.createElement("City");
+				city.appendChild(document.createTextNode(companyAddress.getCity()));
+				receiptElement.appendChild(city);
+
+				Element street = document.createElement("Street");
+				street.appendChild(document.createTextNode(companyAddress.getStreet()));
+				receiptElement.appendChild(street);
+
+				Element streetNumber = document.createElement("Number");
+				streetNumber.appendChild(document.createTextNode(String.valueOf(companyAddress.getStreetNumber())));
+				receiptElement.appendChild(streetNumber);
+			}
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+
 			DOMSource domSource = new DOMSource(document);
 			StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
 			transformer.transform(domSource, streamResult);
