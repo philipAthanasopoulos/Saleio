@@ -97,4 +97,8 @@ public class Entry {
             System.out.println("File not found");
         }
     }
+
+    public String getFileType() {
+        return this.receiptsFile.getName().substring(this.receiptsFile.getName().lastIndexOf(".")+1).toLowerCase();
+    }
 }

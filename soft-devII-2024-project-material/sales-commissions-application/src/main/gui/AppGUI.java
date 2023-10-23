@@ -296,7 +296,5 @@ public class AppGUI extends JFrame {
 		});
 
 		scrollPane_1.setViewportView(list);
-		
-		
 	}
 }
