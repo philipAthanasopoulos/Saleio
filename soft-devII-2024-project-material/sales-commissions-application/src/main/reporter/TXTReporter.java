@@ -27,6 +27,7 @@ public class TXTReporter extends Reporter {
             }
             writeStream.close();
         } catch (Exception e) {
+            System.out.print(e.toString());
             JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
         }
     }

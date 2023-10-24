@@ -8,8 +8,8 @@ public class Receipt {
 	private int numberOfItems;
 	private Company company;
 	
-	public Receipt(ProductType productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company) {
-		this.productType = productType; 
+	public Receipt(String productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company) {
+		this.productType = stringToProductType(productType); 
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;
@@ -63,8 +63,19 @@ public class Receipt {
 	}
 
 	public String productTypeToString(){
-		String[] types = {null, "Coats", "Shirts", "Skirts", "Trousers"};
-		return types[productType.ordinal()];
+		if (productType == ProductType.INVALID) return null;
+		if (productType == ProductType.Shirts) return "Shirts";
+		if (productType == ProductType.Skirts) return "Skirts";
+		if (productType == ProductType.Trousers) return "Trousers";
+		return "Coats";
+	}
+
+	public ProductType stringToProductType(String type){
+		if (type.equals("Shirts")) return ProductType.Shirts;
+		if (type.equals("Skirts")) return ProductType.Skirts;
+		if (type.equals("Trousers")) return ProductType.Trousers;
+		if (type.equals("Coats")) return ProductType.Coats;
+		return ProductType.INVALID;
 	}
 
 	public static void main(String[] args) {

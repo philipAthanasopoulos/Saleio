@@ -105,6 +105,7 @@ public class XMLReporter extends Reporter {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.print(e.toString());
 			JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
 	}

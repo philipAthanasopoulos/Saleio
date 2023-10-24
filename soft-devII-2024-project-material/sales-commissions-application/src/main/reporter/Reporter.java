@@ -31,4 +31,9 @@ public abstract class Reporter {
             composeReportFile(path);
         }
 	}
+
+    public static void main(String[] args){
+        Reporter rep = new TXTReporter(new Associate());
+        rep.saveFile();
+    }
 }

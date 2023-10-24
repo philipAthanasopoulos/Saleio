@@ -1,9 +1,7 @@
 package main.fileAppender;
 import main.domain.Receipt;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
+import java.io.*;
 
 public abstract class FileAppender {
 	BufferedWriter writer;
