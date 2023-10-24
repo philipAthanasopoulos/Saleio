@@ -15,6 +15,6 @@ import main.domain.*;
 //TODO: Rework, the parser doesnt need all these fields
 public abstract class Parser {
 
-	public abstract Entry parseFileEntry(File file) throws IOException;
+	public abstract Entry parseFileEntry(File file)throws IOException; ;
 	
 }

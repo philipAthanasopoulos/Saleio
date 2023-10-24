@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -143,17 +144,15 @@ public class AppGUI extends JFrame {
 				if (result == JFileChooser.APPROVE_OPTION) {
 					File selectedFile = fileChooser.getSelectedFile();
 					String fileType = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
-					Parser parser;
-					if (fileType.equals("txt")) parser = new TXTParser();
-					else if (fileType.equals("xml")) parser = new XMLParser();
-					else throw new IllegalArgumentException("Unsupported file type");
+					ParserFactory parserFactory = new ParserFactory();
+					Parser parser = parserFactory.getParser(fileType);
+					Entry entry;
 					try {
-						Entry entry = parser.parseFileEntry(selectedFile);
+						entry = parser.parseFileEntry(selectedFile);
 						entries.add(entry);
-						associateListModel.addElement(entry.getAssociate().getName());
-					} catch (Exception unsupportedFileTypeException) {
-						System.out.print(unsupportedFileTypeException.toString());
-						JOptionPane.showMessageDialog(null, "Invalid file type", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						System.out.println("Σφαλμα κατα το ανοιγμα του αρχείου");
 					}
 				}
 			}
@@ -198,13 +197,9 @@ public class AppGUI extends JFrame {
 				if (result == JOptionPane.CLOSED_OPTION) return;
 				String fileType = options[result].toLowerCase();
 
-				Reporter reporter;
-				Associate selectedAssociate = entries.get(list.getSelectedIndex()).getAssociate();
-
-				if(fileType.equals("txt")) reporter = new TXTReporter(selectedAssociate);
-				else if(fileType.equals("xml")) reporter = new TXTReporter(selectedAssociate);
-				else throw new IllegalArgumentException("Unsupported file type");
-
+				ReporterFactory reporterFactory = new ReporterFactory();
+				Associate selectedAssociate = entries.get(associatesList.getSelectedIndex()).getAssociate();
+				Reporter reporter = reporterFactory.getReporter(fileType,selectedAssociate);
 				reporter.saveFile();
 			}
 		});

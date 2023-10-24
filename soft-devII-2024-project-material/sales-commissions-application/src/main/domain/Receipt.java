@@ -79,11 +79,4 @@ public class Receipt {
 		return ProductType.INVALID;
 	}
 
-	public ProductType stringToProductType(String type){
-		if (type.equals("Shirts")) return ProductType.Shirts;
-		if (type.equals("Skirts")) return ProductType.Skirts;
-		if (type.equals("Trousers")) return ProductType.Trousers;
-		if (type.equals("Coats")) return ProductType.Coats;
-		return ProductType.INVALID;
-	}
 }
