@@ -212,7 +212,7 @@ public class ReceiptForm extends JFrame {
 					receiptDateTextField.getText(),
 					Double.parseDouble(receiptSalesTextField.getText()),
 					Integer.parseInt(receiptItemNumberTextFiled.getText()),
-					company
+					company 
 				);
 				
 				fileAppender.appendReceipt(receipt, entry.getFile());
