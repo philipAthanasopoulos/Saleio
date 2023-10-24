@@ -1,6 +1,9 @@
 package main.gui;
 
 import main.domain.Entry;
+import main.domain.Receipt;
+import main.fileAppender.FileAppender;
+import main.fileAppender.FileAppenderTXT;
 
 import java.awt.EventQueue;
 
@@ -31,6 +34,8 @@ public class ReceiptForm extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel associateNameLabel;
 	private JButton btnNewButton;
+	private Entry entry;
+	private FileAppender fileAppender;
 
 	/**
 	 * Launch the application.
@@ -53,6 +58,8 @@ public class ReceiptForm extends JFrame {
 	 * Create the frame.
 	 */
 	public ReceiptForm(Entry entry) {
+		this.entry = entry;
+
 		setBounds(100, 100, 468, 605);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -174,6 +181,7 @@ public class ReceiptForm extends JFrame {
 		btnNewButton = new JButton("ADD");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//add logic
 			}
 		});
 		btnNewButton.setBounds(51, 443, 89, 23);
