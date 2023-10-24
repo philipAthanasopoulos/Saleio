@@ -196,13 +196,15 @@ public class AppGUI extends JFrame {
 				String[] options = {"TXT", "XML"};
 				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 				if (result == JOptionPane.CLOSED_OPTION) return;
+				String fileType = options[result].toLowerCase();
 
-				ReporterFactory reporterFactory = new ReporterFactory();
-				Associate selectedAssociate = entries.get(associatesList.getSelectedIndex()).getAssociate();
-				Reporter reporter = reporterFactory.getReporter(
-					options[result].toLowerCase(),
-					 selectedAssociate
-				);
+				Reporter reporter;
+				Associate selectedAssociate = entries.get(list.getSelectedIndex()).getAssociate();
+
+				if(fileType.equals("txt")) reporter = new TXTReporter(selectedAssociate);
+				else if(fileType.equals("xml")) reporter = new TXTReporter(selectedAssociate);
+				else throw new IllegalArgumentException("Unsupported file type");
+
 				reporter.saveFile();
 			}
 		});
