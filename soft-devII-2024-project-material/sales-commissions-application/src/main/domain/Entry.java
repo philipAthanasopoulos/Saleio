@@ -79,25 +79,4 @@ public class Entry {
     public String getFileType() {
         return this.receiptsFile.getName().substring(this.receiptsFile.getName().lastIndexOf(".")+1).toLowerCase();
     }
-
-    public static void main(String[] args) {
-        //get file from resources
-        try {
-            //open file chooser to choose file
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-            int result = fileChooser.showOpenDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = fileChooser.getSelectedFile();
-                Associate associate = new Associate("Philip", "123456789", new ArrayList<Receipt>());
-                Entry entry = new Entry(selectedFile,associate);
-                Receipt receipt = new Receipt(ProductType.Skirts, 123, "12/12/2012", 123.123, 123, new Company("Company", new Address("Greece", "Athens", "Kifisias", 123)));
-                entry.addReceipt(receipt);
-            }
-        } catch (NullPointerException e) {
-            // TODO: handle exception
-            System.out.println("File not found");
-        }
-    }
-
 }

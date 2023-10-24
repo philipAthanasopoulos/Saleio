@@ -2,11 +2,10 @@ package main.gui;
 
 import main.domain.Associate;
 import main.domain.Entry;
-import main.parser.Parser;
-import main.parser.TXTParser;
-import main.parser.XMLParser;
-import main.reporter.Reporter;
-import main.reporter.ReporterFactory;
+
+import main.parser.*;
+
+import main.reporter.*;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -68,6 +68,7 @@ public class Receipt {
 		if (productType == ProductType.Skirts) return "Skirts";
 		if (productType == ProductType.Trousers) return "Trousers";
 		return "Coats";
+
 	}
 
 	public ProductType stringToProductType(String type){
@@ -78,10 +79,11 @@ public class Receipt {
 		return ProductType.INVALID;
 	}
 
-	public static void main(String[] args) {
-		Address address = new Address("Greece", "Athens", "Kifisias", 123);
-		Company company = new Company("Company", address);
-		Receipt receipt = new Receipt(ProductType.Skirts, 123, "12/12/2012", 123.123, 123, company);
-		System.out.println(receipt);
+	public ProductType stringToProductType(String type){
+		if (type.equals("Shirts")) return ProductType.Shirts;
+		if (type.equals("Skirts")) return ProductType.Skirts;
+		if (type.equals("Trousers")) return ProductType.Trousers;
+		if (type.equals("Coats")) return ProductType.Coats;
+		return ProductType.INVALID;
 	}
 }
