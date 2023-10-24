@@ -2,11 +2,10 @@ package main.gui;
 
 import main.domain.Associate;
 import main.domain.Entry;
-import main.parser.Parser;
-import main.parser.TXTParser;
-import main.parser.XMLParser;
-import main.reporter.Reporter;
-import main.reporter.TXTReporter;
+
+import main.parser.*;
+
+import main.reporter.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -160,6 +159,7 @@ public class AppGUI extends JFrame {
 						entries.add(entry);
 						associateListModel.addElement(entry.getAssociate().getName());
 					} catch (Exception unsupportedFileTypeException) {
+						System.out.print(unsupportedFileTypeException.toString());
 						JOptionPane.showMessageDialog(null, "Invalid file type", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -208,7 +208,7 @@ public class AppGUI extends JFrame {
 				Associate selectedAssociate = entries.get(list.getSelectedIndex()).getAssociate();
 
 				if(fileType.equals("txt")) reporter = new TXTReporter(selectedAssociate);
-				else if(fileType.equals("xml")) reporter = new TXTReporter(selectedAssociate);
+				else if(fileType.equals("xml")) reporter = new XMLReporter(selectedAssociate);
 				else throw new IllegalArgumentException("Unsupported file type");
 
 				reporter.saveFile();

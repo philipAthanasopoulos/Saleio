@@ -13,6 +13,12 @@ public class Associate {
 		this.receipts = receipts;
 	}
 
+	public Associate(){ //tmp empty constructor
+		name = "Tmp";
+		afm = "123";
+		receipts = null;
+	}
+
 	public double calculateTotalSales(){
 		double sumSales = 0;
 		for(Receipt receipt : receipts) sumSales += receipt.getTotalSales();
