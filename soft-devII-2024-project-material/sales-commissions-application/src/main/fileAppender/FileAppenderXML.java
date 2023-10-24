@@ -127,27 +127,4 @@ public class FileAppenderXML  extends FileAppender{
             System.out.println("Error: " + e.getMessage());
         }
     }
-    
-    public static void main(String[] args) {
-        FileAppenderXML fileAppenderXML = new FileAppenderXML();
-        String filePath = "C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-XML.xml";
-        File file = new File(filePath);
-        Receipt receipt = new Receipt(
-            ProductType.Skirts,
-            123456,
-            "2022-01-01",
-            99.99,
-            2,
-            new Company(
-                "Acme Inc.",
-                new Address(
-                    "USA",
-                    "New York",
-                    "Broadway",
-                    123
-                )
-            )
-        );
-        fileAppenderXML.appendReceipt(receipt, file);
-    }
 }
