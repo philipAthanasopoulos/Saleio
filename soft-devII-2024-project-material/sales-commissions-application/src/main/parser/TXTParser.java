@@ -1,117 +1,100 @@
- package main.parser;
+package main.parser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
+import java.io.*;
 
-import main.domain.Address;
-import main.domain.Associate;
-import main.domain.Company;
-import main.domain.Entry;
-import main.domain.ProductType;
-import main.domain.Receipt;
+import java.util.*;
 
+import main.domain.*;
 
 public class TXTParser extends Parser {
+
+	int DATANAME = 0;
+	int DATAVALUE = 1;
 
 	@Override
 	public Entry parseFileEntry(File file) throws IOException {
 
-		try {
-			ArrayList<String> fileContentList = extractFileContent(file);
-			Associate associate = extractAssociate(fileContentList);
-			Entry resulEntry = new Entry(file , associate);
+		BufferedReader readStream;
 
-			return resulEntry;
+		try {
+			readStream = new BufferedReader(new FileReader(file));
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
-			System.out.println("Error parsing file");
+			System.out.println("Σφαλμα κατα το ανοιγμα του αρχείου");
 			return null;
 		}
 
-	}
+		//TODO : Maybe rework this first part, possibly by setting
+		String line = readStream.readLine();
+		String associateName = extractDataValue(line);
+		line = readStream.readLine();
+		String associateAFM = extractDataValue(line);
 
-	@Override
-	public Associate extractAssociate(ArrayList<String> fileContent) {
-		String associateName , associateAfm;
-		ArrayList<Receipt> receipts = new ArrayList<Receipt>();
+		List<Receipt> receipts = new ArrayList<Receipt>();
+
 		
-		int associateNameIndex = fileContent.indexOf("Name");
-		int associateAfmIndex = fileContent.indexOf("AFM");
 
-		associateName = fileContent.get(associateNameIndex + 1);
-		associateAfm = fileContent.get(associateAfmIndex + 1);
+		while(!extractDataName(readStream.readLine()).equals("Receipts")) continue;
 
-		//ghetto way to get the receipts
-		//TODO: for some reason ProductType cannot be resolved ,FIX ME
-		for(String word : fileContent){
-			if(word.equals("Receipt ID")){
-				int indexOfReceipt = fileContent.indexOf(word);
+		readStream.readLine();
 
-				int receiptID = Integer.parseInt(fileContent.get(indexOfReceipt + 1));
-				String purchaseDate = fileContent.get(indexOfReceipt + 3);
-				ProductType productType = null;
-				double totalSales = Double.parseDouble(fileContent.get(indexOfReceipt + 7));
-				int numberOfItems = Integer.parseInt(fileContent.get(indexOfReceipt + 9));
-				String companyName = fileContent.get(indexOfReceipt + 11);
-				String companyCountry = fileContent.get(indexOfReceipt + 13);
-				String companyCity = fileContent.get(indexOfReceipt + 15);
-				String companyStreet = fileContent.get(indexOfReceipt + 17);
-				int companyNumber = Integer.parseInt(fileContent.get(indexOfReceipt + 19));
-				Address address = new Address(companyCountry, companyCity, companyStreet, companyNumber);
-				Company company = new Company(companyName, address);
-				Receipt receipt = new Receipt(productType, receiptID, purchaseDate, totalSales, numberOfItems, company);
-				receipts.add(receipt);
-			}
+		//TODO : Work around NULL lines, cause it is currently not working properly.
+
+		while (line!= null){
+			String receiptID = extractDataValue(readStream.readLine());
+			String purchaseDate = extractDataValue(readStream.readLine());
+			String itemKind = extractDataValue(readStream.readLine());
+			String totalSales = extractDataValue(readStream.readLine());
+			String itemsPurchased = extractDataValue(readStream.readLine());
+			String companyName = extractDataValue(readStream.readLine());
+			String companyAddressCountry = extractDataValue(readStream.readLine());
+			String companyAddressCity = extractDataValue(readStream.readLine());
+			String companyAddressStreet = extractDataValue(readStream.readLine());
+			String companyAddressNumber = extractDataValue(readStream.readLine());
+
+			Receipt receipt = new Receipt(itemKind,
+					Integer.valueOf(receiptID),
+					purchaseDate,
+					Double.valueOf(totalSales),
+					Integer.valueOf(itemsPurchased),
+					new Company(companyName,
+						new Address(companyAddressCountry,
+							companyAddressCity,
+							companyAddressStreet,
+							Integer.valueOf(companyAddressNumber)
+						)
+					)
+				);
+			
+			receipts.add(receipt);
+			
+			readStream.readLine();
 		}
-		Associate associate = new Associate(associateName, associateAfm, receipts);
-		return associate;
+
+
+		readStream.close();
+		return new Entry(file,
+			new Associate(associateName,
+				associateAFM,
+				receipts
+			)
+		);
 	}
 
-	public ArrayList<Receipt> extractReceipts(String fileContent) {
-		return null;
+	private String extractDataName(String line){
+		if (line == null || line.equals("")) return "";
+		String[] lineDivided =  line.split(":");
+		return lineDivided[DATANAME].trim();
 	}
 
-	@Override
-	public ArrayList<String> extractFileContent(File file) {
-		ArrayList<String> fileContentList = new ArrayList<String>();
-		try {
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-			String line = "";
-			while((line = bufferedReader.readLine()) != null) {
-				String[] lineSplit = line.split(":");
-				fileContentList.addAll(Arrays.asList(lineSplit));
-			}
-			ArrayList<String> trimmedContentList = new ArrayList<String>();
-			for(String word : fileContentList) trimmedContentList.add(word.trim());
-			fileContentList = trimmedContentList;
-			bufferedReader.close();
-			return fileContentList;
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error reading file");
-			return null;
-		}
+	private String extractDataValue(String line){
+		if (line == null || line.equals("")) return "";
+		String[] lineDivided =  line.split(":");
+		return lineDivided[DATAVALUE].trim();
 	}
 
 	public static void main(String[] args) {
-		TXTParser parser = new TXTParser();
-		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-1-TXT.txt");
-		ArrayList<String> fileContent = parser.extractFileContent(file);
-		 try {
-		 	Entry entry = parser.parseFileEntry(file);
-			// System.out.println(entry.getAssociate().getName());
-			// System.out.println(entry.getAssociate().getAfm());
-			// System.out.println(entry.getAssociate().getReceipts().toString());
-		 } catch (IOException e) {
-		 	// TODO Auto-generated catch block
-		 	e.printStackTrace();
-		 }
+		return;
 	}
 
 	
