@@ -3,9 +3,7 @@ import main.fileAppender.FileAppender;
 import main.fileAppender.FileAppenderTXT;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
@@ -65,17 +63,21 @@ public class Entry {
     public File getReceiptsFile() {
         return this.receiptsFile;
     }
-
+    
     public void setReceiptsFile(File receiptsFile) {
         this.receiptsFile = receiptsFile;
     }
-
+    
     public FileAppender getFileAppender() {
         return this.fileAppender;
     }
-
+    
     public void setFileAppender(FileAppender fileAppender) {
         this.fileAppender = fileAppender;
+    }
+
+    public String getFileType() {
+        return this.receiptsFile.getName().substring(this.receiptsFile.getName().lastIndexOf(".")+1).toLowerCase();
     }
 
     public static void main(String[] args) {
@@ -98,7 +100,4 @@ public class Entry {
         }
     }
 
-    public String getFileType() {
-        return this.receiptsFile.getName().substring(this.receiptsFile.getName().lastIndexOf(".")+1).toLowerCase();
-    }
 }

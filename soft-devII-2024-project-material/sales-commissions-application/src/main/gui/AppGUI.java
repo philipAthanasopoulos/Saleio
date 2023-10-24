@@ -6,13 +6,12 @@ import main.parser.Parser;
 import main.parser.TXTParser;
 import main.parser.XMLParser;
 import main.reporter.Reporter;
-import main.reporter.TXTReporter;
+import main.reporter.ReporterFactory;
 
 import java.util.List;
 import java.util.ArrayList;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,7 +24,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
@@ -53,11 +51,10 @@ public class AppGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String applicationName = "Sales Commissions Application";
-	private JPanel panel_1;
-	private JTextField textField;
+	private JPanel sidePanel;
+	private JTextField searchTextField;
 	private List<Entry> entries; 
-	private JList list;
-
+	private JList associatesList;
 
 	/**
 	 * Launch the application.
@@ -75,10 +72,6 @@ public class AppGUI extends JFrame {
 			}
 		});
 	}
-	
-	
-
-
 	/**
 	 * Create the frame.
 	 */
@@ -99,41 +92,40 @@ public class AppGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(763, 208, 456, 471);
-		contentPane.add(scrollPane);
+		JScrollPane receiptsScrollPane = new JScrollPane();
+		receiptsScrollPane.setBounds(763, 208, 456, 471);
+		contentPane.add(receiptsScrollPane);
 		
-		final JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		textPane.setEditable(false);
-		scrollPane.setViewportView(textPane);
-		textPane.setCaretPosition(0);
+		final JTextPane receiptsTextPane = new JTextPane();
+		receiptsTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		receiptsTextPane.setEditable(false);
+		receiptsScrollPane.setViewportView(receiptsTextPane);
+		receiptsTextPane.setCaretPosition(0);
 		
-		JLabel lblNewLabel = new JLabel("Associates");
-		lblNewLabel.setIconTextGap(10);
-		lblNewLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-account-24.png")));
-		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblNewLabel.setBounds(448, 172, 148, 25);
-		contentPane.add(lblNewLabel);
+		JLabel associateListLabel = new JLabel("Associates");
+		associateListLabel.setIconTextGap(10);
+		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-account-24.png")));
+		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		associateListLabel.setBounds(448, 172, 148, 25);
+		contentPane.add(associateListLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Receipts");
-		lblNewLabel_1.setIconTextGap(10);
-		lblNewLabel_1.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-receipt-24.png")));
-		lblNewLabel_1.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(926, 172, 163, 25);
-		contentPane.add(lblNewLabel_1);	
+		JLabel receiptsListLabel = new JLabel("Receipts");
+		receiptsListLabel.setIconTextGap(10);
+		receiptsListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-receipt-24.png")));
+		receiptsListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		receiptsListLabel.setBounds(926, 172, 163, 25);
+		contentPane.add(receiptsListLabel);	
 		
-		JPanel panel = new JPanel();
-		panel_1 = new GradientPanel();
-		panel_1.setBounds(0, 0, 322, 707);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
+		sidePanel = new GradientPanel();
+		sidePanel.setBounds(0, 0, 322, 707);
+		contentPane.add(sidePanel);
+		sidePanel.setLayout(null);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setOpaque(false);
-		panel_2.setBounds(0, 169, 322, 267);
-		panel_1.add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		JPanel actionsButtonsPanel = new JPanel();
+		actionsButtonsPanel.setOpaque(false);
+		actionsButtonsPanel.setBounds(0, 169, 322, 267);
+		sidePanel.add(actionsButtonsPanel);
+		actionsButtonsPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton importFileButton = new JButton("Import file");
 		importFileButton.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
@@ -146,6 +138,7 @@ public class AppGUI extends JFrame {
 		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-24.png")));
 		importFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO : use factory pattern
 				JFileChooser fileChooser = new JFileChooser();
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
@@ -170,7 +163,7 @@ public class AppGUI extends JFrame {
 		importFileButton.setForeground(new Color(255, 255, 255));
 		importFileButton.setBackground(new Color(0, 128, 128));
 		importFileButton.setOpaque(false);
-		panel_2.add(importFileButton);
+		actionsButtonsPanel.add(importFileButton);
 		
 		JButton addReceiptButton = new JButton("Add receipt");
 		addReceiptButton.setFocusable(false);
@@ -181,7 +174,7 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-24.png")));
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entry selectedEntry = entries.get(list.getSelectedIndex());
+				Entry selectedEntry = entries.get(associatesList.getSelectedIndex());
 				ReceiptForm receiptForm = new ReceiptForm(selectedEntry);
 				receiptForm.setVisible(true);
 				//position to center
@@ -193,24 +186,23 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setForeground(new Color(255, 255, 255));
 		addReceiptButton.setBackground(new Color(0, 128, 128));
 		addReceiptButton.setOpaque(false);
-		panel_2.add(addReceiptButton);
+		actionsButtonsPanel.add(addReceiptButton);
 		
 		JButton exportFileButton = new JButton("Export as");
 		exportFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ask user for file type
+				//TODO: make dynamic when you have the time :)
 				String[] options = {"TXT", "XML"};
-				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export file", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 				if (result == JOptionPane.CLOSED_OPTION) return;
-				String fileType = options[result].toLowerCase();
 
-				Reporter reporter;
-				Associate selectedAssociate = entries.get(list.getSelectedIndex()).getAssociate();
-
-				if(fileType.equals("txt")) reporter = new TXTReporter(selectedAssociate);
-				else if(fileType.equals("xml")) reporter = new TXTReporter(selectedAssociate);
-				else throw new IllegalArgumentException("Unsupported file type");
-
+				ReporterFactory reporterFactory = new ReporterFactory();
+				Associate selectedAssociate = entries.get(associatesList.getSelectedIndex()).getAssociate();
+				Reporter reporter = reporterFactory.getReporter(
+					options[result].toLowerCase(),
+					 selectedAssociate
+				);
 				reporter.saveFile();
 			}
 		});
@@ -225,76 +217,65 @@ public class AppGUI extends JFrame {
 		exportFileButton.setForeground(new Color(255, 255, 255));
 		exportFileButton.setBackground(new Color(0, 128, 128));
 		exportFileButton.setOpaque(false);
-		panel_2.add(exportFileButton);
+		actionsButtonsPanel.add(exportFileButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setFocusable(false);
-		btnNewButton_1.setFocusTraversalKeysEnabled(false);
-		btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBackground(new Color(0, 128, 128));
-		btnNewButton_1.setOpaque(false);
-		panel_2.add(btnNewButton_1);
+		JLabel appTitleLabel = new JLabel("Sales Management");
+		appTitleLabel.setIconTextGap(25);
+		appTitleLabel.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\icons8-company-48.png"));
+		appTitleLabel.setForeground(new Color(255, 255, 255));
+		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 22));
+		appTitleLabel.setBounds(10, 11, 274, 42);
+		sidePanel.add(appTitleLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Sales Management");
-		lblNewLabel_2.setIconTextGap(25);
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\icons8-company-48.png"));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 22));
-		lblNewLabel_2.setBounds(10, 11, 274, 42);
-		panel_1.add(lblNewLabel_2);
+		JPanel searchPanel = new JPanel();
+		searchPanel.setBackground(new Color(255, 255, 255));
+		searchPanel.setBounds(322, 0, 931, 50);
+		contentPane.add(searchPanel);
+		searchPanel.setLayout(null);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(new Color(255, 255, 255));
-		panel_3.setBounds(322, 0, 931, 50);
-		contentPane.add(panel_3);
-		panel_3.setLayout(null);
+		JButton searchButton = new JButton("");
+		searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		searchButton.setBorder(null);
+		searchButton.setFocusPainted(false);
+		searchButton.setFocusTraversalKeysEnabled(false);
+		searchButton.setFocusable(false);
+		searchButton.setRolloverEnabled(false);
+		searchButton.setRequestFocusEnabled(false);
+		searchButton.setBackground(new Color(255, 255, 255));
+		searchButton.setOpaque(false);
+		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-24.png")));
+		searchButton.setBounds(0, 0, 50, 50);
+		searchPanel.add(searchButton);
 		
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton_4.setBorder(null);
-		btnNewButton_4.setFocusPainted(false);
-		btnNewButton_4.setFocusTraversalKeysEnabled(false);
-		btnNewButton_4.setFocusable(false);
-		btnNewButton_4.setRolloverEnabled(false);
-		btnNewButton_4.setRequestFocusEnabled(false);
-		btnNewButton_4.setBackground(new Color(255, 255, 255));
-		btnNewButton_4.setOpaque(false);
-		btnNewButton_4.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-24.png")));
-		btnNewButton_4.setBounds(0, 0, 50, 50);
-		panel_3.add(btnNewButton_4);
+		searchTextField = new JTextField();
+		searchTextField.setFocusCycleRoot(true);
+		searchTextField.setFocusTraversalPolicyProvider(true);
+		searchTextField.setBackground(new Color(225, 225, 225));
+		searchTextField.setBorder(null);
+		searchTextField.setAutoscrolls(false);
+		searchTextField.setToolTipText("");
+		searchTextField.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		searchTextField.setBounds(50, 0, 881, 50);
+		searchPanel.add(searchTextField);
+		searchTextField.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setFocusCycleRoot(true);
-		textField.setFocusTraversalPolicyProvider(true);
-		textField.setBackground(new Color(225, 225, 225));
-		textField.setBorder(null);
-		textField.setAutoscrolls(false);
-		textField.setToolTipText("");
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		textField.setBounds(50, 0, 881, 50);
-		panel_3.add(textField);
-		textField.setColumns(10);
+		JScrollPane associatesScrollPane = new JScrollPane();
+		associatesScrollPane.setBounds(346, 208, 369, 471);
+		contentPane.add(associatesScrollPane);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(346, 208, 369, 471);
-		contentPane.add(scrollPane_1);
-		
-		list = new JList();
-		list.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		list.setModel(associateListModel);
-		list.addListSelectionListener(new ListSelectionListener() {
+		associatesList = new JList();
+		associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		associatesList.setModel(associateListModel);
+		associatesList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				if (evt.getValueIsAdjusting()) return;
-				int index = list.getSelectedIndex();
+				int index = associatesList.getSelectedIndex();
 				if (index == -1) return;
 				Entry entry = entries.get(index);
-				textPane.setText(entry.getFileAsString());
+				receiptsTextPane.setText(entry.getFileAsString());
 			}
 		});
 
-		scrollPane_1.setViewportView(list);
+		associatesScrollPane.setViewportView(associatesList);
 	}
 }
