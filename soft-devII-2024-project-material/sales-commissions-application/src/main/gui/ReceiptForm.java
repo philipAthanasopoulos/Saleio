@@ -43,6 +43,7 @@ public class ReceiptForm extends JFrame {
 	private JLabel associateNameLabel;
 	private JButton addReceiptButton;
 	private FileAppender fileAppender;
+	private Associate associate;
 
 	/**
 	 * Launch the application.
@@ -65,7 +66,8 @@ public class ReceiptForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReceiptForm(Associate associate) {
+	public ReceiptForm(Associate selectedAssociate) {
+		this.associate = selectedAssociate;
 
 		setBounds(100, 100, 468, 605);
 		contentPane = new JPanel();
@@ -190,7 +192,7 @@ public class ReceiptForm extends JFrame {
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
-				fileAppender = fileAppenderFactory.getFileAppender(associate.getFile());
+				fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());
 				
 				Address address = new Address(
 					receiptCountryTextField.getText(),
@@ -205,16 +207,16 @@ public class ReceiptForm extends JFrame {
 				);
 
 				Receipt receipt = new Receipt(
-					ProductType.valueOf(productTypeTextField.getText()) ,
 					Integer.parseInt(receiptIdTextField.getText()),
 					receiptDateTextField.getText(),
+					ProductType.valueOf(productTypeTextField.getText()) ,
 					Double.parseDouble(receiptSalesTextField.getText()),
 					Integer.parseInt(receiptItemNumberTextFiled.getText()),
 					company 
 				);
 				
-				fileAppender.appendReceipt(receipt, entry.getFile());
-
+				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
+				associate.addReceipt(receipt);
 			}
 		});
 		addReceiptButton.setBounds(51, 443, 89, 23);

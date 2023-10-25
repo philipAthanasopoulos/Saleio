@@ -178,8 +178,10 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-24.png")));
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
-				
+				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
+				ReceiptForm receiptForm = new ReceiptForm(selectedAssociate);
+				receiptForm.setVisible(true);
+				receiptForm.setLocationRelativeTo(null);
 			}
 		});
 		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -193,6 +195,12 @@ public class AppGUI extends JFrame {
 		exportFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//ask user for file type
+				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
+				String[] options = {"TXT", "XML"};
+				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+				ReporterFactory reporterFactory = new ReporterFactory();
+				Reporter reporter = reporterFactory.getReporter(options[result] , selectedAssociate);
+				reporter.saveFile();
 				//TODO: make dynamic when you have the time :)
 				
 			}
@@ -264,7 +272,6 @@ public class AppGUI extends JFrame {
 				receiptsTextPane.setText(selectedAssociate.getFileString());
 			}
 		});
-
 		associatesScrollPane.setViewportView(associatesList);
 	}
 }

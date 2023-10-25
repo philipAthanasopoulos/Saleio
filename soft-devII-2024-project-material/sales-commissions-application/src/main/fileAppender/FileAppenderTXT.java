@@ -12,6 +12,7 @@ public class FileAppenderTXT extends FileAppender{
 	public void appendReceipt(Receipt receipt, File receiptFile) {
 		try {
 			writer = new BufferedWriter(new FileWriter(receiptFile, true));
+			writer.write("\n");
 			writer.write(receipt.toString());
 			writer.close();
 		} catch (NullPointerException fileNotFoundException) {

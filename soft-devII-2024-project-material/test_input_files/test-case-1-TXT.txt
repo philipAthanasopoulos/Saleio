@@ -79,3 +79,14 @@ Country: Greece
 City: Athens
 Street: Kifisias
 Number: 123
+
+Receipt ID: 1234
+Date: asdf
+Kind: Skirts
+Sales: 1234.0
+Items: 1234
+Company: 1234
+Country: 1234
+City: 1234
+Street: 1324
+Number: 1234
