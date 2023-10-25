@@ -1,15 +1,15 @@
 package main.domain;
 
 public class Receipt {
-	private ProductType productType;
 	private int receiptID;
 	private String purchaseDate;
+	private ProductType productType;
 	private double totalSales;
 	private int numberOfItems;
 	private Company company;
 	
-	public Receipt(String productType, int receiptID, String purchaseDate, double totalSales, int numberOfItems, Company company) {
-		this.productType = stringToProductType(productType); 
+	public Receipt(int receiptID, String purchaseDate, ProductType productType, double totalSales, int numberOfItems, Company company) {
+		this.productType = productType;
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
 		this.totalSales = totalSales;

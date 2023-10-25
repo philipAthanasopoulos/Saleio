@@ -1,22 +1,33 @@
 package main.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import main.parser.Parser;
+import main.parser.ParserFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class Associate {
 	private String name;
 	private String afm;
 	private List<Receipt> receipts;
+	private File personalFile;
 
-	public Associate(String name, String afm, List<Receipt> receipts) {
+	public Associate(String name, String afm, List<Receipt> receipts, File personalFile) {
 		this.name = name;
 		this.afm = afm;
 		this.receipts = receipts;
+		this.personalFile = personalFile;
 	}
 
 	public Associate(){ //tmp empty constructor
 		name = "Tmp";
 		afm = "123";
-		receipts = null;
+		receipts = new ArrayList<Receipt>();
+		personalFile = null;
 	}
 
 	public double calculateTotalSales(){
@@ -80,4 +91,47 @@ public class Associate {
 	public void setReceipts(List<Receipt> receipts) {
 		this.receipts = receipts;
 	}
+
+	public File getPersonalFile() {
+		return this.personalFile;
+	}
+
+	public void setPersonalFile(File personalFile) {
+		this.personalFile = personalFile;
+	}
+
+	public String getFileType() {
+		String fileType = "";
+		try {
+			fileType = Files.probeContentType(this.personalFile.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return fileType;
+	}
+	
+	public String getFileString() {
+		String fileString = "";
+		try {
+			fileString = new String(Files.readAllBytes(this.personalFile.toPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return fileString;
+	}
+
+	public static void main(String[] args) {
+		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt");
+		ParserFactory parserFactory = new ParserFactory();
+		Parser parser = parserFactory.getParser("text/plain");
+		try {
+			Associate associate =  parser.parseAssociateFromFile(file);
+			System.out.println(associate.getFileString());
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

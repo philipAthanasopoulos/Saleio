@@ -1,17 +1,19 @@
 package main.gui;
 
 import main.domain.Associate;
-import main.domain.Entry;
 
 import main.parser.*;
 
 import main.reporter.*;
 
 import java.util.List;
+
 import java.util.ArrayList;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -53,8 +55,8 @@ public class AppGUI extends JFrame {
 	private String applicationName = "Sales Commissions Application";
 	private JPanel sidePanel;
 	private JTextField searchTextField;
-	private List<Entry> entries; 
-	private JList associatesList;
+	private List<Associate> associates; 
+	private JList<String> associatesList; // change name
 
 	/**
 	 * Launch the application.
@@ -76,8 +78,8 @@ public class AppGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public AppGUI() {
-		entries = new ArrayList<Entry>();
-		final DefaultListModel<String> associateListModel = new DefaultListModel<>();
+		final DefaultListModel<String> listModel = new DefaultListModel<String>();
+		associates = new ArrayList<Associate>();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1269, 746);
@@ -142,26 +144,20 @@ public class AppGUI extends JFrame {
 				JFileChooser fileChooser = new JFileChooser();
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
-					File selectedFile = fileChooser.getSelectedFile();
-					String fileType = selectedFile.getName().substring(selectedFile.getName().lastIndexOf(".") + 1);
-					ParserFactory parserFactory = new ParserFactory();
-					Parser parser = parserFactory.getParser(fileType);
-					Entry entry;
 					
 					try {
-						// entry = parser.parseFileEntry(selectedFile);
-						// entries.add(entry);
-						throw new IOException();
-
-
-
-
-						
+						File selectedFile = fileChooser.getSelectedFile();
+						String fileType = Files.probeContentType(selectedFile.toPath());
+						System.out.println(fileType);
+						ParserFactory parserFactory = new ParserFactory();
+						Parser parser = parserFactory.getParser(fileType);
+						Associate newAssociate = parser.parseAssociateFromFile(selectedFile);
+						associates.add(newAssociate);
+						listModel.addElement(newAssociate.getName());
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						//alert window
 						JOptionPane.showMessageDialog(null, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
-
 					}
 				}
 			}
@@ -182,11 +178,8 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-24.png")));
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entry selectedEntry = entries.get(associatesList.getSelectedIndex());
-				ReceiptForm receiptForm = new ReceiptForm(selectedEntry);
-				receiptForm.setVisible(true);
-				//position to center
-				receiptForm.setLocationRelativeTo(null);
+				// Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
+				
 			}
 		});
 		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 15));
@@ -201,15 +194,7 @@ public class AppGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//ask user for file type
 				//TODO: make dynamic when you have the time :)
-				String[] options = {"TXT", "XML"};
-				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-				if (result == JOptionPane.CLOSED_OPTION) return;
-				String fileType = options[result].toLowerCase();
-
-				ReporterFactory reporterFactory = new ReporterFactory();
-				Associate selectedAssociate = entries.get(associatesList.getSelectedIndex()).getAssociate();
-				Reporter reporter = reporterFactory.getReporter(fileType,selectedAssociate);
-				reporter.saveFile();
+				
 			}
 		});
 		exportFileButton.setFocusable(false);
@@ -271,14 +256,12 @@ public class AppGUI extends JFrame {
 		
 		associatesList = new JList();
 		associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		associatesList.setModel(associateListModel);
+		associatesList.setModel(listModel);
 		associatesList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				if (evt.getValueIsAdjusting()) return;
-				int index = associatesList.getSelectedIndex();
-				if (index == -1) return;
-				Entry entry = entries.get(index);
-				receiptsTextPane.setText(entry.getFileAsString());
+				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
+				receiptsTextPane.setText(selectedAssociate.getFileString());
 			}
 		});
 

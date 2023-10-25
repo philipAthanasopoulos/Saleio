@@ -10,7 +10,8 @@ import java.io.*;
 public class XMLParser extends Parser {
  
     @Override
-    public Entry parseFileEntry(File file) throws IOException {
+    public Associate parseAssociateFromFile(File file) throws IOException {
+        // TODO Auto-generated method stub
         return null;
     }	
 }

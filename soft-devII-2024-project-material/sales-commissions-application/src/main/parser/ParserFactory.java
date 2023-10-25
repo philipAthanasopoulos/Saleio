@@ -2,11 +2,11 @@ package main.parser;
 
 public class ParserFactory {
 
-    public static Parser getParser(String fileType) {
+    public Parser getParser(String fileType) {
         switch(fileType) {
-            case "txt":
+            case "text/plain":
                 return new TXTParser();
-            case "xml":
+            case "application/xml":
                 return new XMLParser();
             default:
                 return null;

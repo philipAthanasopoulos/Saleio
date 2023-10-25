@@ -42,7 +42,6 @@ public class ReceiptForm extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel associateNameLabel;
 	private JButton addReceiptButton;
-	private Entry entry;
 	private FileAppender fileAppender;
 
 	/**
@@ -53,8 +52,8 @@ public class ReceiptForm extends JFrame {
 			public void run() {
 				try {
 					File file = null;
-					Associate associate = new Associate("John","1", new ArrayList<Receipt>());
-					ReceiptForm frame = new ReceiptForm(new Entry(file,associate));
+					Associate associate = new Associate("John","1", new ArrayList<Receipt>() , file);
+					ReceiptForm frame = new ReceiptForm(associate);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,8 +65,7 @@ public class ReceiptForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReceiptForm(Entry entry) {
-		this.entry = entry;
+	public ReceiptForm(Associate associate) {
 
 		setBounds(100, 100, 468, 605);
 		contentPane = new JPanel();
@@ -185,14 +183,14 @@ public class ReceiptForm extends JFrame {
 		associateNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		associateNameLabel.setBounds(176, 26, 201, 25);
 		contentPane.add(associateNameLabel);
-		associateNameLabel.setText(entry.getAssociate().getName());
+		associateNameLabel.setText(associate.getName());
 		
 		addReceiptButton = new JButton("ADD");
 		// btnNewButton = new GradientButton("ADD", new Color(73, 169, 242), new Color(45, 45, 117), 10);
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
-				fileAppender = fileAppenderFactory.getFileAppender(entry.getFileType());
+				fileAppender = fileAppenderFactory.getFileAppender(associate.getFile());
 				
 				Address address = new Address(
 					receiptCountryTextField.getText(),

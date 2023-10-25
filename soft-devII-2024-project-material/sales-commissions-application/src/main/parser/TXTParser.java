@@ -8,94 +8,68 @@ import main.domain.*;
 
 public class TXTParser extends Parser {
 
+	//magic numbers
 	int DATANAME = 0;
 	int DATAVALUE = 1;
+	int RECEIPTDATALENGTH = 10;
+	int VALIDLINELENGTH = 2;
 
 	@Override
-	public Entry parseFileEntry(File file) throws IOException {
-
-		BufferedReader readStream;
-
-		try {
-			readStream = new BufferedReader(new FileReader(file));
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Σφαλμα κατα το ανοιγμα του αρχείου");
-			return null;
-		}
-
-		//TODO : Maybe rework this first part, possibly by setting
-		String line = readStream.readLine();
-		String associateName = extractDataValue(line);
-		line = readStream.readLine();
-		String associateAFM = extractDataValue(line);
-
-		List<Receipt> receipts = new ArrayList<Receipt>();
-
+	public Associate parseAssociateFromFile(File file) throws IOException {
+		Associate resultAssociate = new Associate();
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+		Map<String, String> associateDataMap = new LinkedHashMap<String, String>(0);
+		Map<String, String> receiptDataMap = new LinkedHashMap<String, String>(0);
+		String line;
 		
+		//read first 2 lines for name and afm
+		for(int i = 0; i < 2; i++){
+			line = bufferedReader.readLine();
+			addLineToMap(line, associateDataMap);
+		}
+		
+		//read the rest of the lines for receipts
+		while((line = bufferedReader.readLine()) != null){
+			
+			addLineToMap(line, receiptDataMap);
 
-		while(!extractDataName(readStream.readLine()).equals("Receipts")) continue;
-
-		readStream.readLine();
-
-		//TODO : Work around NULL lines, cause it is currently not working properly.
-
-		while (line!= null){
-			String receiptID = extractDataValue(readStream.readLine());
-			String purchaseDate = extractDataValue(readStream.readLine());
-			String itemKind = extractDataValue(readStream.readLine());
-			String totalSales = extractDataValue(readStream.readLine());
-			String itemsPurchased = extractDataValue(readStream.readLine());
-			String companyName = extractDataValue(readStream.readLine());
-			String companyAddressCountry = extractDataValue(readStream.readLine());
-			String companyAddressCity = extractDataValue(readStream.readLine());
-			String companyAddressStreet = extractDataValue(readStream.readLine());
-			String companyAddressNumber = extractDataValue(readStream.readLine());
-
-			Receipt receipt = new Receipt(itemKind,
-					Integer.valueOf(receiptID),
-					purchaseDate,
-					Double.valueOf(totalSales),
-					Integer.valueOf(itemsPurchased),
-					new Company(companyName,
-						new Address(companyAddressCountry,
-							companyAddressCity,
-							companyAddressStreet,
-							Integer.valueOf(companyAddressNumber)
-						)
-					)
+			if(receiptDataMap.size() == RECEIPTDATALENGTH){
+				Address address = new Address(
+					receiptDataMap.get("Country"),
+					receiptDataMap.get("City"),
+					receiptDataMap.get("Street"),
+					Integer.parseInt(receiptDataMap.get("Number"))
 				);
-			
-			receipts.add(receipt);
-			
-			readStream.readLine();
+					
+				Company company = new Company(
+					receiptDataMap.get("Company"),
+					address
+				);
+						
+				Receipt receipt = new Receipt(
+					Integer.parseInt(receiptDataMap.get("Receipt ID")),
+					receiptDataMap.get("Date"),
+					ProductType.valueOf(receiptDataMap.get("Kind")),
+					Double.parseDouble(receiptDataMap.get("Sales")),
+					Integer.parseInt(receiptDataMap.get("Items")),
+					company
+				);
+							
+				resultAssociate.addReceipt(receipt);
+				receiptDataMap.clear();
+			}
 		}
 
-
-		readStream.close();
-		return new Entry(file,
-			new Associate(associateName,
-				associateAFM,
-				receipts
-			)
-		);
+		bufferedReader.close();
+		resultAssociate.setName(associateDataMap.get("Name"));
+		resultAssociate.setAfm(associateDataMap.get("AFM"));
+		resultAssociate.setPersonalFile(file);
+		return resultAssociate;
 	}
 
-	private String extractDataName(String line){
-		if (line == null || line.equals("")) return "";
-		String[] lineDivided =  line.split(":");
-		return lineDivided[DATANAME].trim();
+	public void addLineToMap(String line, Map<String, String> map){
+		if(line == null) return;
+		String[] data = line.split(":");
+		if(data.length == VALIDLINELENGTH) map.put(data[DATANAME].trim(), data[DATAVALUE].trim());
 	}
-
-	private String extractDataValue(String line){
-		if (line == null || line.equals("")) return "";
-		String[] lineDivided =  line.split(":");
-		return lineDivided[DATAVALUE].trim();
-	}
-
-	public static void main(String[] args) {
-		return;
-	}
-
-	
 }

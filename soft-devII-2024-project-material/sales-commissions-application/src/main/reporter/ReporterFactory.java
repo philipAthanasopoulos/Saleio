@@ -5,9 +5,9 @@ import main.domain.Associate;
 public class ReporterFactory {
     public Reporter getReporter(String fileType , Associate associate) {
         switch(fileType) {
-            case "txt":
+            case "text/plain":
                 return new TXTReporter(associate);
-            case "xml":
+            case "application/xml":
                 return new XMLReporter(associate);
             default:
                 return null;
