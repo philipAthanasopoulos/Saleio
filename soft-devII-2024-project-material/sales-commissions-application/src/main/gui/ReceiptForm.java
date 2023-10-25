@@ -76,20 +76,20 @@ public class ReceiptForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Receipt ID");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(63, 83, 141, 25);
-		contentPane.add(lblNewLabel);
+		JLabel receiptIdLabel = new JLabel("Receipt ID");
+		receiptIdLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptIdLabel.setBounds(63, 83, 141, 25);
+		contentPane.add(receiptIdLabel);
 		
 		receiptIdTextField = new JTextField();
 		receiptIdTextField.setBounds(214, 88, 163, 20);
 		contentPane.add(receiptIdTextField);
 		receiptIdTextField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Date");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(63, 116, 141, 25);
-		contentPane.add(lblNewLabel_1);
+		JLabel receiptDateLabel = new JLabel("Date");
+		receiptDateLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptDateLabel.setBounds(63, 116, 141, 25);
+		contentPane.add(receiptDateLabel);
 		
 		receiptDateTextField = new JTextField();
 		receiptDateTextField.setColumns(10);
@@ -101,80 +101,80 @@ public class ReceiptForm extends JFrame {
 		productTypeTextField.setBounds(214, 154, 163, 20);
 		contentPane.add(productTypeTextField);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Product type");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_1.setBounds(63, 149, 141, 25);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel receiptProductTypeLabel = new JLabel("Product type");
+		receiptProductTypeLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptProductTypeLabel.setBounds(63, 149, 141, 25);
+		contentPane.add(receiptProductTypeLabel);
 		
 		receiptSalesTextField = new JTextField();
 		receiptSalesTextField.setColumns(10);
 		receiptSalesTextField.setBounds(214, 187, 163, 20);
 		contentPane.add(receiptSalesTextField);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Sales");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_2.setBounds(63, 182, 141, 25);
-		contentPane.add(lblNewLabel_1_2);
+		JLabel receiptSalesLabel = new JLabel("Sales");
+		receiptSalesLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptSalesLabel.setBounds(63, 182, 141, 25);
+		contentPane.add(receiptSalesLabel);
 		
 		receiptItemNumberTextFiled = new JTextField();
 		receiptItemNumberTextFiled.setColumns(10);
 		receiptItemNumberTextFiled.setBounds(214, 220, 163, 20);
 		contentPane.add(receiptItemNumberTextFiled);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Number of items");
-		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_3.setBounds(63, 218, 141, 25);
-		contentPane.add(lblNewLabel_1_3);
+		JLabel receiptNumberOfItemsLabel = new JLabel("Number of items");
+		receiptNumberOfItemsLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptNumberOfItemsLabel.setBounds(63, 218, 141, 25);
+		contentPane.add(receiptNumberOfItemsLabel);
 		
 		receiptCompanyNameTextField = new JTextField();
 		receiptCompanyNameTextField.setColumns(10);
 		receiptCompanyNameTextField.setBounds(214, 253, 163, 20);
 		contentPane.add(receiptCompanyNameTextField);
 		
-		JLabel lblNewLabel_1_4 = new JLabel("Company name");
-		lblNewLabel_1_4.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_4.setBounds(63, 248, 141, 25);
-		contentPane.add(lblNewLabel_1_4);
+		JLabel receiptCompanyNameLabel = new JLabel("Company name");
+		receiptCompanyNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptCompanyNameLabel.setBounds(63, 248, 141, 25);
+		contentPane.add(receiptCompanyNameLabel);
 		
 		receiptCountryTextField = new JTextField();
 		receiptCountryTextField.setColumns(10);
 		receiptCountryTextField.setBounds(214, 286, 163, 20);
 		contentPane.add(receiptCountryTextField);
 		
-		JLabel lblNewLabel_1_5 = new JLabel("Country");
-		lblNewLabel_1_5.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_5.setBounds(63, 281, 141, 25);
-		contentPane.add(lblNewLabel_1_5);
+		JLabel receiptCountryLabel = new JLabel("Country");
+		receiptCountryLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptCountryLabel.setBounds(63, 281, 141, 25);
+		contentPane.add(receiptCountryLabel);
 		
 		receiptCityTextField = new JTextField();
 		receiptCityTextField.setColumns(10);
 		receiptCityTextField.setBounds(214, 319, 163, 20);
 		contentPane.add(receiptCityTextField);
 		
-		JLabel lblNewLabel_1_6 = new JLabel("City");
-		lblNewLabel_1_6.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_6.setBounds(63, 314, 141, 25);
-		contentPane.add(lblNewLabel_1_6);
+		JLabel receiptCityLabel = new JLabel("City");
+		receiptCityLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptCityLabel.setBounds(63, 314, 141, 25);
+		contentPane.add(receiptCityLabel);
 		
 		receiptStreetNameTextField = new JTextField();
 		receiptStreetNameTextField.setColumns(10);
 		receiptStreetNameTextField.setBounds(214, 352, 163, 20);
 		contentPane.add(receiptStreetNameTextField);
 		
-		JLabel lblNewLabel_1_7 = new JLabel("Street");
-		lblNewLabel_1_7.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_7.setBounds(63, 347, 141, 25);
-		contentPane.add(lblNewLabel_1_7);
+		JLabel receiptStreetNameLabel = new JLabel("Street");
+		receiptStreetNameLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptStreetNameLabel.setBounds(63, 347, 141, 25);
+		contentPane.add(receiptStreetNameLabel);
 		
 		receiptStreetNumberTextField = new JTextField();
 		receiptStreetNumberTextField.setColumns(10);
 		receiptStreetNumberTextField.setBounds(214, 385, 163, 20);
 		contentPane.add(receiptStreetNumberTextField);
 		
-		JLabel lblNewLabel_1_8 = new JLabel("Street number");
-		lblNewLabel_1_8.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1_8.setBounds(63, 380, 141, 25);
-		contentPane.add(lblNewLabel_1_8);
+		JLabel receiptStreetNumberLabel = new JLabel("Street number");
+		receiptStreetNumberLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		receiptStreetNumberLabel.setBounds(63, 380, 141, 25);
+		contentPane.add(receiptStreetNumberLabel);
 		
 		lblNewLabel_2 = new JLabel("Create new receipt for:");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));

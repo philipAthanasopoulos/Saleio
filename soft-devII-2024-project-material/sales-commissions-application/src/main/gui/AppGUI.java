@@ -147,12 +147,21 @@ public class AppGUI extends JFrame {
 					ParserFactory parserFactory = new ParserFactory();
 					Parser parser = parserFactory.getParser(fileType);
 					Entry entry;
+					
 					try {
-						entry = parser.parseFileEntry(selectedFile);
-						entries.add(entry);
+						// entry = parser.parseFileEntry(selectedFile);
+						// entries.add(entry);
+						throw new IOException();
+
+
+
+
+						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
-						System.out.println("Σφαλμα κατα το ανοιγμα του αρχείου");
+						//alert window
+						JOptionPane.showMessageDialog(null, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
+
 					}
 				}
 			}
