@@ -52,7 +52,7 @@ public class Receipt {
 	public String toString() {
 		return "Receipt ID: " + receiptID + "\n" +
 			   "Date: " + purchaseDate + "\n" +
-			   "Kind: " + productTypeToString() + "\n" +
+			   "Kind: " + productType + "\n" +
 			   "Sales: " + totalSales + "\n" +
 			   "Items: " + numberOfItems + "\n" +
 			   "Company: " + company.getCompanyName() + "\n" +
@@ -61,22 +61,4 @@ public class Receipt {
 			   "Street: " + company.getCompanyAddress().getStreet() + "\n" +
 			   "Number: " + company.getCompanyAddress().getStreetNumber() + "\n";
 	}
-
-	public String productTypeToString(){
-		if (productType == ProductType.INVALID) return null;
-		if (productType == ProductType.Shirts) return "Shirts";
-		if (productType == ProductType.Skirts) return "Skirts";
-		if (productType == ProductType.Trousers) return "Trousers";
-		return "Coats";
-
-	}
-
-	public ProductType stringToProductType(String type){
-		if (type.equals("Shirts")) return ProductType.Shirts;
-		if (type.equals("Skirts")) return ProductType.Skirts;
-		if (type.equals("Trousers")) return ProductType.Trousers;
-		if (type.equals("Coats")) return ProductType.Coats;
-		return ProductType.INVALID;
-	}
-
 }

@@ -60,7 +60,7 @@ public class XMLReporter extends Reporter {
 				receiptElement.appendChild(date);
 
 				Element kind = document.createElement("Kind");
-				kind.appendChild(document.createTextNode(receipt.productTypeToString()));
+				kind.appendChild(document.createTextNode(receipt.getProductType().name()));
 				receiptElement.appendChild(kind);
 
 				Element sales = document.createElement("Sales");

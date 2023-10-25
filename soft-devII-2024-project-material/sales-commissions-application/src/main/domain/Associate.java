@@ -126,7 +126,7 @@ public class Associate {
 		Parser parser = parserFactory.getParser("text/plain");
 		try {
 			Associate associate =  parser.parseAssociateFromFile(file);
-			System.out.println(associate.getFileString());
+			System.out.println(associate.getReceipts().get(0).toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
