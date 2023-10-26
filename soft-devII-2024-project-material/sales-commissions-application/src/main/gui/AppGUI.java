@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -30,6 +33,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.DebugGraphics;
 import javax.swing.DefaultListModel;
@@ -57,6 +62,7 @@ public class AppGUI extends JFrame {
 	private JTextField searchTextField;
 	private List<Associate> associates; 
 	private JList<String> associatesList; // change name
+	private JFileChooser fileChooser;
 
 	/**
 	 * Launch the application.
@@ -80,9 +86,18 @@ public class AppGUI extends JFrame {
 	public AppGUI() {
 		final DefaultListModel<String> listModel = new DefaultListModel<String>();
 		associates = new ArrayList<Associate>();
+		fileChooser = new JFileChooser();
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			SwingUtilities.updateComponentTreeUI(fileChooser);
+		} catch (Exception fileChooserException) {
+			fileChooserException.printStackTrace();
+		}
+
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1269, 746);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setBounds(0, 0, 1920, 1080);
 		contentPane = new JPanel();
 		contentPane.setFocusable(false);
 		contentPane.setFocusTraversalKeysEnabled(false);
@@ -90,9 +105,12 @@ public class AppGUI extends JFrame {
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setOpaque(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBounds(0, 0, getWidth(), getHeight());
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
 		
 		JScrollPane receiptsScrollPane = new JScrollPane();
 		receiptsScrollPane.setBounds(763, 208, 456, 471);
@@ -119,7 +137,7 @@ public class AppGUI extends JFrame {
 		contentPane.add(receiptsListLabel);	
 		
 		sidePanel = new GradientPanel();
-		sidePanel.setBounds(0, 0, 322, 707);
+		sidePanel.setBounds(0, 0, 322, getHeight());
 		contentPane.add(sidePanel);
 		sidePanel.setLayout(null);
 		
@@ -141,7 +159,7 @@ public class AppGUI extends JFrame {
 		importFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO : use factory pattern
-				JFileChooser fileChooser = new JFileChooser();
+				
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
 					
