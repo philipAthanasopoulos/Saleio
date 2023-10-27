@@ -90,3 +90,14 @@ Country: 1234
 City: 1234
 Street: 1324
 Number: 1234
+
+Receipt ID: 23452345
+Date: 87345648765
+Kind: Skirts
+Sales: 2.3452345E7
+Items: 23452345
+Company: Menidi
+Country: Menidi
+City: Menidi
+Street: Menidi
+Number: 1234

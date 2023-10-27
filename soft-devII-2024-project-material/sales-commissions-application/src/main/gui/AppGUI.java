@@ -158,11 +158,7 @@ public class AppGUI extends JFrame {
 		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-24.png")));
 		importFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO : use factory pattern
-				
-				int result = fileChooser.showOpenDialog(null);
-				if (result == JFileChooser.APPROVE_OPTION) {
-					
+				if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					try {
 						File selectedFile = fileChooser.getSelectedFile();
 						String fileType = Files.probeContentType(selectedFile.toPath());
@@ -173,8 +169,6 @@ public class AppGUI extends JFrame {
 						associates.add(newAssociate);
 						listModel.addElement(newAssociate.getName());
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						//alert window
 						JOptionPane.showMessageDialog(null, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
@@ -212,15 +206,13 @@ public class AppGUI extends JFrame {
 		JButton exportFileButton = new JButton("Export as");
 		exportFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ask user for file type
+				//TODO: make file type pick dynamic so that we dont have to add a new button for each file type
 				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
 				String[] options = {"TXT", "XML"};
-				int result = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+				int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 				ReporterFactory reporterFactory = new ReporterFactory();
-				Reporter reporter = reporterFactory.getReporter(options[result] , selectedAssociate);
+				Reporter reporter = reporterFactory.getReporter(options[choice] , selectedAssociate);
 				reporter.saveFile();
-				//TODO: make dynamic when you have the time :)
-				
 			}
 		});
 		exportFileButton.setFocusable(false);
