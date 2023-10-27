@@ -21,6 +21,22 @@ public class Company {
 		return this.companyAddress;
 	}
 
+	public String getAddressCountry(){
+		return companyAddress.getCountry();
+	}
+
+	public String getAddressCity(){
+		return companyAddress.getCity();
+	}
+
+	public String getAddressStreet(){
+		return companyAddress.getStreet();
+	}
+
+	public int getAddressNumber(){
+		return companyAddress.getStreetNumber();
+	}
+
 	public void setCompanyAddress(Address companyAddress) {
 		this.companyAddress = companyAddress;
 	}

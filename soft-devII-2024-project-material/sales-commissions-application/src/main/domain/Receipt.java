@@ -41,8 +41,28 @@ public class Receipt {
 		return numberOfItems;
 	}
 
-	public Company getCompany() {
+	protected Company getCompany() {
 		return company;
+	}
+
+	public String getCompanyName(){
+		return getCompany().getCompanyName();
+	}
+
+	public String getCompanyCountry(){
+		return company.getAddressCountry();
+	}
+
+	public String getCompanyCity(){
+		return company.getAddressCity();
+	}
+
+	public String getCompanyStreet(){
+		return company.getAddressStreet();
+	}
+
+	public int getCompanyStreetNumber(){
+		return company.getAddressNumber();
 	}
 
 	public ProductType getProductType() {
@@ -56,9 +76,9 @@ public class Receipt {
 			   "Sales: " + totalSales + "\n" +
 			   "Items: " + numberOfItems + "\n" +
 			   "Company: " + company.getCompanyName() + "\n" +
-			   "Country: " + company.getCompanyAddress().getCountry() + "\n" +
-			   "City: " + company.getCompanyAddress().getCity() + "\n" +
-			   "Street: " + company.getCompanyAddress().getStreet() + "\n" +
-			   "Number: " + company.getCompanyAddress().getStreetNumber() + "\n";
+			   "Country: " + getCompanyCountry() + "\n" +
+			   "City: " + getCompanyCity() + "\n" +
+			   "Street: " + getCompanyStreet() + "\n" +
+			   "Number: " + getCompanyStreetNumber() + "\n";
 	}
 }
