@@ -7,7 +7,13 @@ import main.domain.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import main.domain.Associate;
 
@@ -77,7 +83,7 @@ public class XMLReporter extends Reporter {
 			System.out.print(e.toString());
 
 			//TODO : Move to gui
-			//JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου/n"+e.toString(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
