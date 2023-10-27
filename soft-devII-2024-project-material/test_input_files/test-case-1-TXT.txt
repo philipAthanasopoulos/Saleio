@@ -72,7 +72,7 @@ Number: 10
 Receipt ID: 123
 Date: 12/12/2012
 Kind: Skirts
-Sales: 123.123
+Sales: 123
 Items: 123
 Company: Company
 Country: Greece
