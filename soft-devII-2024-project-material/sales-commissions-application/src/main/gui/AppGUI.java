@@ -63,6 +63,7 @@ public class AppGUI extends JFrame {
 	private List<Associate> associates; 
 	private JList<String> associatesList; // change name
 	private JFileChooser fileChooser;
+	private JLabel associateFileLabel;
 
 	/**
 	 * Launch the application.
@@ -112,15 +113,15 @@ public class AppGUI extends JFrame {
 		
 		
 		
-		JScrollPane receiptsScrollPane = new JScrollPane();
-		receiptsScrollPane.setBounds(763, 208, 456, 471);
-		contentPane.add(receiptsScrollPane);
+		JScrollPane associateFileScrollPane = new JScrollPane();
+		associateFileScrollPane.setBounds(763, 208, 456, 471);
+		contentPane.add(associateFileScrollPane);
 		
-		final JTextPane receiptsTextPane = new JTextPane();
-		receiptsTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		receiptsTextPane.setEditable(false);
-		receiptsScrollPane.setViewportView(receiptsTextPane);
-		receiptsTextPane.setCaretPosition(0);
+		final JTextPane associateFileTextpane = new JTextPane();
+		associateFileTextpane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		associateFileTextpane.setEditable(false);
+		associateFileScrollPane.setViewportView(associateFileTextpane);
+		associateFileTextpane.setCaretPosition(0);
 		
 		JLabel associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
@@ -129,12 +130,12 @@ public class AppGUI extends JFrame {
 		associateListLabel.setBounds(448, 172, 148, 25);
 		contentPane.add(associateListLabel);
 		
-		JLabel receiptsListLabel = new JLabel("Receipts");
-		receiptsListLabel.setIconTextGap(10);
-		receiptsListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-receipt-24.png")));
-		receiptsListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		receiptsListLabel.setBounds(926, 172, 163, 25);
-		contentPane.add(receiptsListLabel);	
+		associateFileLabel = new JLabel("No file to show");
+		associateFileLabel.setIconTextGap(10);
+		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-24.png")));
+		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		associateFileLabel.setBounds(899, 172, 320, 25);
+		contentPane.add(associateFileLabel);	
 		
 		sidePanel = new GradientPanel();
 		sidePanel.setBounds(0, 0, 322, getHeight());
@@ -168,8 +169,12 @@ public class AppGUI extends JFrame {
 						Associate newAssociate = parser.parseAssociateFromFile(selectedFile);
 						associates.add(newAssociate);
 						listModel.addElement(newAssociate.getName());
-					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(null, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (NumberFormatException wrongNumberFormat) {
+						JOptionPane.showMessageDialog(null, "Some numerical values may be words", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (IOException ioException) {
+						JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
+					} catch (Exception exception) {
+						JOptionPane.showMessageDialog(null, "File not supported", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -279,7 +284,14 @@ public class AppGUI extends JFrame {
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				if (evt.getValueIsAdjusting()) return;
 				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
-				receiptsTextPane.setText(selectedAssociate.getFileString());
+				associateFileTextpane.setText(selectedAssociate.getFileString());
+				associateFileLabel.setText(selectedAssociate.getPersonalFile().getName());
+				if(selectedAssociate.getFileType().equals("text/plain")){
+					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-text-file-24.png")));
+				} else if(selectedAssociate.getFileType().equals("application/xml")){
+					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-file-24.png")));
+				}
+
 			}
 		});
 		associatesScrollPane.setViewportView(associatesList);

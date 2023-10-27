@@ -13,6 +13,7 @@ public class TXTParser extends Parser {
 	int DATAVALUE = 1;
 	int RECEIPTDATALENGTH = 10;
 	int VALIDLINELENGTH = 2;
+	int ASSOCIATEDATALENGTH = 2;
 
 	@Override
 	public Associate parseAssociateFromFile(File file) throws IOException {
@@ -23,7 +24,7 @@ public class TXTParser extends Parser {
 		String line;
 		
 		//read first 2 lines for name and afm
-		for(int i = 0; i < 2; i++){
+		for(int i = 0; i < ASSOCIATEDATALENGTH; i++){
 			line = bufferedReader.readLine();
 			addLineToMap(line, associateDataMap);
 		}
@@ -68,8 +69,12 @@ public class TXTParser extends Parser {
 	}
 
 	public void addLineToMap(String line, Map<String, String> map){
-		if(line == null) return;
 		String[] data = line.split(":");
-		if(data.length == VALIDLINELENGTH) map.put(data[DATANAME].trim(), data[DATAVALUE].trim());
+		if(data.length == VALIDLINELENGTH) {
+			map.put(
+				data[DATANAME].trim(),
+				data[DATAVALUE].trim()
+			);
+		}
 	}
 }
