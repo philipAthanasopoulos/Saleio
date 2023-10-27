@@ -20,9 +20,12 @@ import javax.xml.transform.stream.StreamResult;
 import main.domain.Associate;
 
 public class XMLReporter extends Reporter {
+
+	Document document;
 		
 	public XMLReporter(Associate associate){
 		this.associate = associate;
+		document = null;
 	}	
 
 	@Override
@@ -31,67 +34,41 @@ public class XMLReporter extends Reporter {
 		try {
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-			Document document = documentBuilder.newDocument();
+			document = documentBuilder.newDocument();
+			
 			// root element
 			Element agentElem = document.createElement("Agent");
 			document.appendChild(agentElem);
 			
-			Element name = document.createElement("Name");
-			name.appendChild(document.createTextNode(associate.getName()));
-			agentElem.appendChild(name);
+			createElement("Name", associate.getName(), agentElem);
 			
-			Element afm = document.createElement("AFM");
-			afm.appendChild(document.createTextNode(associate.getAfm()));
-			agentElem.appendChild(afm);
+			createElement("AFM", associate.getAfm(), agentElem);
 			
-			Element Receipts = document.createElement("Receipts");
-			agentElem.appendChild(Receipts);
+			Element receipts = createElement("Receipts", null, agentElem);
 			
 			for (Receipt receipt : associate.getReceipts()){
-				Element receiptElement = document.createElement("Receipt");
-				Receipts.appendChild(receiptElement);
 
-				Element receiptId = document.createElement("ReceiptID");
-				receiptId.appendChild(document.createTextNode(String.valueOf(receipt.getReceiptID())));
-				receiptElement.appendChild(receiptId);
+				Element receiptElement = createElement("Receipt", null, receipts);
 
-				Element date = document.createElement("Date");
-				date.appendChild(document.createTextNode(receipt.getPurchaseDate()));
-				receiptElement.appendChild(date);
+				createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
 
-				Element kind = document.createElement("Kind");
-				kind.appendChild(document.createTextNode(receipt.getProductType().name()));
-				receiptElement.appendChild(kind);
+				createElement("Date", receipt.getPurchaseDate(), receiptElement);
 
-				Element sales = document.createElement("Sales");
-				sales.appendChild(document.createTextNode(String.valueOf(receipt.getTotalSales())));
-				receiptElement.appendChild(sales);
+				createElement("Kind", receipt.getProductType().name(), receiptElement);
 
-				Element items = document.createElement("Items");
-				items.appendChild(document.createTextNode(String.valueOf(receipt.getNumberOfItems())));
-				receiptElement.appendChild(items);
+				createElement("Sales", receipt.getTotalSales(), receiptElement);
 
-				String companyName = receipt.getCompany().getCompanyName();
-				Element companyNameElement = document.createElement("Company");
-				companyNameElement.appendChild(document.createTextNode(companyName));
-				receiptElement.appendChild(companyNameElement);
+				createElement("Items", receipt.getNumberOfItems(), receiptElement);
 
-				Address companyAddress = receipt.getCompany().getCompanyAddress();
-				Element country = document.createElement("Country");
-				country.appendChild(document.createTextNode(companyAddress.getCountry()));
-				receiptElement.appendChild(country);
+				createElement("Company", receipt.getCompanyName(), receiptElement);
 
-				Element city = document.createElement("City");
-				city.appendChild(document.createTextNode(companyAddress.getCity()));
-				receiptElement.appendChild(city);
+				createElement("Country", receipt.getCompanyCountry(), receiptElement);
 
-				Element street = document.createElement("Street");
-				street.appendChild(document.createTextNode(companyAddress.getStreet()));
-				receiptElement.appendChild(street);
+				createElement("City", receipt.getCompanyCity(), receiptElement);
 
-				Element streetNumber = document.createElement("Number");
-				streetNumber.appendChild(document.createTextNode(String.valueOf(companyAddress.getStreetNumber())));
-				receiptElement.appendChild(streetNumber);
+				createElement("Street", receipt.getCompanyStreet(), receiptElement);
+
+				createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
 			}
 			
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -108,6 +85,27 @@ public class XMLReporter extends Reporter {
 			System.out.print(e.toString());
 			JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	private Element createElement(String name, String data, Element parent){
+		Element retElement = document.createElement(name);
+		if (data != null) retElement.appendChild(document.createTextNode(data));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
+	}
+
+	private Element createElement(String name, int data, Element parent){
+		Element retElement = document.createElement(name);
+		retElement.appendChild(document.createTextNode(String.valueOf(data)));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
+	}
+
+	private Element createElement(String name, double data, Element parent){
+		Element retElement = document.createElement(name);
+		retElement.appendChild(document.createTextNode(String.valueOf(data)));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
 	}
 }
 
