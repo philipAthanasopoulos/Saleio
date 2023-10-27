@@ -30,12 +30,12 @@ public class XMLReporter extends Reporter {
 
 	@Override
 	public void composeReportFile(String path) {
-		// TODO Auto-generated method stub
+		
 		try {
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 			document = documentBuilder.newDocument();
-			
+
 			// root element
 			Element agentElem = document.createElement("Agent");
 			document.appendChild(agentElem);
@@ -83,6 +83,8 @@ public class XMLReporter extends Reporter {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.print(e.toString());
+
+			//TODO : Move to gui
 			JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
 	}
