@@ -12,7 +12,6 @@ import main.domain.*;
  * and adds it to a new Entry.
  */
 
-//TODO: Rework, the parser doesnt need all these fields
 public abstract class Parser {
 
 	public abstract Associate parseAssociateFromFile(File file) throws IOException;

@@ -19,6 +19,8 @@ public abstract class Reporter {
 	public abstract void composeReportFile(String path); // maybe a better name?
 	
 	public void saveFile(){
+
+        //TODO : Get gui outttt
         
 		JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a directory to save your file: ");

@@ -162,13 +162,26 @@
         <Receipt>
             <ReceiptID>123456</ReceiptID>
             <Date>2022-01-01</Date>
-            <Kind>SKIRT</Kind>
+            <Kind>Skirts</Kind>
+            <Sales> 7000 </Sales>
             <Items>2</Items>
             <Company>Acme Inc.</Company>
             <Country>USA</Country>
             <City>New York</City>
             <Street>Broadway</Street>
             <Number>123</Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID>1</ReceiptID>
+            <Date>2</Date>
+            <Kind>Skirts</Kind>
+            <Sales>500.0</Sales>
+            <Items>222222</Items>
+            <Company>mamalakis</Company>
+            <Country>jordan</Country>
+            <City>city</City>
+            <Street>bamboleiro</Street>
+            <Number>100</Number>
         </Receipt>
     </Receipts>
 </Agent>

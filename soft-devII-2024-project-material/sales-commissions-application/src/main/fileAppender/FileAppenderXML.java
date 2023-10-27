@@ -40,54 +40,39 @@ import java.util.List;
 */
 
 public class FileAppenderXML  extends FileAppender{
+    Document document;
 
 	@Override
     public void appendReceipt(Receipt receipt, File receiptFile) {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(receiptFile);
+            document = documentBuilder.parse(receiptFile);
             document.getDocumentElement().normalize();
 
             NodeList receiptsList = document.getElementsByTagName("Receipts");
 
             Element receiptToAdd = document.createElement("Receipt");
 
-            Element receiptId = document.createElement("ReceiptID");
-            receiptId.setTextContent(Integer.toString(receipt.getReceiptID()));
-            receiptToAdd.appendChild(receiptId);
+            createElement("ReceiptID", receipt.getReceiptID(), receiptToAdd);
 
-            Element receiptDate = document.createElement("Date");
-            receiptDate.setTextContent(receipt.getPurchaseDate());
-            receiptToAdd.appendChild(receiptDate);
+			createElement("Date", receipt.getPurchaseDate(), receiptToAdd);
 
-            Element receiptKind = document.createElement("Kind");
-            receiptKind.setTextContent(receipt.getProductType().toString());
-            receiptToAdd.appendChild(receiptKind);
+            createElement("Kind", receipt.getProductType().name(), receiptToAdd);
 
-            Element receiptNumberOfItems = document.createElement("Items");
-            receiptNumberOfItems.setTextContent(Integer.toString(receipt.getNumberOfItems()));
-            receiptToAdd.appendChild(receiptNumberOfItems);
+            createElement("Sales", receipt.getTotalSales(), receiptToAdd);
 
-            Element receiptCompany = document.createElement("Company");
-            receiptCompany.setTextContent(receipt.getCompany().getCompanyName());
-            receiptToAdd.appendChild(receiptCompany);
+            createElement("Items", receipt.getNumberOfItems(), receiptToAdd);
 
-            Element receiptCompanyCountry = document.createElement("Country");
-            receiptCompanyCountry.setTextContent(receipt.getCompany().getCompanyAddress().getCountry());
-            receiptToAdd.appendChild(receiptCompanyCountry);
+            createElement("Company", receipt.getCompanyName(), receiptToAdd);
 
-            Element receiptCompanyCity = document.createElement("City");
-            receiptCompanyCity.setTextContent(receipt.getCompany().getCompanyAddress().getCity());
-            receiptToAdd.appendChild(receiptCompanyCity);
+            createElement("Country", receipt.getCompanyCountry(), receiptToAdd);
 
-            Element receiptCompanyStreet = document.createElement("Street");
-            receiptCompanyStreet.setTextContent(receipt.getCompany().getCompanyAddress().getStreet());
-            receiptToAdd.appendChild(receiptCompanyStreet);
+            createElement("City", receipt.getCompanyCity(), receiptToAdd);
 
-            Element receiptCompanyNumber = document.createElement("Number");
-            receiptCompanyNumber.setTextContent(Integer.toString(receipt.getCompany().getCompanyAddress().getStreetNumber()));
-            receiptToAdd.appendChild(receiptCompanyNumber);
+            createElement("Street", receipt.getCompanyStreet(), receiptToAdd);
+
+            createElement("Number", receipt.getCompanyStreetNumber(), receiptToAdd);
 
             receiptsList.item(0).appendChild(receiptToAdd);
             
@@ -127,4 +112,25 @@ public class FileAppenderXML  extends FileAppender{
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    private Element createElement(String name, String data, Element parent){
+		Element retElement = document.createElement(name);
+		if (data != null) retElement.appendChild(document.createTextNode(data));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
+	}
+
+	private Element createElement(String name, int data, Element parent){
+		Element retElement = document.createElement(name);
+		retElement.appendChild(document.createTextNode(String.valueOf(data)));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
+	}
+
+    private Element createElement(String name, double data, Element parent){
+		Element retElement = document.createElement(name);
+		retElement.appendChild(document.createTextNode(String.valueOf(data)));
+		if (parent != null) parent.appendChild(retElement);
+		return retElement;
+	}
 }
