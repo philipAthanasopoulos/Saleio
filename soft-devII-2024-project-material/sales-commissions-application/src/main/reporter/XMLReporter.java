@@ -7,8 +7,6 @@ import main.domain.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.swing.JOptionPane;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -85,7 +83,7 @@ public class XMLReporter extends Reporter {
 			System.out.print(e.toString());
 
 			//TODO : Move to gui
-			JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
