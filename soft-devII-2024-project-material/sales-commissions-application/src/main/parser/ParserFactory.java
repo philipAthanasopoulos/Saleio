@@ -4,11 +4,9 @@ public class ParserFactory {
 
     public Parser getParser(String fileType) {
         switch(fileType) {
-            case "text/plain":
+            case "txt":
                 return new TXTParser();
-            
-            case "application/xml":
-            case "text/xml":
+            case "xml":
                 return new XMLParser();
             default:
                 return null;

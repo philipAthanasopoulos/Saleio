@@ -101,3 +101,36 @@ Country: Menidi
 City: Menidi
 Street: Menidi
 Number: 1234
+
+Receipt ID: 1234
+Date: 1234
+Kind: Skirts
+Sales: 1234.0
+Items: 1234
+Company: 123
+Country: 1234
+City: 1234
+Street: 1324123
+Number: 12341234
+
+Receipt ID: 435543
+Date: 2345
+Kind: Coats
+Sales: 2345.0
+Items: 2345
+Company: 2345
+Country: 2345
+City: 2345
+Street: 23452345
+Number: 2345
+
+Receipt ID: 43
+Date: 2345
+Kind: Coats
+Sales: 2345.0
+Items: 2345
+Company: 2345
+Country: 2345
+City: 2345
+Street: 2345
+Number: 2345

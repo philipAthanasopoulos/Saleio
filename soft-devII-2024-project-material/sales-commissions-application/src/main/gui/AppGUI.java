@@ -14,13 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,6 +59,7 @@ public class AppGUI extends JFrame {
 	private JList<String> associatesList; // change name
 	private JFileChooser fileChooser;
 	private JLabel associateFileLabel;
+	private JTextPane associateFileTextPane;
 
 	/**
 	 * Launch the application.
@@ -114,27 +110,27 @@ public class AppGUI extends JFrame {
 		
 		
 		JScrollPane associateFileScrollPane = new JScrollPane();
-		associateFileScrollPane.setBounds(763, 208, 456, 471);
+		associateFileScrollPane.setBounds(737, 208, 510, 794);
 		contentPane.add(associateFileScrollPane);
 		
-		final JTextPane associateFileTextpane = new JTextPane();
-		associateFileTextpane.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		associateFileTextpane.setEditable(false);
-		associateFileScrollPane.setViewportView(associateFileTextpane);
-		associateFileTextpane.setCaretPosition(0);
+		associateFileTextPane = new JTextPane();
+		associateFileTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		associateFileTextPane.setEditable(false);
+		associateFileScrollPane.setViewportView(associateFileTextPane);
+		associateFileTextPane.setCaretPosition(0);
 		
 		JLabel associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
-		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-account-24.png")));
+		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/user-icon.png")));
 		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		associateListLabel.setBounds(448, 172, 148, 25);
+		associateListLabel.setBounds(448, 153, 148, 44);
 		contentPane.add(associateListLabel);
 		
 		associateFileLabel = new JLabel("No file to show");
 		associateFileLabel.setIconTextGap(10);
-		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-24.png")));
+		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-30.png")));
 		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		associateFileLabel.setBounds(899, 172, 320, 25);
+		associateFileLabel.setBounds(903, 147, 320, 56);
 		contentPane.add(associateFileLabel);	
 		
 		sidePanel = new GradientPanel();
@@ -156,16 +152,16 @@ public class AppGUI extends JFrame {
 		importFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		importFileButton.setIconTextGap(10);
 		importFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-24.png")));
+		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-30.png")));
 		importFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					try {
 						File selectedFile = fileChooser.getSelectedFile();
-						String fileType = Files.probeContentType(selectedFile.toPath());
-						System.out.println(fileType);
+						String fileExtension = getFileExtension(selectedFile);
+						System.out.println("Tried to import :" + fileExtension);
 						ParserFactory parserFactory = new ParserFactory();
-						Parser parser = parserFactory.getParser(fileType);
+						Parser parser = parserFactory.getParser(fileExtension);
 						Associate newAssociate = parser.parseAssociateFromFile(selectedFile);
 						associates.add(newAssociate);
 						listModel.addElement(newAssociate.getName());
@@ -179,7 +175,7 @@ public class AppGUI extends JFrame {
 				}
 			}
 		});
-		importFileButton.setFont(new Font("SansSerif", Font.BOLD, 15));
+		importFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		importFileButton.setBorder(null);
 		importFileButton.setForeground(new Color(255, 255, 255));
 		importFileButton.setBackground(new Color(0, 128, 128));
@@ -192,16 +188,15 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addReceiptButton.setIconTextGap(10);
 		addReceiptButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-24.png")));
+		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-create-document-30.png")));
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
-				ReceiptForm receiptForm = new ReceiptForm(selectedAssociate);
-				receiptForm.setVisible(true);
+				ReceiptForm receiptForm = new ReceiptForm(getSelectedAssociate());
 				receiptForm.setLocationRelativeTo(null);
+				receiptForm.setVisible(true);
 			}
 		});
-		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 15));
+		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		addReceiptButton.setBorder(null);
 		addReceiptButton.setForeground(new Color(255, 255, 255));
 		addReceiptButton.setBackground(new Color(0, 128, 128));
@@ -212,11 +207,10 @@ public class AppGUI extends JFrame {
 		exportFileButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO: make file type pick dynamic so that we dont have to add a new button for each file type
-				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
 				String[] options = {"TXT", "XML"};
 				int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 				ReporterFactory reporterFactory = new ReporterFactory();
-				Reporter reporter = reporterFactory.getReporter(options[choice] , selectedAssociate);
+				Reporter reporter = reporterFactory.getReporter(options[choice].toLowerCase() , getSelectedAssociate());
 				reporter.saveFile();
 			}
 		});
@@ -225,8 +219,8 @@ public class AppGUI extends JFrame {
 		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		exportFileButton.setIconTextGap(10);
 		exportFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		exportFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-export-24.png")));
-		exportFileButton.setFont(new Font("SansSerif", Font.BOLD, 15));
+		exportFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/export-file-icon.png")));
+		exportFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		exportFileButton.setBorder(null);
 		exportFileButton.setForeground(new Color(255, 255, 255));
 		exportFileButton.setBackground(new Color(0, 128, 128));
@@ -234,11 +228,11 @@ public class AppGUI extends JFrame {
 		actionsButtonsPanel.add(exportFileButton);
 		
 		JLabel appTitleLabel = new JLabel("Sales Management");
-		appTitleLabel.setIconTextGap(25);
-		appTitleLabel.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\icons8-company-48.png"));
+		appTitleLabel.setIconTextGap(5);
+		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-user-profile-65.png")));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
-		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 22));
-		appTitleLabel.setBounds(10, 11, 274, 42);
+		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
+		appTitleLabel.setBounds(10, 0, 312, 86);
 		sidePanel.add(appTitleLabel);
 		
 		JPanel searchPanel = new JPanel();
@@ -257,7 +251,7 @@ public class AppGUI extends JFrame {
 		searchButton.setRequestFocusEnabled(false);
 		searchButton.setBackground(new Color(255, 255, 255));
 		searchButton.setOpaque(false);
-		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-24.png")));
+		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-30.png")));
 		searchButton.setBounds(0, 0, 50, 50);
 		searchPanel.add(searchButton);
 		
@@ -283,17 +277,37 @@ public class AppGUI extends JFrame {
 		associatesList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				if (evt.getValueIsAdjusting()) return;
-				Associate selectedAssociate = associates.get(associatesList.getSelectedIndex());
-				associateFileTextpane.setText(selectedAssociate.getFileString());
-				associateFileLabel.setText(selectedAssociate.getPersonalFile().getName());
-				if(selectedAssociate.getFileType().equals("text/plain")){
-					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-text-file-24.png")));
-				} else if(selectedAssociate.getFileType().equals("application/xml")){
-					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-file-24.png")));
+				associateFileTextPane.setText(getSelectedAssociate().getFileString());
+				associateFileLabel.setText(getSelectedAssociate().getPersonalFile().getName());
+				String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
+				switch(fileExtension){
+					case "txt":
+						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-30.png")));
+						break;
+					case "xml":
+						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-30.png")));
+						break;
+					default:
+						break;
 				}
-
 			}
 		});
 		associatesScrollPane.setViewportView(associatesList);
+	}
+
+	public String getFileExtension(File file){
+		String fileName = file.getName();
+		int dotIndex = fileName.lastIndexOf('.');
+		String result = (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+		System.out.println(result);
+		return result;
+	}
+
+	public void refreshAssociateFileTextPane(){
+		associateFileTextPane.setText(getSelectedAssociate().getFileString());
+	}
+
+	public Associate getSelectedAssociate(){
+		return associates.get(associatesList.getSelectedIndex());
 	}
 }

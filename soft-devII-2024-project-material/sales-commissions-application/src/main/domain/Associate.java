@@ -102,11 +102,10 @@ public class Associate {
 
 	public String getFileType() {
 		String fileType = "";
-		try {
-			fileType = Files.probeContentType(this.personalFile.toPath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String fileName = personalFile.getName();
+		int dotIndex = fileName.lastIndexOf('.');
+		fileType = (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
+		System.out.println(fileType);
 		return fileType;
 	}
 	

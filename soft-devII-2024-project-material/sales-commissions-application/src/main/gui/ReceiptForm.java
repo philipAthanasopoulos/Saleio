@@ -82,6 +82,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptIdLabel);
 		
 		receiptIdTextField = new JTextField();
+		receiptIdTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptIdTextField.setBounds(214, 88, 163, 20);
 		contentPane.add(receiptIdTextField);
 		receiptIdTextField.setColumns(10);
@@ -92,11 +93,13 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptDateLabel);
 		
 		receiptDateTextField = new JTextField();
+		receiptDateTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptDateTextField.setColumns(10);
 		receiptDateTextField.setBounds(214, 121, 163, 20);
 		contentPane.add(receiptDateTextField);
 		
 		productTypeTextField = new JTextField();
+		productTypeTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		productTypeTextField.setColumns(10);
 		productTypeTextField.setBounds(214, 154, 163, 20);
 		contentPane.add(productTypeTextField);
@@ -107,6 +110,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptProductTypeLabel);
 		
 		receiptSalesTextField = new JTextField();
+		receiptSalesTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptSalesTextField.setColumns(10);
 		receiptSalesTextField.setBounds(214, 187, 163, 20);
 		contentPane.add(receiptSalesTextField);
@@ -117,6 +121,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptSalesLabel);
 		
 		receiptItemNumberTextFiled = new JTextField();
+		receiptItemNumberTextFiled.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptItemNumberTextFiled.setColumns(10);
 		receiptItemNumberTextFiled.setBounds(214, 220, 163, 20);
 		contentPane.add(receiptItemNumberTextFiled);
@@ -127,6 +132,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptNumberOfItemsLabel);
 		
 		receiptCompanyNameTextField = new JTextField();
+		receiptCompanyNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptCompanyNameTextField.setColumns(10);
 		receiptCompanyNameTextField.setBounds(214, 253, 163, 20);
 		contentPane.add(receiptCompanyNameTextField);
@@ -137,6 +143,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptCompanyNameLabel);
 		
 		receiptCountryTextField = new JTextField();
+		receiptCountryTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptCountryTextField.setColumns(10);
 		receiptCountryTextField.setBounds(214, 286, 163, 20);
 		contentPane.add(receiptCountryTextField);
@@ -147,6 +154,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptCountryLabel);
 		
 		receiptCityTextField = new JTextField();
+		receiptCityTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptCityTextField.setColumns(10);
 		receiptCityTextField.setBounds(214, 319, 163, 20);
 		contentPane.add(receiptCityTextField);
@@ -157,6 +165,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptCityLabel);
 		
 		receiptStreetNameTextField = new JTextField();
+		receiptStreetNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptStreetNameTextField.setColumns(10);
 		receiptStreetNameTextField.setBounds(214, 352, 163, 20);
 		contentPane.add(receiptStreetNameTextField);
@@ -167,6 +176,7 @@ public class ReceiptForm extends JFrame {
 		contentPane.add(receiptStreetNameLabel);
 		
 		receiptStreetNumberTextField = new JTextField();
+		receiptStreetNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		receiptStreetNumberTextField.setColumns(10);
 		receiptStreetNumberTextField.setBounds(214, 385, 163, 20);
 		contentPane.add(receiptStreetNumberTextField);
@@ -217,6 +227,7 @@ public class ReceiptForm extends JFrame {
 				
 				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
 				associate.addReceipt(receipt);
+				dispose();
 			}
 		});
 		addReceiptButton.setBounds(51, 443, 89, 23);

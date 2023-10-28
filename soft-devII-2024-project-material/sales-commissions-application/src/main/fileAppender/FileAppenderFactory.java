@@ -3,10 +3,9 @@ package main.fileAppender;
 public class FileAppenderFactory {
     public FileAppender getFileAppender(String fileType) {
         switch(fileType) {
-            case "text/plain":
+            case "txt":
                 return new FileAppenderTXT();
-            case "appalication/xml":
-            case "text/xml":
+            case "xml":
                 return new FileAppenderXML();
             default:
                 return null;

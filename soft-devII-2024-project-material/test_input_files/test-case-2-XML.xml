@@ -183,5 +183,17 @@
             <Street>bamboleiro</Street>
             <Number>100</Number>
         </Receipt>
+        <Receipt>
+            <ReceiptID>1234</ReceiptID>
+            <Date>1234</Date>
+            <Kind>Coats</Kind>
+            <Sales>1234.0</Sales>
+            <Items>1234</Items>
+            <Company>1234</Company>
+            <Country>1234</Country>
+            <City>1234</City>
+            <Street>1234</Street>
+            <Number>1234</Number>
+        </Receipt>
     </Receipts>
 </Agent>
