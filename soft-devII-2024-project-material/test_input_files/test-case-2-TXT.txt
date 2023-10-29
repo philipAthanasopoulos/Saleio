@@ -24,3 +24,14 @@ Country: 1234
 City: 1234
 Street: 1234
 Number: 1234
+
+Receipt ID: 4
+Date: 10/29/2023
+Kind: Coats
+Sales: 2000.0
+Items: 100
+Company: Gucci
+Country: Kazakstan
+City: Ubal
+Street: hazehazel
+Number: 32

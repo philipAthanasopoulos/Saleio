@@ -110,7 +110,7 @@ public class AppGUI extends JFrame {
 		
 		
 		JScrollPane associateFileScrollPane = new JScrollPane();
-		associateFileScrollPane.setBounds(737, 208, 510, 794);
+		associateFileScrollPane.setBounds(1394, 208, 510, 794);
 		contentPane.add(associateFileScrollPane);
 		
 		associateFileTextPane = new JTextPane();
@@ -130,7 +130,7 @@ public class AppGUI extends JFrame {
 		associateFileLabel.setIconTextGap(10);
 		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-30.png")));
 		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		associateFileLabel.setBounds(903, 147, 320, 56);
+		associateFileLabel.setBounds(1563, 147, 320, 56);
 		contentPane.add(associateFileLabel);	
 		
 		sidePanel = new GradientPanel();
@@ -293,6 +293,10 @@ public class AppGUI extends JFrame {
 			}
 		});
 		associatesScrollPane.setViewportView(associatesList);
+		
+		analiticAssociateInfoPanel analiticAssociateInfoPanel_ = new analiticAssociateInfoPanel();
+		analiticAssociateInfoPanel_.setBounds(757, 208, 599, 794);
+		contentPane.add(analiticAssociateInfoPanel_);
 	}
 
 	public String getFileExtension(File file){
