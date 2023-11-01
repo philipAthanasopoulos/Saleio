@@ -6,8 +6,11 @@ import java.util.List;
 import main.parser.Parser;
 import main.parser.ParserFactory;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.file.Files;
 
 public class Associate {
@@ -109,14 +112,42 @@ public class Associate {
 		return fileType;
 	}
 	
-	public String getFileString() {
-		String fileString = "";
-		try {
-			fileString = new String(Files.readAllBytes(this.personalFile.toPath()));
-		} catch (IOException e) {
-			e.printStackTrace();
+	public String getFormattedFile() {
+		StringBuffer buffer = new StringBuffer();
+
+		buffer.append("Name: " + name + "\n")
+				.append("AFM: " + afm + "\n");
+				
+		buffer.append("\n")
+				.append("Receipts: \n")
+				.append("\n");
+
+		for(Receipt receipt : receipts) {
+			buffer.append(receipt.toString() + "\n");
 		}
-		return fileString;
+
+		return buffer.toString();
+	}
+
+	public String getRawFile() {
+		StringBuffer buffer = new StringBuffer();
+		BufferedReader bufferedReader;
+
+		try {
+			bufferedReader = new BufferedReader(new FileReader(personalFile));
+			String line = bufferedReader.readLine();
+
+			while(line != null) {
+				buffer.append(line + "\n");
+				line = bufferedReader.readLine();
+			}
+
+			bufferedReader.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return buffer.toString();
 	}
 
 	public static void main(String[] args) {

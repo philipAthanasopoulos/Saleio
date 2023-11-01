@@ -277,7 +277,7 @@ public class AppGUI extends JFrame {
 		associatesList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
 				if (evt.getValueIsAdjusting()) return;
-				associateFileTextPane.setText(getSelectedAssociate().getFileString());
+				associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
 				associateFileLabel.setText(getSelectedAssociate().getPersonalFile().getName());
 				String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
 				switch(fileExtension){
@@ -297,6 +297,26 @@ public class AppGUI extends JFrame {
 		analiticAssociateInfoPanel analiticAssociateInfoPanel_ = new analiticAssociateInfoPanel();
 		analiticAssociateInfoPanel_.setBounds(757, 208, 599, 794);
 		contentPane.add(analiticAssociateInfoPanel_);
+		
+		JButton displayRawFileButton = new JButton("Raw");
+		displayRawFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		displayRawFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				associateFileTextPane.setText(getSelectedAssociate().getRawFile());
+			}
+		});
+		displayRawFileButton.setBounds(1394, 165, 69, 32);
+		contentPane.add(displayRawFileButton);
+		
+		JButton displayFormatedFileButton = new JButton("Format");
+		displayFormatedFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
+			}
+		});
+		displayFormatedFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		displayFormatedFileButton.setBounds(1465, 165, 88, 32);
+		contentPane.add(displayFormatedFileButton);
 	}
 
 	public String getFileExtension(File file){
@@ -308,7 +328,7 @@ public class AppGUI extends JFrame {
 	}
 
 	public void refreshAssociateFileTextPane(){
-		associateFileTextPane.setText(getSelectedAssociate().getFileString());
+		associateFileTextPane.setText(getSelectedAssociate().getRawFile());
 	}
 
 	public Associate getSelectedAssociate(){

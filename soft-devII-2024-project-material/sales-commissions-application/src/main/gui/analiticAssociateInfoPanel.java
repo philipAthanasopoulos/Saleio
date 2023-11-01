@@ -1,22 +1,15 @@
 package main.gui;
 
 import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
-import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.CardLayout;
-import javax.swing.JTabbedPane;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
 
 public class analiticAssociateInfoPanel extends JPanel {
 
@@ -55,19 +48,15 @@ public class analiticAssociateInfoPanel extends JPanel {
 						chckbxNewCheckBox_2.setSelected(true);
 						chckbxNewCheckBox_3.setSelected(true);
 						chckbxNewCheckBox.setSelected(true);
-
 					} else {
 						chckbxNewCheckBox_1.setSelected(false);
 						chckbxNewCheckBox_2.setSelected(false);
 						chckbxNewCheckBox_3.setSelected(false);
 						chckbxNewCheckBox.setSelected(false);
 					}
-
 				};
 			}
 		);
-
-
 		
 		commissionRadioButton = new JRadioButton("Commission\r\n");
 		commissionRadioButton.setBackground(new Color(255, 255, 255));
