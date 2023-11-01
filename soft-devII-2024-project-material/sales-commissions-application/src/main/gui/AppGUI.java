@@ -61,10 +61,7 @@ public class AppGUI extends JFrame {
 	private JLabel associateFileLabel;
 	private JTextPane associateFileTextPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	public void runApp() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -77,6 +74,7 @@ public class AppGUI extends JFrame {
 			}
 		});
 	}
+	
 	/**
 	 * Create the frame.
 	 */
