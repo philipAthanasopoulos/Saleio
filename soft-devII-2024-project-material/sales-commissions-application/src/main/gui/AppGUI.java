@@ -60,6 +60,7 @@ public class AppGUI extends JFrame {
 	private JFileChooser fileChooser;
 	private JLabel associateFileLabel;
 	private JTextPane associateFileTextPane;
+	private AssociateSalesPanel associateSalesPanel;
 
 	public void runApp() {
 		EventQueue.invokeLater(new Runnable() {
@@ -277,6 +278,8 @@ public class AppGUI extends JFrame {
 				if (evt.getValueIsAdjusting()) return;
 				associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
 				associateFileLabel.setText(getSelectedAssociate().getPersonalFile().getName());
+				associateSalesPanel.setAssociate(getSelectedAssociate());
+				
 				String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
 				switch(fileExtension){
 					case "txt":
@@ -292,9 +295,9 @@ public class AppGUI extends JFrame {
 		});
 		associatesScrollPane.setViewportView(associatesList);
 		
-		analiticAssociateInfoPanel analiticAssociateInfoPanel_ = new analiticAssociateInfoPanel();
-		analiticAssociateInfoPanel_.setBounds(757, 208, 599, 794);
-		contentPane.add(analiticAssociateInfoPanel_);
+		associateSalesPanel = new AssociateSalesPanel();
+		associateSalesPanel.setBounds(757, 208, 599, 794);
+		contentPane.add(associateSalesPanel);
 		
 		JButton displayRawFileButton = new JButton("Raw");
 		displayRawFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));

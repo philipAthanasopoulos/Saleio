@@ -39,7 +39,7 @@ public class ReceiptForm extends JFrame {
 	private JTextField receiptCityTextField;
 	private JTextField receiptStreetNameTextField;
 	private JTextField receiptStreetNumberTextField;
-	private JLabel lblNewLabel_2;
+	private JLabel contextTextLabel;
 	private JLabel associateNameLabel;
 	private JButton addReceiptButton;
 	private FileAppender fileAppender;
@@ -186,10 +186,10 @@ public class ReceiptForm extends JFrame {
 		receiptStreetNumberLabel.setBounds(63, 380, 141, 25);
 		contentPane.add(receiptStreetNumberLabel);
 		
-		lblNewLabel_2 = new JLabel("Create new receipt for:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(10, 26, 156, 25);
-		contentPane.add(lblNewLabel_2);
+		contextTextLabel = new JLabel("Create new receipt for:");
+		contextTextLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		contextTextLabel.setBounds(10, 26, 156, 25);
+		contentPane.add(contextTextLabel);
 		
 		associateNameLabel = new JLabel("NAME");
 		associateNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -230,7 +230,7 @@ public class ReceiptForm extends JFrame {
 				dispose();
 			}
 		});
-		addReceiptButton.setBounds(51, 443, 89, 23);
+		addReceiptButton.setBounds(63, 446, 98, 36);
 		contentPane.add(addReceiptButton);
 	}
 }
