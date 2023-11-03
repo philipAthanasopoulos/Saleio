@@ -150,6 +150,18 @@ public class Associate {
 		return buffer.toString();
 	}
 
+	public ArrayList<ProductType> getAssociateProductTypes() {
+		ArrayList<ProductType> productTypes = new ArrayList<ProductType>();
+
+		for(Receipt receipt : receipts) {
+			if(!productTypes.contains(receipt.getProductType())) {
+				productTypes.add(receipt.getProductType());
+			}
+		}
+
+		return productTypes;
+	}
+
 	public static void main(String[] args) {
 		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt");
 		ParserFactory parserFactory = new ParserFactory();

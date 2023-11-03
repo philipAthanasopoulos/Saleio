@@ -120,14 +120,14 @@ public class AppGUI extends JFrame {
 		
 		JLabel associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
-		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/user-icon.png")));
+		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-admin-30.png")));
 		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		associateListLabel.setBounds(448, 153, 148, 44);
 		contentPane.add(associateListLabel);
 		
 		associateFileLabel = new JLabel("No file to show");
 		associateFileLabel.setIconTextGap(10);
-		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-30.png")));
+		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-35.png")));
 		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		associateFileLabel.setBounds(1563, 147, 320, 56);
 		contentPane.add(associateFileLabel);	
@@ -139,7 +139,7 @@ public class AppGUI extends JFrame {
 		
 		JPanel actionsButtonsPanel = new JPanel();
 		actionsButtonsPanel.setOpaque(false);
-		actionsButtonsPanel.setBounds(0, 169, 322, 267);
+		actionsButtonsPanel.setBounds(0, 278, 322, 267);
 		sidePanel.add(actionsButtonsPanel);
 		actionsButtonsPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -187,7 +187,7 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addReceiptButton.setIconTextGap(10);
 		addReceiptButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-create-document-30.png")));
+		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-30.png")));
 		addReceiptButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReceiptForm receiptForm = new ReceiptForm(getSelectedAssociate());
@@ -218,7 +218,7 @@ public class AppGUI extends JFrame {
 		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		exportFileButton.setIconTextGap(10);
 		exportFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		exportFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/export-file-icon.png")));
+		exportFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-send-file-30.png")));
 		exportFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		exportFileButton.setBorder(null);
 		exportFileButton.setForeground(new Color(255, 255, 255));
@@ -226,12 +226,12 @@ public class AppGUI extends JFrame {
 		exportFileButton.setOpaque(false);
 		actionsButtonsPanel.add(exportFileButton);
 		
-		JLabel appTitleLabel = new JLabel("Sales Management");
+		JLabel appTitleLabel = new JLabel("");
 		appTitleLabel.setIconTextGap(5);
-		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-user-profile-65.png")));
+		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/Sale.io.png")));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
 		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
-		appTitleLabel.setBounds(10, 0, 312, 86);
+		appTitleLabel.setBounds(0, 0, 322, 267);
 		sidePanel.add(appTitleLabel);
 		
 		JPanel searchPanel = new JPanel();
@@ -250,7 +250,7 @@ public class AppGUI extends JFrame {
 		searchButton.setRequestFocusEnabled(false);
 		searchButton.setBackground(new Color(255, 255, 255));
 		searchButton.setOpaque(false);
-		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-30.png")));
+		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-35.png")));
 		searchButton.setBounds(0, 0, 50, 50);
 		searchPanel.add(searchButton);
 		
@@ -283,10 +283,10 @@ public class AppGUI extends JFrame {
 				String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
 				switch(fileExtension){
 					case "txt":
-						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-30.png")));
+						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-35.png")));
 						break;
 					case "xml":
-						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-30.png")));
+						associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-35.png")));
 						break;
 					default:
 						break;
