@@ -4,22 +4,18 @@ import main.domain.*;
 import main.fileAppender.FileAppender;
 import main.fileAppender.FileAppenderFactory;
 
-import java.awt.EventQueue;
-
 import java.util.*;
 import java.io.File;
 
-
 import javax.swing.JFrame;
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import java.awt.EventQueue;
+import java.awt.Font;
 
 public class ReceiptForm extends JFrame {
 
@@ -194,38 +190,36 @@ public class ReceiptForm extends JFrame {
 		associateNameLabel.setText(associate.getName());
 		
 		addReceiptButton = new JButton("ADD");
-		// btnNewButton = new GradientButton("ADD", new Color(73, 169, 242), new Color(45, 45, 117), 10);
-		addReceiptButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
-				fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());
-				
-				Address address = new Address(
-					receiptCountryTextField.getText(),
-					receiptCityTextField.getText(),
-					receiptStreetNameTextField.getText(),
-					Integer.parseInt(receiptStreetNumberTextField.getText())
-				);
-				
-				Company company = new Company(
-					receiptCompanyNameTextField.getText(),
-					address
-				);
+		addReceiptButton.addActionListener(e -> {
+			FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
+			fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());
+			
+			Address address = new Address(
+				receiptCountryTextField.getText(),
+				receiptCityTextField.getText(),
+				receiptStreetNameTextField.getText(),
+				Integer.parseInt(receiptStreetNumberTextField.getText())
+			);
+			
+			Company company = new Company(
+				receiptCompanyNameTextField.getText(),
+				address
+			);
 
-				Receipt receipt = new Receipt(
-					Integer.parseInt(receiptIdTextField.getText()),
-					receiptDateTextField.getText(),
-					ProductType.valueOf(productTypeTextField.getText()) ,
-					Double.parseDouble(receiptSalesTextField.getText()),
-					Integer.parseInt(receiptItemNumberTextFiled.getText()),
-					company 
-				);
-				
-				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
-				associate.addReceipt(receipt);
-				dispose();
-			}
+			Receipt receipt = new Receipt(
+				Integer.parseInt(receiptIdTextField.getText()),
+				receiptDateTextField.getText(),
+				ProductType.valueOf(productTypeTextField.getText()) ,
+				Double.parseDouble(receiptSalesTextField.getText()),
+				Integer.parseInt(receiptItemNumberTextFiled.getText()),
+				company 
+			);
+			
+			fileAppender.appendReceipt(receipt, associate.getPersonalFile());
+			associate.addReceipt(receipt);
+			dispose();
 		});
+		
 		addReceiptButton.setBounds(63, 446, 98, 36);
 		contentPane.add(addReceiptButton);
 	}
