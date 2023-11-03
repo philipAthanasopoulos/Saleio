@@ -97,7 +97,7 @@ public class AssociateSalesPanel extends JPanel {
 						JCheckBox checkBox = (JCheckBox) component;
 						if (salesForAllProductsRadioButton.isSelected()) {
 							checkBox.setSelected(true);
-							checkBox.getActionListeners()[0].actionPerformed(e); // refactor me
+							if(!productIsInTable(checkBox.getText())) checkBox.getActionListeners()[0].actionPerformed(e); // refactor me
 						} else {
 							checkBox.setSelected(false);
 							checkBox.getActionListeners()[0].actionPerformed(e); // refactor me
@@ -106,6 +106,7 @@ public class AssociateSalesPanel extends JPanel {
 					}
 				}
 			}
+
 		});
 		
 		associateReportScrollPane = new JScrollPane();
@@ -174,5 +175,13 @@ public class AssociateSalesPanel extends JPanel {
 				}
 			});
 		}
+	}
+	private boolean productIsInTable(String text) {
+		for(int i = 0; i < tableModel.getRowCount(); i++) {
+			if(tableModel.getValueAt(i, 0).equals(text)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
