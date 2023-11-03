@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -30,7 +29,6 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.JTextField;
 import javax.swing.DebugGraphics;
 import javax.swing.DefaultListModel;
 
@@ -54,7 +52,6 @@ public class AppGUI extends JFrame {
 	private JPanel contentPane;
 	private String applicationName = "Sales Commissions Application";
 	private JPanel sidePanel;
-	private JTextField searchTextField;
 	private List<Associate> associates; 
 	private JList<String> associatesList; // change name
 	private JFileChooser fileChooser;
@@ -227,50 +224,18 @@ public class AppGUI extends JFrame {
 		actionsButtonsPanel.add(exportFileButton);
 		
 		JLabel appTitleLabel = new JLabel("");
-		appTitleLabel.setIconTextGap(5);
-		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/Sale.io.png")));
+		appTitleLabel.setIconTextGap(0);
+		appTitleLabel.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\Sale.io (3).png"));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
 		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
-		appTitleLabel.setBounds(0, 0, 322, 267);
+		appTitleLabel.setBounds(0, 0, 322, 147);
 		sidePanel.add(appTitleLabel);
-		
-		JPanel searchPanel = new JPanel();
-		searchPanel.setBackground(new Color(255, 255, 255));
-		searchPanel.setBounds(322, 0, 931, 50);
-		contentPane.add(searchPanel);
-		searchPanel.setLayout(null);
-		
-		JButton searchButton = new JButton("");
-		searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		searchButton.setBorder(null);
-		searchButton.setFocusPainted(false);
-		searchButton.setFocusTraversalKeysEnabled(false);
-		searchButton.setFocusable(false);
-		searchButton.setRolloverEnabled(false);
-		searchButton.setRequestFocusEnabled(false);
-		searchButton.setBackground(new Color(255, 255, 255));
-		searchButton.setOpaque(false);
-		searchButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-search-35.png")));
-		searchButton.setBounds(0, 0, 50, 50);
-		searchPanel.add(searchButton);
-		
-		searchTextField = new JTextField();
-		searchTextField.setFocusCycleRoot(true);
-		searchTextField.setFocusTraversalPolicyProvider(true);
-		searchTextField.setBackground(new Color(225, 225, 225));
-		searchTextField.setBorder(null);
-		searchTextField.setAutoscrolls(false);
-		searchTextField.setToolTipText("");
-		searchTextField.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		searchTextField.setBounds(50, 0, 881, 50);
-		searchPanel.add(searchTextField);
-		searchTextField.setColumns(10);
 		
 		JScrollPane associatesScrollPane = new JScrollPane();
 		associatesScrollPane.setBounds(346, 208, 369, 471);
 		contentPane.add(associatesScrollPane);
 		
-		associatesList = new JList();
+		associatesList = new JList<String>();
 		associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		associatesList.setModel(listModel);
 		associatesList.addListSelectionListener(new ListSelectionListener() {
@@ -318,6 +283,10 @@ public class AppGUI extends JFrame {
 		displayFormatedFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		displayFormatedFileButton.setBounds(1465, 165, 88, 32);
 		contentPane.add(displayFormatedFileButton);
+		
+		GradientPanel gradientPanel = new GradientPanel();
+		gradientPanel.setBounds(320, 0, 1602, 125);
+		contentPane.add(gradientPanel);
 	}
 
 	public String getFileExtension(File file){

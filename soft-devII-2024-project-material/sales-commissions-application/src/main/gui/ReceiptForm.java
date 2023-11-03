@@ -3,9 +3,6 @@ package main.gui;
 import main.domain.*;
 import main.fileAppender.FileAppender;
 import main.fileAppender.FileAppenderFactory;
-import main.fileAppender.FileAppenderTXT;
-import main.reporter.Reporter;
-import main.reporter.ReporterFactory;
 
 import java.awt.EventQueue;
 
@@ -15,7 +12,6 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
-import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
