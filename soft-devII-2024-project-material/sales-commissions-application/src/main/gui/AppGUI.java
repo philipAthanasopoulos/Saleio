@@ -1,13 +1,10 @@
 package main.gui;
 
-import main.domain.Associate;
-
+import main.domain.*;
 import main.parser.*;
-
 import main.reporter.*;
 
 import java.util.List;
-
 import java.util.ArrayList;
 
 import java.io.File;
@@ -15,7 +12,6 @@ import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -178,27 +174,19 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setIconTextGap(10);
 		addReceiptButton.setHorizontalTextPosition(SwingConstants.LEFT);
 		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-30.png")));
-		addReceiptButton.addActionListener((e) -> {
-			ReceiptForm receiptForm = new ReceiptForm(getSelectedAssociate());
-			receiptForm.setLocationRelativeTo(null);
-			receiptForm.setVisible(true);
-		});
 		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		addReceiptButton.setBorder(null);
 		addReceiptButton.setForeground(new Color(255, 255, 255));
 		addReceiptButton.setBackground(new Color(0, 128, 128));
 		addReceiptButton.setOpaque(false);
+		addReceiptButton.addActionListener((e) -> {
+			ReceiptForm receiptForm = new ReceiptForm(getSelectedAssociate());
+			receiptForm.setLocationRelativeTo(null);
+			receiptForm.setVisible(true);
+		});
 		actionsButtonsPanel.add(addReceiptButton);
 		
 		JButton exportFileButton = new JButton("Export as");
-		exportFileButton.addActionListener((e) -> {
-			//TODO: make file type pick dynamic so that we dont have to add a new button for each file type
-			String[] options = {"TXT", "XML"};
-			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-			ReporterFactory reporterFactory = new ReporterFactory();
-			Reporter reporter = reporterFactory.getReporter(options[choice].toLowerCase() , getSelectedAssociate());
-			reporter.saveFile();
-		});
 		exportFileButton.setFocusable(false);
 		exportFileButton.setFocusTraversalKeysEnabled(false);
 		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -210,6 +198,13 @@ public class AppGUI extends JFrame {
 		exportFileButton.setForeground(new Color(255, 255, 255));
 		exportFileButton.setBackground(new Color(0, 128, 128));
 		exportFileButton.setOpaque(false);
+		exportFileButton.addActionListener((e) -> {
+			FileType[] fileTypes = FileType.values();
+			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
+			ReporterFactory reporterFactory = new ReporterFactory();
+			Reporter reporter = reporterFactory.getReporter(fileTypes[choice].name() , getSelectedAssociate());
+			reporter.saveFile();
+		});
 		actionsButtonsPanel.add(exportFileButton);
 		
 		JLabel appTitleLabel = new JLabel("");
@@ -228,23 +223,15 @@ public class AppGUI extends JFrame {
 		associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		associatesList.setModel(listModel);
 		associatesList.addListSelectionListener((evt) -> {
-			if (evt.getValueIsAdjusting()) return;
-			associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
-			associateFileLabel.setText(getSelectedAssociate().getPersonalFile().getName());
-			associateSalesPanel.setAssociate(getSelectedAssociate());
-			
-			String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
-			switch(fileExtension){
-				case "txt":
-					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-35.png")));
-					break;
-				case "xml":
-					associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-35.png")));
-					break;
-				default:
-					break;
-			}
+					if (evt.getValueIsAdjusting()) return;
+					associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
+					associateFileLabel.setText(getSelectedAssociate().getPersonalFile().getName());
+					associateSalesPanel.setAssociate(getSelectedAssociate());
+					
+					String fileExtension = getFileExtension(getSelectedAssociate().getPersonalFile());
+					setDisplayedFileIcon(fileExtension);
 		});
+		
 		associatesScrollPane.setViewportView(associatesList);
 		
 		associateSalesPanel = new AssociateSalesPanel();
@@ -271,7 +258,7 @@ public class AppGUI extends JFrame {
 		gradientPanel.setBounds(320, 0, 1602, 125);
 		contentPane.add(gradientPanel);
 	}
-
+	
 	public String getFileExtension(File file){
 		String fileName = file.getName();
 		int dotIndex = fileName.lastIndexOf('.');
@@ -279,12 +266,26 @@ public class AppGUI extends JFrame {
 		System.out.println(result);
 		return result;
 	}
-
+	
 	public void refreshAssociateFileTextPane(){
 		associateFileTextPane.setText(getSelectedAssociate().getRawFile());
 	}
-
+	
 	public Associate getSelectedAssociate(){
 		return associates.get(associatesList.getSelectedIndex());
 	}
+	
+	private void setDisplayedFileIcon(String fileExtension) {
+		switch(fileExtension){
+			case "txt":
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-35.png")));
+				break;
+			case "xml":
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-35.png")));
+				break;
+			default:
+				break;
+		}
+	}
 }
+		

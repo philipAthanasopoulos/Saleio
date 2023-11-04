@@ -8,7 +8,7 @@ public class FileAppenderFactory {
             case "xml":
                 return new FileAppenderXML();
             default:
-                return null;
+                throw new IllegalArgumentException("File type not supported");
         }
     }
 }

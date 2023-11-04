@@ -7,24 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.JCheckBox;
 import javax.swing.JScrollPane;
 import javax.swing.JRadioButton;
-
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Font;
-import javax.swing.JLabel;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.AbstractButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class AssociateSalesPanel extends JPanel {
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
 
+public class AssociateSalesPanel extends JPanel {
+	
 	private static final long serialVersionUID = 1L;
 	private JRadioButton totalSalesRadioButton;
 	private JRadioButton salesForAllProductsRadioButton;
@@ -34,14 +30,28 @@ public class AssociateSalesPanel extends JPanel {
 	private JScrollPane associateReportScrollPane;
 	private Associate associate = new Associate();
 	private JTable table;
-	private DefaultTableModel tableModel = new DefaultTableModel();
-
-	/**
-	 * Create the panel.
-	 */
+	private DefaultTableModel tableModel;
+	
 	public AssociateSalesPanel() {
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
+		
+		tableModel = new DefaultTableModel(){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		tableModel.addColumn("objectName");
+		tableModel.addColumn("objectValue");
+		
+		table = new JTable(tableModel);
+		table.setTableHeader(null);
+		table.setShowGrid(false);
+		table.setRowHeight(20);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		table.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		
 		commissionRadioButton = new JRadioButton("Commission\r\n");
 		commissionRadioButton.setBackground(new Color(255, 255, 255));
@@ -98,18 +108,8 @@ public class AssociateSalesPanel extends JPanel {
 		
 		associateReportScrollPane = new JScrollPane();
 		associateReportScrollPane.setBounds(10, 310, 356, 306);
-		add(associateReportScrollPane);
-		
-		table = new JTable();
-		table.setTableHeader(null);
-		table.setShowGrid(false);
-		table.setRowHeight(20);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		associateReportScrollPane.setViewportView(table);
-		table.setModel(tableModel);
-		tableModel.addColumn("objectName");
-		tableModel.addColumn("objectValue");
+		add(associateReportScrollPane);
 	}
 	
 	public void setAssociate(Associate associate) {
@@ -147,6 +147,7 @@ public class AssociateSalesPanel extends JPanel {
 			}
 		}
 	}
+	
 	private void addProductTypeCheckBoxes() {
 		for (final ProductType productType : associate.getAssociateProductTypes()) {
 			final JCheckBox checkBox = new JCheckBox(productType.toString());
@@ -159,11 +160,11 @@ public class AssociateSalesPanel extends JPanel {
 				else removeRowFromTable(productType.toString());
 			});
 		}
+		System.out.println("added checkboxes");
 	}
 
 	private boolean productIsInTable(String text) {
-		for(int i = 0; i < tableModel.getRowCount(); i++) 
-			if(tableModel.getValueAt(i, 0).equals(text)) return true;
+		for(int i = 0; i < tableModel.getRowCount(); i++) if(tableModel.getValueAt(i, 0).equals(text)) return true;
 		return false;
 	}
 }

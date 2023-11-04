@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -190,6 +191,10 @@ public class ReceiptForm extends JFrame {
 		associateNameLabel.setText(associate.getName());
 		
 		addReceiptButton = new JButton("ADD");
+		addReceiptButton.setOpaque(true);
+		//TODO : FIX ME FIX ME FIX ME , color is not working
+		addReceiptButton.setBackground(new Color(30, 225, 45));
+		addReceiptButton.repaint();
 		addReceiptButton.addActionListener(e -> {
 			FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
 			fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());

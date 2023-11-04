@@ -9,7 +9,7 @@ public class ParserFactory {
             case "xml":
                 return new XMLParser();
             default:
-                return null;
+                throw new IllegalArgumentException("File type not supported");
         }
     }
 }
