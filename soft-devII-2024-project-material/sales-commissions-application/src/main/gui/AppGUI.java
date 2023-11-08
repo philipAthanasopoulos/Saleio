@@ -44,13 +44,25 @@ public class AppGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String applicationName = "Sales Commissions Application";
-	private JPanel sidePanel;
 	private List<Associate> associates; 
-	private JList<String> associatesList; // change name
+	private JList<String> associatesList = new JList<String>(); // change name
 	private JFileChooser fileChooser;
 	private JLabel associateFileLabel;
 	private JTextPane associateFileTextPane;
 	private AssociateSalesPanel associateSalesPanel;
+	private JButton importFileButton;
+	private JButton addReceiptButton;
+	private JButton exportFileButton;
+	private GradientPanel gradientPanel;
+	private GradientPanel sidePanel;
+	private JPanel actionsButtonsPanel;
+	private JScrollPane associateFileScrollPane;
+	private JLabel associateListLabel;
+	private JLabel appTitleLabel;
+	private JScrollPane associatesScrollPane;
+	private JButton displayRawFileButton;
+	private JButton displayFormatedFileButton;
+	DefaultListModel<String> listModel = new DefaultListModel<>();
 
 	public void runApp() {
 		EventQueue.invokeLater(() -> {
@@ -59,7 +71,7 @@ public class AppGUI extends JFrame {
 				frame.setTitle(frame.applicationName);
 				frame.setVisible(true);
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("Error running application");
 			}
 		});
 	}
@@ -68,17 +80,17 @@ public class AppGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public AppGUI() {
-		final DefaultListModel<String> listModel = new DefaultListModel<String>();
-		associates = new ArrayList<Associate>();
+        associates = new ArrayList<>();
+		associatesList.setCellRenderer(new CellRenderer());
 		fileChooser = new JFileChooser();
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			SwingUtilities.updateComponentTreeUI(fileChooser);
 		} catch (Exception fileChooserException) {
-			fileChooserException.printStackTrace();
+			System.out.println("Error setting look and feel for file chooser");
 		}
-
-
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBounds(0, 0, 1920, 1080);
@@ -87,16 +99,15 @@ public class AppGUI extends JFrame {
 		contentPane.setFocusTraversalKeysEnabled(false);
 		contentPane.setForeground(new Color(255, 255, 255));
 		contentPane.setBackground(new Color(255, 255, 255));
-		contentPane.setOpaque(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBounds(0, 0, getWidth(), getHeight());
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+				
 		
 		
-		
-		JScrollPane associateFileScrollPane = new JScrollPane();
+		associateFileScrollPane = new JScrollPane();
 		associateFileScrollPane.setBounds(1394, 208, 510, 794);
 		contentPane.add(associateFileScrollPane);
 		
@@ -106,7 +117,7 @@ public class AppGUI extends JFrame {
 		associateFileScrollPane.setViewportView(associateFileTextPane);
 		associateFileTextPane.setCaretPosition(0);
 		
-		JLabel associateListLabel = new JLabel("Associates");
+		associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
 		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-admin-30.png")));
 		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
@@ -124,14 +135,14 @@ public class AppGUI extends JFrame {
 		sidePanel.setBounds(0, 0, 322, getHeight());
 		contentPane.add(sidePanel);
 		sidePanel.setLayout(null);
-		
-		JPanel actionsButtonsPanel = new JPanel();
+				
+		actionsButtonsPanel = new JPanel();
 		actionsButtonsPanel.setOpaque(false);
 		actionsButtonsPanel.setBounds(0, 278, 322, 267);
 		sidePanel.add(actionsButtonsPanel);
 		actionsButtonsPanel.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JButton importFileButton = new JButton("Import file");
+				
+		importFileButton = new JButton("Import file");
 		importFileButton.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
 		importFileButton.setFocusable(false);
 		importFileButton.setFocusPainted(false);
@@ -167,7 +178,7 @@ public class AppGUI extends JFrame {
 		importFileButton.setOpaque(false);
 		actionsButtonsPanel.add(importFileButton);
 		
-		JButton addReceiptButton = new JButton("Add receipt");
+		addReceiptButton = new JButton("Add receipt");
 		addReceiptButton.setFocusable(false);
 		addReceiptButton.setFocusTraversalKeysEnabled(false);
 		addReceiptButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -186,7 +197,7 @@ public class AppGUI extends JFrame {
 		});
 		actionsButtonsPanel.add(addReceiptButton);
 		
-		JButton exportFileButton = new JButton("Export as");
+		exportFileButton = new JButton("Export as");
 		exportFileButton.setFocusable(false);
 		exportFileButton.setFocusTraversalKeysEnabled(false);
 		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -207,7 +218,7 @@ public class AppGUI extends JFrame {
 		});
 		actionsButtonsPanel.add(exportFileButton);
 		
-		JLabel appTitleLabel = new JLabel("");
+		appTitleLabel = new JLabel("");
 		appTitleLabel.setIconTextGap(0);
 		appTitleLabel.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\Sale.io (3).png"));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
@@ -215,12 +226,12 @@ public class AppGUI extends JFrame {
 		appTitleLabel.setBounds(0, 0, 322, 147);
 		sidePanel.add(appTitleLabel);
 		
-		JScrollPane associatesScrollPane = new JScrollPane();
+		associatesScrollPane = new JScrollPane();
+		associatesScrollPane.setBorder(null);
 		associatesScrollPane.setBounds(346, 208, 369, 471);
 		contentPane.add(associatesScrollPane);
-		
-		associatesList = new JList<String>();
-		associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
+
+        associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		associatesList.setModel(listModel);
 		associatesList.addListSelectionListener((evt) -> {
 					if (evt.getValueIsAdjusting()) return;
@@ -238,23 +249,23 @@ public class AppGUI extends JFrame {
 		associateSalesPanel.setBounds(757, 208, 599, 794);
 		contentPane.add(associateSalesPanel);
 		
-		JButton displayRawFileButton = new JButton("Raw");
+		displayRawFileButton = new JButton("Raw");
 		displayRawFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		displayRawFileButton.setBounds(1394, 165, 69, 32);
 		displayRawFileButton.addActionListener((e) -> {
 			associateFileTextPane.setText(getSelectedAssociate().getRawFile());
 		});
-		displayRawFileButton.setBounds(1394, 165, 69, 32);
 		contentPane.add(displayRawFileButton);
 		
-		JButton displayFormatedFileButton = new JButton("Format");
+		displayFormatedFileButton = new JButton("Format");
+		displayFormatedFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		displayFormatedFileButton.setBounds(1465, 165, 88, 32);
 		displayFormatedFileButton.addActionListener((e) -> {
 			associateFileTextPane.setText(getSelectedAssociate().getFormattedFile());
 		});
-		displayFormatedFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		displayFormatedFileButton.setBounds(1465, 165, 88, 32);
 		contentPane.add(displayFormatedFileButton);
 		
-		GradientPanel gradientPanel = new GradientPanel();
+		gradientPanel = new GradientPanel();
 		gradientPanel.setBounds(320, 0, 1602, 125);
 		contentPane.add(gradientPanel);
 	}
@@ -265,10 +276,6 @@ public class AppGUI extends JFrame {
 		String result = (dotIndex == -1) ? "" : fileName.substring(dotIndex + 1);
 		System.out.println(result);
 		return result;
-	}
-	
-	public void refreshAssociateFileTextPane(){
-		associateFileTextPane.setText(getSelectedAssociate().getRawFile());
 	}
 	
 	public Associate getSelectedAssociate(){
@@ -288,4 +295,3 @@ public class AppGUI extends JFrame {
 		}
 	}
 }
-		

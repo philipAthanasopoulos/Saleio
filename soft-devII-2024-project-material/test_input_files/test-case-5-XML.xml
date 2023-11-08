@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Agent>
+    <Name> Random Agent Name </Name>
+    <AFM> 123456789 </AFM>
+    <Receipts>
+        <Receipt>
+            <ReceiptID> 21 </ReceiptID>
+            <Date> 2023-11-16 </Date>
+            <Kind> Shirts </Kind>
+            <Sales> 250 </Sales>
+            <Items> 3 </Items>
+            <Company> Casual Wear Co. </Company>
+            <Country> United States </Country>
+            <City> Los Angeles </City>
+            <Street> Sunset Blvd </Street>
+            <Number> 567 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 22 </ReceiptID>
+            <Date> 2023-11-17 </Date>
+            <Kind> Shorts </Kind>
+            <Sales> 180 </Sales>
+            <Items> 2 </Items>
+            <Company> Beach Style Boutique </Company>
+            <Country> Australia </Country>
+            <City> Melbourne </City>
+            <Street> Bondi Beach Road </Street>
+            <Number> 123 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 23 </ReceiptID>
+            <Date> 2023-11-18 </Date>
+            <Kind> Handbags </Kind>
+            <Sales> 750 </Sales>
+            <Items> 1 </Items>
+            <Company> Fashion Emporium </Company>
+            <Country> United Kingdom </Country>
+            <City> London </City>
+            <Street> Regent Street </Street>
+            <Number> 456 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 24 </ReceiptID>
+            <Date> 2023-11-19 </Date>
+            <Kind> Dresses </Kind>
+            <Sales> 450 </Sales>
+            <Items> 2 </Items>
+            <Company> Elegant Attire Ltd. </Company>
+            <Country> France </Country>
+            <City> Paris </City>
+            <Street> Avenue des Champs-Élysées </Street>
+            <Number> 789 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 25 </ReceiptID>
+            <Date> 2023-11-20 </Date>
+            <Kind> Coats </Kind>
+            <Sales> 320 </Sales>
+            <Items> 1 </Items>
+            <Company> Winter Wonders Inc. </Company>
+            <Country> Canada </Country>
+            <City> Toronto </City>
+            <Street> King Street West </Street>
+            <Number> 101 </Number>
+        </Receipt>
+    </Receipts>
+</Agent>
