@@ -3,27 +3,23 @@ package main.gui;
 import main.domain.*;
 import main.fileAppender.FileAppender;
 import main.fileAppender.FileAppenderFactory;
-import main.fileAppender.FileAppenderTXT;
-import main.reporter.Reporter;
-import main.reporter.ReporterFactory;
-
-import java.awt.EventQueue;
 
 import java.util.*;
 import java.io.File;
 
-
 import javax.swing.JFrame;
-
-import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
 import javax.swing.JButton;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ReceiptForm extends JFrame {
 
@@ -39,7 +35,7 @@ public class ReceiptForm extends JFrame {
 	private JTextField receiptCityTextField;
 	private JTextField receiptStreetNameTextField;
 	private JTextField receiptStreetNumberTextField;
-	private JLabel lblNewLabel_2;
+	private JLabel contextTextLabel;
 	private JLabel associateNameLabel;
 	private JButton addReceiptButton;
 	private FileAppender fileAppender;
@@ -186,10 +182,10 @@ public class ReceiptForm extends JFrame {
 		receiptStreetNumberLabel.setBounds(63, 380, 141, 25);
 		contentPane.add(receiptStreetNumberLabel);
 		
-		lblNewLabel_2 = new JLabel("Create new receipt for:");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(10, 26, 156, 25);
-		contentPane.add(lblNewLabel_2);
+		contextTextLabel = new JLabel("Create new receipt for:");
+		contextTextLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		contextTextLabel.setBounds(10, 26, 156, 25);
+		contentPane.add(contextTextLabel);
 		
 		associateNameLabel = new JLabel("NAME");
 		associateNameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -198,39 +194,45 @@ public class ReceiptForm extends JFrame {
 		associateNameLabel.setText(associate.getName());
 		
 		addReceiptButton = new JButton("ADD");
-		// btnNewButton = new GradientButton("ADD", new Color(73, 169, 242), new Color(45, 45, 117), 10);
-		addReceiptButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
-				fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());
-				
-				Address address = new Address(
-					receiptCountryTextField.getText(),
-					receiptCityTextField.getText(),
-					receiptStreetNameTextField.getText(),
-					Integer.parseInt(receiptStreetNumberTextField.getText())
-				);
-				
-				Company company = new Company(
-					receiptCompanyNameTextField.getText(),
-					address
-				);
+		addReceiptButton.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+		addReceiptButton.setIcon(new ImageIcon(ReceiptForm.class.getResource("/resources/icons8-add-35.png")));
+		addReceiptButton.setOpaque(true);
+		//TODO : FIX ME FIX ME FIX ME , color is not working
+		addReceiptButton.setBackground(new Color(255, 255, 255));
+		addReceiptButton.repaint();
+		addReceiptButton.addActionListener(e -> {
+			FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
+			fileAppender = fileAppenderFactory.getFileAppender(associate.getFileType());
+			
+			Address address = new Address(
+				receiptCountryTextField.getText(),
+				receiptCityTextField.getText(),
+				receiptStreetNameTextField.getText(),
+				Integer.parseInt(receiptStreetNumberTextField.getText())
+			);
+			
+			Company company = new Company(
+				receiptCompanyNameTextField.getText(),
+				address
+			);
 
-				Receipt receipt = new Receipt(
-					Integer.parseInt(receiptIdTextField.getText()),
-					receiptDateTextField.getText(),
-					ProductType.valueOf(productTypeTextField.getText()) ,
-					Double.parseDouble(receiptSalesTextField.getText()),
-					Integer.parseInt(receiptItemNumberTextFiled.getText()),
-					company 
-				);
-				
-				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
-				associate.addReceipt(receipt);
-				dispose();
-			}
+			Receipt receipt = new Receipt(
+				Integer.parseInt(receiptIdTextField.getText()),
+				receiptDateTextField.getText(),
+				ProductType.valueOf(productTypeTextField.getText()) ,
+				Double.parseDouble(receiptSalesTextField.getText()),
+				Integer.parseInt(receiptItemNumberTextFiled.getText()),
+				company 
+			);
+			
+			fileAppender.appendReceipt(receipt, associate.getPersonalFile());
+			associate.addReceipt(receipt);
+			dispose();
 		});
-		addReceiptButton.setBounds(51, 443, 89, 23);
+		
+		addReceiptButton.setBounds(60, 431, 106, 36);
 		contentPane.add(addReceiptButton);
 	}
 }

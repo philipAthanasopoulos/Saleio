@@ -134,3 +134,14 @@ Country: 2345
 City: 2345
 Street: 2345
 Number: 2345
+
+Receipt ID: 2000
+Date: 11-04-2023
+Kind: Belts
+Sales: 2000.0
+Items: 100
+Company: Google
+Country: USA
+City: New York
+Street: str
+Number: 18

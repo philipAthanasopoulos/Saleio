@@ -10,7 +10,7 @@ public class ReporterFactory {
             case "xml":
                 return new XMLReporter(associate);
             default:
-                return null;
+                throw new IllegalArgumentException("File type not supported");
         }
     }
 }
