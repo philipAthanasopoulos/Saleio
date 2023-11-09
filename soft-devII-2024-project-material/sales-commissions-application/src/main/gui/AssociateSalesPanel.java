@@ -53,11 +53,11 @@ public class AssociateSalesPanel extends JPanel {
 		table.setShowGrid(false);
 		table.setRowHeight(20);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-		table.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		table.setFont(new Font("SansSerif", Font.PLAIN, 24));
 
         commissionRadioButton.setBackground(new Color(255, 255, 255));
-		commissionRadioButton.setFont(new Font("SansSerif", Font.BOLD, 15));
-		commissionRadioButton.setBounds(271, 7, 243, 23);
+		commissionRadioButton.setFont(new Font("SansSerif", Font.BOLD, 17));
+		commissionRadioButton.setBounds(234, 0, 243, 23);
 		add(commissionRadioButton);
 		commissionRadioButton.addActionListener(e -> {
 			if(commissionRadioButton.isSelected()) {
@@ -65,7 +65,7 @@ public class AssociateSalesPanel extends JPanel {
 			} else removeRowFromTable("Commission");
 		});
 
-        productTypeScrollPane.setBounds(10, 63, 201, 196);
+        productTypeScrollPane.setBounds(0, 63, 261, 196);
 		add(productTypeScrollPane);
 
         productTypeScrollPane.setViewportView(productTypePanel);
@@ -73,8 +73,8 @@ public class AssociateSalesPanel extends JPanel {
 		addButtonsAndCheckBoxes();
 
         totalSalesRadioButton.setBackground(new Color(255, 255, 255));
-		totalSalesRadioButton.setFont(new Font("SansSerif", Font.BOLD, 15));
-		totalSalesRadioButton.setBounds(0, 7, 243, 23);
+		totalSalesRadioButton.setFont(new Font("SansSerif", Font.BOLD, 17));
+		totalSalesRadioButton.setBounds(0, 0, 232, 23);
 		add(totalSalesRadioButton);
 		totalSalesRadioButton.addActionListener(e -> {
 			if(totalSalesRadioButton.isSelected()) {
@@ -83,8 +83,8 @@ public class AssociateSalesPanel extends JPanel {
 		});
 
         salesForAllProductsRadioButton.setBackground(new Color(255, 255, 255));
-		salesForAllProductsRadioButton.setFont(new Font("SansSerif", Font.BOLD, 15));
-		salesForAllProductsRadioButton.setBounds(0, 33, 243, 23);
+		salesForAllProductsRadioButton.setFont(new Font("SansSerif", Font.BOLD, 17));
+		salesForAllProductsRadioButton.setBounds(0, 33, 232, 23);
 		add(salesForAllProductsRadioButton);
 
 		salesForAllProductsRadioButton.addActionListener(e -> {
@@ -95,7 +95,7 @@ public class AssociateSalesPanel extends JPanel {
 					checkBox.doClick(TIME_DELAY);
 		});
 
-        associateReportScrollPane.setBounds(10, 310, 356, 306);
+        associateReportScrollPane.setBounds(0, 281, 586, 373);
 		associateReportScrollPane.setViewportView(table);
 		add(associateReportScrollPane);
 	}

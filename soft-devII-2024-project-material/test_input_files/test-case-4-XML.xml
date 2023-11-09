@@ -99,5 +99,17 @@
             <Street> George Street </Street>
             <Number> 222 </Number>
         </Receipt>
+        <Receipt>
+            <ReceiptID>1234123</ReceiptID>
+            <Date>523452345</Date>
+            <Kind>Belts</Kind>
+            <Sales>2345.0</Sales>
+            <Items>2345</Items>
+            <Company>2345</Company>
+            <Country>2354</Country>
+            <City>2345</City>
+            <Street>23452</Street>
+            <Number>234523</Number>
+        </Receipt>
     </Receipts>
 </Agent>

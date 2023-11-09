@@ -17,6 +17,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
 
 public class ReceiptForm extends JFrame {
 
@@ -191,9 +194,13 @@ public class ReceiptForm extends JFrame {
 		associateNameLabel.setText(associate.getName());
 		
 		addReceiptButton = new JButton("ADD");
+		addReceiptButton.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+		addReceiptButton.setIcon(new ImageIcon(ReceiptForm.class.getResource("/resources/icons8-add-35.png")));
 		addReceiptButton.setOpaque(true);
 		//TODO : FIX ME FIX ME FIX ME , color is not working
-		addReceiptButton.setBackground(new Color(30, 225, 45));
+		addReceiptButton.setBackground(new Color(255, 255, 255));
 		addReceiptButton.repaint();
 		addReceiptButton.addActionListener(e -> {
 			FileAppenderFactory fileAppenderFactory = new FileAppenderFactory();
@@ -225,7 +232,7 @@ public class ReceiptForm extends JFrame {
 			dispose();
 		});
 		
-		addReceiptButton.setBounds(63, 446, 98, 36);
+		addReceiptButton.setBounds(60, 431, 106, 36);
 		contentPane.add(addReceiptButton);
 	}
 }

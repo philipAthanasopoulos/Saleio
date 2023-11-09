@@ -81,6 +81,7 @@ public class AppGUI extends JFrame {
 	 */
 	public AppGUI() {
         associates = new ArrayList<>();
+		associatesList.setFocusable(false);
 		associatesList.setCellRenderer(new CellRenderer());
 		fileChooser = new JFileChooser();
 		try {
@@ -112,7 +113,7 @@ public class AppGUI extends JFrame {
 		contentPane.add(associateFileScrollPane);
 		
 		associateFileTextPane = new JTextPane();
-		associateFileTextPane.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		associateFileTextPane.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		associateFileTextPane.setEditable(false);
 		associateFileScrollPane.setViewportView(associateFileTextPane);
 		associateFileTextPane.setCaretPosition(0);
@@ -120,15 +121,15 @@ public class AppGUI extends JFrame {
 		associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
 		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-admin-30.png")));
-		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		associateListLabel.setBounds(448, 153, 148, 44);
+		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		associateListLabel.setBounds(450, 157, 148, 44);
 		contentPane.add(associateListLabel);
 		
 		associateFileLabel = new JLabel("No file to show");
-		associateFileLabel.setIconTextGap(10);
+		associateFileLabel.setIconTextGap(0);
 		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-35.png")));
-		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		associateFileLabel.setBounds(1563, 147, 320, 56);
+		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		associateFileLabel.setBounds(1584, 157, 320, 44);
 		contentPane.add(associateFileLabel);	
 		
 		sidePanel = new GradientPanel();
@@ -228,7 +229,7 @@ public class AppGUI extends JFrame {
 		
 		associatesScrollPane = new JScrollPane();
 		associatesScrollPane.setBorder(null);
-		associatesScrollPane.setBounds(346, 208, 369, 471);
+		associatesScrollPane.setBounds(346, 208, 369, 794);
 		contentPane.add(associatesScrollPane);
 
         associatesList.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -268,6 +269,13 @@ public class AppGUI extends JFrame {
 		gradientPanel = new GradientPanel();
 		gradientPanel.setBounds(320, 0, 1602, 125);
 		contentPane.add(gradientPanel);
+		
+		JLabel lblSalesAnalysis = new JLabel("Sales Analysis");
+		lblSalesAnalysis.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-estimate-35.png")));
+		lblSalesAnalysis.setIconTextGap(10);
+		lblSalesAnalysis.setFont(new Font("SansSerif", Font.PLAIN, 20));
+		lblSalesAnalysis.setBounds(955, 157, 211, 44);
+		contentPane.add(lblSalesAnalysis);
 	}
 	
 	public String getFileExtension(File file){
@@ -288,7 +296,7 @@ public class AppGUI extends JFrame {
 				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-35.png")));
 				break;
 			case "xml":
-				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-xml-35.png")));
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-code-file-35.png")));
 				break;
 			default:
 				break;

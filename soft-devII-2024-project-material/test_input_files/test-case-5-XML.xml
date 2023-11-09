@@ -63,5 +63,65 @@
             <Street> King Street West </Street>
             <Number> 101 </Number>
         </Receipt>
+        <Receipt>
+            <ReceiptID> 25 </ReceiptID>
+            <Date> 2023-11-20 </Date>
+            <Kind> Belts </Kind>
+            <Sales> 320 </Sales>
+            <Items> 1 </Items>
+            <Company> Winter Wonders Inc. </Company>
+            <Country> Canada </Country>
+            <City> Toronto </City>
+            <Street> King Street West </Street>
+            <Number> 101 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 26 </ReceiptID>
+            <Date> 2023-11-21 </Date>
+            <Kind> Jeans </Kind>
+            <Sales> 500 </Sales>
+            <Items> 2 </Items>
+            <Company> Denim Co. </Company>
+            <Country> USA </Country>
+            <City> New York </City>
+            <Street> Fifth Avenue </Street>
+            <Number> 102 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 27 </ReceiptID>
+            <Date> 2023-11-22 </Date>
+            <Kind> Shorts </Kind>
+            <Sales> 300 </Sales>
+            <Items> 3 </Items>
+            <Company> Summer Styles Ltd. </Company>
+            <Country> USA </Country>
+            <City> Miami </City>
+            <Street> Ocean Drive </Street>
+            <Number> 103 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 28 </ReceiptID>
+            <Date> 2023-11-23 </Date>
+            <Kind> Belts </Kind>
+            <Sales> 200 </Sales>
+            <Items> 2 </Items>
+            <Company> Casual Wear Co. </Company>
+            <Country> USA </Country>
+            <City> Los Angeles </City>
+            <Street> Sunset Blvd </Street>
+            <Number> 567 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 29 </ReceiptID>
+            <Date> 2023-11-24 </Date>
+            <Kind> Trousers </Kind>
+            <Sales> 400 </Sales>
+            <Items> 1 </Items>
+            <Company> Denim Co. </Company>
+            <Country> USA </Country>
+            <City> New York </City>
+            <Street> Fifth Avenue </Street>
+            <Number> 102 </Number>
+        </Receipt>
     </Receipts>
 </Agent>

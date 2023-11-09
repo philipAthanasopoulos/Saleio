@@ -11,7 +11,7 @@ import javax.swing.BorderFactory;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.Color;
-
+import java.awt.Cursor;
 
 
 public class CellRenderer extends DefaultListCellRenderer {
@@ -19,33 +19,32 @@ public class CellRenderer extends DefaultListCellRenderer {
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         label.setForeground(Color.BLACK);
+        label.setHorizontalAlignment(JLabel.CENTER);
         label.setIcon(new ImageIcon("path_to_your_icon.png"));
         label.setHorizontalTextPosition(JLabel.RIGHT);
-
-        JButton button = new JButton("Remove");
-        button.setBackground(Color.RED);
-        button.addActionListener(e -> {
-            // code to remove associate goes here
-        });
 
         JPanel panel = new JPanel(new BorderLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
-                g.setColor(getBackground());
+                if(isSelected){
+                    g.setColor(Color.GREEN);
+                } else {
+                    g.setColor(getBackground());
+                }
                 g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 25, 25);
                 super.paintComponent(g);
             }
-            @Override
-            protected void paintBorder(Graphics g) {
-                g.setColor(getForeground());
-                g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 25, 25);
-            }
+            
+            // @Override
+            // protected void paintBorder(Graphics g) {
+            //     g.setColor(getForeground());
+            //     g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 25, 25);
+            // }
         };
         panel.add(label, BorderLayout.CENTER);
-        panel.add(button, BorderLayout.EAST);
         panel.setOpaque(false);
         label.setOpaque(false);
-        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));        
+        panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));     
         return panel;
     }
 }
