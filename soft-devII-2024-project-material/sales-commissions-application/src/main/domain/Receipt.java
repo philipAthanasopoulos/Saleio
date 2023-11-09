@@ -20,6 +20,16 @@ public class Receipt {
 	public Receipt() {
 		productType = ProductType.INVALID;
 	}
+	
+	public boolean isValid() {
+		if (purchaseDate == null || purchaseDate.equals("")) return false;
+		if (productType == null || productType == ProductType.INVALID) return false;
+		if (getCompanyName() == null || getCompanyName().equals("")) return false;
+		if (getCompanyCountry() == null || getCompanyCountry().equals("")) return false;
+		if (getCompanyCity() == null || getCompanyCity().equals("")) return false;
+		if (getCompanyStreet() == null || getCompanyStreet().equals("")) return false;
+		return true;
+	}
 
 	public int getReceiptID() {
 		return receiptID;
@@ -70,15 +80,15 @@ public class Receipt {
 	}
 
 	public String toString() {
-		return "Receipt ID: " + receiptID + "\n" +
-			   "Date: " + purchaseDate + "\n" +
-			   "Kind: " + productType + "\n" +
-			   "Sales: " + totalSales + "\n" +
-			   "Items: " + numberOfItems + "\n" +
-			   "Company: " + company.getCompanyName() + "\n" +
-			   "Country: " + getCompanyCountry() + "\n" +
-			   "City: " + getCompanyCity() + "\n" +
-			   "Street: " + getCompanyStreet() + "\n" +
-			   "Number: " + getCompanyStreetNumber() + "\n";
+		return "Receipt ID: " + receiptID + "\r\n" +
+			   "Date: " + purchaseDate + "\r\n" +
+			   "Kind: " + productType + "\r\n" +
+			   "Sales: " + totalSales + "\r\n" +
+			   "Items: " + numberOfItems + "\r\n" +
+			   "Company: " + company.getCompanyName() + "\r\n" +
+			   "Country: " + getCompanyCountry() + "\r\n" +
+			   "City: " + getCompanyCity() + "\r\n" +
+			   "Street: " + getCompanyStreet() + "\r\n" +
+			   "Number: " + getCompanyStreetNumber() + "\r\n";
 	}
 }

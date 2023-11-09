@@ -70,6 +70,14 @@ public class Associate {
 		}
 		return commission;
 	}
+	
+	public boolean isValid() {
+		if (name == null || name.equals("")) return false;
+		if (afm == null || afm.equals("")) return false;
+		if (personalFile == null) return false;
+		for(Receipt receipt : receipts) if (!receipt.isValid()) return false;
+		return true;
+	}
 
 	public String getName() {
 		return this.name;

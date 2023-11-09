@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 public class XMLParser extends Parser {
  
     @Override
-    public Associate parseAssociateFromFile(File file) throws IOException {
+    public Associate parseAssociateFromFile(File file) throws IOException, BadFileException {
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 
@@ -57,23 +57,35 @@ public class XMLParser extends Parser {
                         getDataFromElement(extractedAttribute,"Company"),
                         address
                     );
-
-                    receipts.add(new Receipt(
-                        Integer.parseInt(getDataFromElement(extractedAttribute, "ReceiptID")),
-                        getDataFromElement(extractedAttribute, "Date"),
-                        ProductType.valueOf(getDataFromElement(extractedAttribute, "Kind")),
-                        Double.parseDouble(getDataFromElement(extractedAttribute, "Sales")),
-                        Integer.parseInt(getDataFromElement(extractedAttribute, "Items")),
-                        company
-                    ));
+                    
+                    try {
+	                    receipts.add(new Receipt(
+	                        Integer.parseInt(getDataFromElement(extractedAttribute, "ReceiptID")),
+	                        getDataFromElement(extractedAttribute, "Date"),
+	                        ProductType.valueOf(getDataFromElement(extractedAttribute, "Kind")),
+	                        Double.parseDouble(getDataFromElement(extractedAttribute, "Sales")),
+	                        Integer.parseInt(getDataFromElement(extractedAttribute, "Items")),
+	                        company
+	                    ));
+                    }catch(Exception e) {
+	                    receipts.add(new Receipt(
+		                        Integer.parseInt(getDataFromElement(extractedAttribute, "ReceiptID")),
+		                        getDataFromElement(extractedAttribute, "Date"),
+		                        ProductType.INVALID,
+		                        Double.parseDouble(getDataFromElement(extractedAttribute, "Sales")),
+		                        Integer.parseInt(getDataFromElement(extractedAttribute, "Items")),
+		                        company
+		                    ));
+                    }
 				}
 			}
-            return new Associate(name, afm, receipts, file);
+            Associate resultAssociate = new Associate(name, afm, receipts, file);
+            if (!resultAssociate.isValid()) throw new BadFileException("Information was missing.");
+            return resultAssociate;
 
         }catch(Exception e){
-            e.printStackTrace();
+            throw new BadFileException("Incorrect File");
         }
-        return null;
     }
 
     private String getDataFromElement(Element element, String tag){

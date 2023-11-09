@@ -1,7 +1,6 @@
 package main.reporter;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 
 import javax.swing.JOptionPane;
 
@@ -14,7 +13,7 @@ public class TXTReporter extends Reporter {
 	}
 
     @Override
-    public void composeReportFile(String path){
+    public void composeReportFile(String path) throws IOException{
         try {
             BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.txt"));
 
@@ -26,9 +25,8 @@ public class TXTReporter extends Reporter {
                 writeStream.write(receipt.toString()+"\n");
             }
             writeStream.close();
-        } catch (Exception e) {
-            System.out.print(e.toString());
-            JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            throw e;
         }
     }
 }

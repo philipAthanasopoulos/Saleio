@@ -1,6 +1,7 @@
 package main.reporter;
 
 import java.io.File;
+import java.io.IOException;
 
 import main.domain.*;
 
@@ -27,7 +28,7 @@ public class XMLReporter extends Reporter {
 	}	
 
 	@Override
-	public void composeReportFile(String path) {
+	public void composeReportFile(String path) throws IOException{
 		
 		try {
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -75,6 +76,7 @@ public class XMLReporter extends Reporter {
 			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 
 			DOMSource domSource = new DOMSource(document);
+			//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
 			StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
 			transformer.transform(domSource, streamResult);
 			
