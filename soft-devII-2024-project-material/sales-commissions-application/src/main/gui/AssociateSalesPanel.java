@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 
 import java.util.ArrayList;

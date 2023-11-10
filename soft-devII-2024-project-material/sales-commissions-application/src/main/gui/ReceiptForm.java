@@ -19,7 +19,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
 
 public class ReceiptForm extends JFrame {
 

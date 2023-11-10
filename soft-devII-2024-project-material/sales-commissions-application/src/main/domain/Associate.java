@@ -8,10 +8,9 @@ import main.parser.ParserFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.Buffer;
-import java.nio.file.Files;
 
 public class Associate {
 	private String name;
@@ -130,42 +129,31 @@ public class Associate {
 				.append("Receipts: \n")
 				.append("\n");
 
-		for(Receipt receipt : receipts) {
-			buffer.append(receipt.toString() + "\n");
-		}
-
+		for(Receipt receipt : receipts) buffer.append(receipt.toString() + "\n");
+		
 		return buffer.toString();
 	}
 
-	public String getRawFile() {
+	public String getRawFile() throws IOException, FileNotFoundException {
 		StringBuffer buffer = new StringBuffer();
-		BufferedReader bufferedReader;
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(personalFile));
+		String line = bufferedReader.readLine();
 
-		try {
-			bufferedReader = new BufferedReader(new FileReader(personalFile));
-			String line = bufferedReader.readLine();
-
-			while(line != null) {
-				buffer.append(line + "\n");
-				line = bufferedReader.readLine();
-			}
-
-			bufferedReader.close();
-		} catch (Exception e) {
-			// TODO: handle exception
+		while(line != null) {
+			buffer.append(line + "\n");
+			line = bufferedReader.readLine();
 		}
 
+		bufferedReader.close();
 		return buffer.toString();
 	}
 
 	public ArrayList<ProductType> getAssociateProductTypes() {
 		ArrayList<ProductType> productTypes = new ArrayList<ProductType>();
 
-		for(Receipt receipt : receipts) {
-			if(!productTypes.contains(receipt.getProductType())) {
+		for(Receipt receipt : receipts) 
+			if(!productTypes.contains(receipt.getProductType())) 
 				productTypes.add(receipt.getProductType());
-			}
-		}
 
 		return productTypes;
 	}

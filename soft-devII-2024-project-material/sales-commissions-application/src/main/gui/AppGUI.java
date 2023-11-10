@@ -154,12 +154,12 @@ public class AppGUI extends JFrame {
 		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-30.png")));
 		importFileButton.addActionListener((e) -> {
 			if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				File selectedFile = fileChooser.getSelectedFile();
+				String fileExtension = getFileExtension(selectedFile);
+				System.out.println("Tried to import :" + fileExtension);
+				ParserFactory parserFactory = new ParserFactory();
+				Parser parser = parserFactory.getParser(fileExtension);
 				try {
-					File selectedFile = fileChooser.getSelectedFile();
-					String fileExtension = getFileExtension(selectedFile);
-					System.out.println("Tried to import :" + fileExtension);
-					ParserFactory parserFactory = new ParserFactory();
-					Parser parser = parserFactory.getParser(fileExtension);
 					Associate newAssociate = parser.parseAssociateFromFile(selectedFile);
 					associates.add(newAssociate);
 					listModel.addElement(newAssociate.getName());
@@ -172,6 +172,7 @@ public class AppGUI extends JFrame {
 				}
 			}
 		});
+
 		importFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		importFileButton.setBorder(null);
 		importFileButton.setForeground(new Color(255, 255, 255));
@@ -215,7 +216,11 @@ public class AppGUI extends JFrame {
 			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ReporterFactory reporterFactory = new ReporterFactory();
 			Reporter reporter = reporterFactory.getReporter(fileTypes[choice].name() , getSelectedAssociate());
-			reporter.saveFile();
+			try {
+				reporter.saveFile();
+			} catch (Exception saveFileException) {
+				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		});
 		actionsButtonsPanel.add(exportFileButton);
 		

@@ -1,8 +1,5 @@
 package main.fileAppender;
 
-import main.domain.Address;
-import main.domain.Company;
-import main.domain.ProductType;
 import main.domain.Receipt;
 
 import java.io.File;
@@ -26,13 +23,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
-
 
 /*TODO: when appending a new receipt, the new one is correctly added but the old ones get spaced away
 *probably because of transformer propetries at the end of the method

@@ -14,6 +14,6 @@ import main.domain.*;
 
 public abstract class Parser {
 
-	public abstract Associate parseAssociateFromFile(File file) throws IOException, BadFileException;
+	public abstract Associate parseAssociateFromFile(File file) throws  IOException, BadFileException;
 	
 }

@@ -1,7 +1,6 @@
 package main.reporter;
 
 import java.io.File;
-import java.io.IOException;
 
 import main.domain.*;
 
@@ -28,65 +27,46 @@ public class XMLReporter extends Reporter {
 	}	
 
 	@Override
-	public void composeReportFile(String path) throws IOException{
+	public void composeReportFile(String path) throws Exception {
+		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+		document = documentBuilder.newDocument();
+
+		// root element
+		Element agentElem = document.createElement("Agent");
+		document.appendChild(agentElem);
 		
-		try {
-			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-			document = documentBuilder.newDocument();
+		createElement("Name", associate.getName(), agentElem);
+		createElement("AFM", associate.getAfm(), agentElem);
+		
+		Element receipts = createElement("Receipts", null, agentElem);
+		
+		for (Receipt receipt : associate.getReceipts()){
+			Element receiptElement = createElement("Receipt", null, receipts);
 
-			// root element
-			Element agentElem = document.createElement("Agent");
-			document.appendChild(agentElem);
-			
-			createElement("Name", associate.getName(), agentElem);
-			
-			createElement("AFM", associate.getAfm(), agentElem);
-			
-			Element receipts = createElement("Receipts", null, agentElem);
-			
-			for (Receipt receipt : associate.getReceipts()){
-
-				Element receiptElement = createElement("Receipt", null, receipts);
-
-				createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
-
-				createElement("Date", receipt.getPurchaseDate(), receiptElement);
-
-				createElement("Kind", receipt.getProductType().name(), receiptElement);
-
-				createElement("Sales", receipt.getTotalSales(), receiptElement);
-
-				createElement("Items", receipt.getNumberOfItems(), receiptElement);
-
-				createElement("Company", receipt.getCompanyName(), receiptElement);
-
-				createElement("Country", receipt.getCompanyCountry(), receiptElement);
-
-				createElement("City", receipt.getCompanyCity(), receiptElement);
-
-				createElement("Street", receipt.getCompanyStreet(), receiptElement);
-
-				createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
-			}
-			
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-
-			DOMSource domSource = new DOMSource(document);
-			//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-			StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
-			transformer.transform(domSource, streamResult);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.print(e.toString());
-
-			//TODO : Move to gui
-			//JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου/n"+e.toString(), "Σφάλμα", JOptionPane.ERROR_MESSAGE);
+			createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
+			createElement("Date", receipt.getPurchaseDate(), receiptElement);
+			createElement("Kind", receipt.getProductType().name(), receiptElement);
+			createElement("Sales", receipt.getTotalSales(), receiptElement);
+			createElement("Items", receipt.getNumberOfItems(), receiptElement);
+			createElement("Company", receipt.getCompanyName(), receiptElement);
+			createElement("Country", receipt.getCompanyCountry(), receiptElement);
+			createElement("City", receipt.getCompanyCity(), receiptElement);
+			createElement("Street", receipt.getCompanyStreet(), receiptElement);
+			createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
 		}
+		
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+
+		DOMSource domSource = new DOMSource(document);
+		//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
+		StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
+		transformer.transform(domSource, streamResult);
+			
+		
 	}
 
 	private Element createElement(String name, String data, Element parent){

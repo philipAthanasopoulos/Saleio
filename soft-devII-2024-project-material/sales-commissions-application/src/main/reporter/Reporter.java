@@ -5,7 +5,6 @@ import main.domain.Associate;
 import java.io.*;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  * @author Philip Athanasopoulos
@@ -17,9 +16,9 @@ import javax.swing.JOptionPane;
 public abstract class Reporter {
 	protected Associate associate;
 	
-	public abstract void composeReportFile(String path) throws IOException; // maybe a better name?
+	public abstract void composeReportFile(String path) throws Exception; // maybe a better name?
 	
-	public void saveFile(){
+	public void saveFile() throws Exception{
 
         //TODO : Get gui outttt
         
@@ -31,18 +30,16 @@ public abstract class Reporter {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File directory = fileChooser.getSelectedFile();
             String path = directory.getAbsolutePath();
-            try {
-            	composeReportFile(path);
-            }catch(IOException e) {
-            	//TODO Do smth when gui is out of here
-            	JOptionPane.showMessageDialog(null, "Πρόβλημα κατά την αποθήκευση του αρχείου", "Σφάλμα", JOptionPane.ERROR_MESSAGE);
-            	e.printStackTrace();
-            }
+            composeReportFile(path);
         }
 	}
 
     public static void main(String[] args){
         Reporter rep = new TXTReporter(new Associate());
-        rep.saveFile();
+        try {
+            rep.saveFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

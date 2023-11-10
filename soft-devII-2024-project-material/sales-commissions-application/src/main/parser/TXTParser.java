@@ -59,14 +59,7 @@ public class TXTParser extends Parser {
 						company
 					);
 				}catch(Exception e){
-					receipt = new Receipt(
-							Integer.parseInt(receiptDataMap.get("Receipt ID")),
-							receiptDataMap.get("Date"),
-							ProductType.INVALID,
-							Double.parseDouble(receiptDataMap.get("Sales")),
-							Integer.parseInt(receiptDataMap.get("Items")),
-							company
-						);
+					throw new BadFileException("File was missing information.");
 				}
 							
 				resultAssociate.addReceipt(receipt);
