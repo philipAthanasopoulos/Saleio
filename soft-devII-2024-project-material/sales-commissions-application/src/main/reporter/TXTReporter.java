@@ -12,7 +12,6 @@ public class TXTReporter extends Reporter {
 
     @Override
     public void composeReportFile(String path) throws IOException{
-        
         BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.txt"));
 
         writeStream.write(String.format("Name: %s%n", associate.getName()));

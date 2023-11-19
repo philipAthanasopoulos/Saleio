@@ -7,18 +7,12 @@ import main.fileAppender.FileAppenderFactory;
 import java.util.*;
 import java.io.File;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 public class ReceiptForm extends JFrame {
 
@@ -225,10 +219,17 @@ public class ReceiptForm extends JFrame {
 				Integer.parseInt(receiptItemNumberTextFiled.getText()),
 				company 
 			);
-			
-			fileAppender.appendReceipt(receipt, associate.getPersonalFile());
-			associate.addReceipt(receipt);
-			dispose();
+			try{
+				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
+				associate.addReceipt(receipt);
+				dispose();
+			} catch (NullPointerException nullPointerException){
+				JOptionPane.showMessageDialog(null, "Associate file not found");
+			} catch (IllegalArgumentException illegalArgumentException){
+				JOptionPane.showMessageDialog(null, "Please fill all the fields correctly");
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
 		});
 		
 		addReceiptButton.setBounds(60, 431, 106, 36);

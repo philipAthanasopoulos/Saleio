@@ -33,94 +33,71 @@ public class FileAppenderXML  extends FileAppender{
     Document document;
 
 	@Override
-    public void appendReceipt(Receipt receipt, File receiptFile) {
-        try {
-            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-            document = documentBuilder.parse(receiptFile);
-            document.getDocumentElement().normalize();
+    public void appendReceipt(Receipt receipt, File receiptFile) throws Exception{
 
-            NodeList receiptsList = document.getElementsByTagName("Receipts");
+        DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+        document = documentBuilder.parse(receiptFile);
+        document.getDocumentElement().normalize();
 
-            Element receiptToAdd = document.createElement("Receipt");
+        NodeList receiptsList = document.getElementsByTagName("Receipts");
+        Element receiptToAdd = document.createElement("Receipt");
 
-            createElement("ReceiptID", receipt.getReceiptID(), receiptToAdd);
+        //TODO: convert to for loop, maybe with getValues(String value) method
+        createElement("ReceiptID", receipt.getReceiptID(), receiptToAdd);
+        createElement("Date", receipt.getPurchaseDate(), receiptToAdd);
+        createElement("Kind", receipt.getProductType().name(), receiptToAdd);
+        createElement("Sales", receipt.getTotalSales(), receiptToAdd);
+        createElement("Items", receipt.getNumberOfItems(), receiptToAdd);
+        createElement("Company", receipt.getCompanyName(), receiptToAdd);
+        createElement("Country", receipt.getCompanyCountry(), receiptToAdd);
+        createElement("City", receipt.getCompanyCity(), receiptToAdd);
+        createElement("Street", receipt.getCompanyStreet(), receiptToAdd);
+        createElement("Number", receipt.getCompanyStreetNumber(), receiptToAdd);
 
-			createElement("Date", receipt.getPurchaseDate(), receiptToAdd);
+        receiptsList.item(0).appendChild(receiptToAdd);
 
-            createElement("Kind", receipt.getProductType().name(), receiptToAdd);
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        DOMSource domSource = new DOMSource(document);
+        StreamResult streamResult = new StreamResult(receiptFile);
+        transformer.transform(domSource, streamResult);
 
-            createElement("Sales", receipt.getTotalSales(), receiptToAdd);
-
-            createElement("Items", receipt.getNumberOfItems(), receiptToAdd);
-
-            createElement("Company", receipt.getCompanyName(), receiptToAdd);
-
-            createElement("Country", receipt.getCompanyCountry(), receiptToAdd);
-
-            createElement("City", receipt.getCompanyCity(), receiptToAdd);
-
-            createElement("Street", receipt.getCompanyStreet(), receiptToAdd);
-
-            createElement("Number", receipt.getCompanyStreetNumber(), receiptToAdd);
-
-            receiptsList.item(0).appendChild(receiptToAdd);
-            
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(receiptFile);
-            transformer.transform(domSource, streamResult);
-
-            cleanBreakLines(receiptFile);
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            //print line of error
-            System.out.println("Line: " + e.getStackTrace()[0].getLineNumber());
-        }
+        cleanBreakLines(receiptFile);
     }
 
     //temporay fix for the new line problem
-    public void cleanBreakLines(File receiptFile) {
-        try {
-            BufferedReader fileReader = new BufferedReader(new FileReader(receiptFile));
-            BufferedWriter fileWriter = new BufferedWriter(new FileWriter(receiptFile.getAbsolutePath() + ".tmp"));
-            String line;
-            while((line = fileReader.readLine()) != null) {
-                if(line.trim().length() > 0) {
-                    fileWriter.write(line + System.getProperty("line.separator"));
-                }
-            }
-            fileReader.close();
-            fileWriter.close();
-            Files.move(Paths.get(receiptFile.getAbsolutePath() + ".tmp"), Paths.get(receiptFile.getAbsolutePath()), StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            // TODO: handle exception
-            System.out.println("Error: " + e.getMessage());
-        }
+    public void cleanBreakLines(File receiptFile) throws Exception {
+        BufferedReader fileReader = new BufferedReader(new FileReader(receiptFile));
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(receiptFile.getAbsolutePath() + ".tmp"));
+        String line;
+
+        while((line = fileReader.readLine()) != null) 
+            if(!line.trim().isEmpty()) 
+                fileWriter.write(line + System.getProperty("line.separator"));
+        
+        fileReader.close();
+        fileWriter.close();
+
+        Files.move(
+            Paths.get(receiptFile.getAbsolutePath() + ".tmp"),
+            Paths.get(receiptFile.getAbsolutePath()),
+            StandardCopyOption.REPLACE_EXISTING
+          );
     }
 
-    private Element createElement(String name, String data, Element parent){
+    private Element createElement(String name, Object data, Element parent){
 		Element retElement = document.createElement(name);
-		if (data != null) retElement.appendChild(document.createTextNode(data));
+        
+        if(data instanceof String) retElement.appendChild(document.createTextNode((String) data));
+        else if (data instanceof Integer) retElement.appendChild(document.createTextNode(String.valueOf(data)));
+        else if (data instanceof Double) retElement.appendChild(document.createTextNode(String.valueOf(data)));
+        
 		if (parent != null) parent.appendChild(retElement);
 		return retElement;
 	}
 
-	private Element createElement(String name, int data, Element parent){
-		Element retElement = document.createElement(name);
-		retElement.appendChild(document.createTextNode(String.valueOf(data)));
-		if (parent != null) parent.appendChild(retElement);
-		return retElement;
-	}
-
-    private Element createElement(String name, double data, Element parent){
-		Element retElement = document.createElement(name);
-		retElement.appendChild(document.createTextNode(String.valueOf(data)));
-		if (parent != null) parent.appendChild(retElement);
-		return retElement;
-	}
 }

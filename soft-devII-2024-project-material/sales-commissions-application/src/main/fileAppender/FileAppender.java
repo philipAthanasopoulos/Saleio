@@ -6,6 +6,6 @@ import java.io.*;
 public abstract class FileAppender {
 	BufferedWriter writer;
 
-    public abstract void appendReceipt(Receipt receipt, File receiptFile);
+    public abstract void appendReceipt(Receipt receipt, File receiptFile) throws Exception;
 }
 

@@ -55,7 +55,8 @@ public class Associate {
 	public void addReceipt(Receipt receipt) {
 		receipts.add(receipt);
 	}	
-	
+
+	//TODO: extract magic numbers
 	public double calculateCommission(){
 		double commission = 0;
 		if( this.calculateTotalSales() > 6000 && this.calculateTotalSales()<= 10000){
@@ -71,8 +72,8 @@ public class Associate {
 	}
 	
 	public boolean isValid() {
-		if (name == null || name.equals("")) return false;
-		if (afm == null || afm.equals("")) return false;
+		if (name == null || name.isEmpty()) return false;
+		if (afm == null || afm.isEmpty()) return false;
 		if (personalFile == null) return false;
 		for(Receipt receipt : receipts) if (!receipt.isValid()) return false;
 		return true;
@@ -120,27 +121,26 @@ public class Associate {
 	}
 	
 	public String getFormattedFile() {
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
-		buffer.append("Name: " + name + "\n")
-				.append("AFM: " + afm + "\n");
+		buffer.append("Name: ").append(name).append("\n")
+				.append("AFM: ").append(afm).append("\n");
 				
-		buffer.append("\n")
-				.append("Receipts: \n")
-				.append("\n");
+		buffer.append("\n").append("Receipts: \n");
 
-		for(Receipt receipt : receipts) buffer.append(receipt.toString() + "\n");
+
+		for(Receipt receipt : receipts) buffer.append(receipt.toString()).append("\n");
 		
 		return buffer.toString();
 	}
 
 	public String getRawFile() throws IOException, FileNotFoundException {
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(personalFile));
 		String line = bufferedReader.readLine();
 
 		while(line != null) {
-			buffer.append(line + "\n");
+			buffer.append(line).append("\n");
 			line = bufferedReader.readLine();
 		}
 

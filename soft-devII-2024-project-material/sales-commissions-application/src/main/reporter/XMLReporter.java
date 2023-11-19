@@ -69,23 +69,14 @@ public class XMLReporter extends Reporter {
 		
 	}
 
-	private Element createElement(String name, String data, Element parent){
+	private Element createElement(String name, Object data, Element parent){
 		Element retElement = document.createElement(name);
-		if (data != null) retElement.appendChild(document.createTextNode(data));
-		if (parent != null) parent.appendChild(retElement);
-		return retElement;
-	}
 
-	private Element createElement(String name, int data, Element parent){
-		Element retElement = document.createElement(name);
-		retElement.appendChild(document.createTextNode(String.valueOf(data)));
-		if (parent != null) parent.appendChild(retElement);
-		return retElement;
-	}
+		if(data instanceof String) retElement.appendChild(document.createTextNode((String) data));
+		else if(data instanceof Integer) retElement.appendChild(document.createTextNode(String.valueOf((Integer) data)));
+		else if(data instanceof Double) retElement.appendChild(document.createTextNode(String.valueOf((Double) data)));
+		else retElement.appendChild(document.createTextNode(""));
 
-	private Element createElement(String name, double data, Element parent){
-		Element retElement = document.createElement(name);
-		retElement.appendChild(document.createTextNode(String.valueOf(data)));
 		if (parent != null) parent.appendChild(retElement);
 		return retElement;
 	}

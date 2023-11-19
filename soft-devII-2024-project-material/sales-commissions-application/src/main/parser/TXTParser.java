@@ -16,7 +16,7 @@ public class TXTParser extends Parser {
 	int ASSOCIATEDATALENGTH = 2;
 
 	@Override
-	public Associate parseAssociateFromFile(File file) throws IOException, BadFileException{
+	public Associate parseAssociateFromFile(File file) throws Exception{
 		Associate resultAssociate = new Associate();
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		Map<String, String> associateDataMap = new LinkedHashMap<String, String>(0);
@@ -27,7 +27,6 @@ public class TXTParser extends Parser {
 		for(int i = 0; i < ASSOCIATEDATALENGTH; i++){
 			line = bufferedReader.readLine();
 			addLineToMap(line, associateDataMap);
-			if(line == null) throw new BadFileException("Empty TXT file");
 		}
 		
 		//read the rest of the lines for receipts
@@ -48,19 +47,14 @@ public class TXTParser extends Parser {
 					address
 				);
 				
-				Receipt receipt;
-				try {
-					receipt = new Receipt(
-						Integer.parseInt(receiptDataMap.get("Receipt ID")),
-						receiptDataMap.get("Date"),
-						ProductType.valueOf(receiptDataMap.get("Kind")),
-						Double.parseDouble(receiptDataMap.get("Sales")),
-						Integer.parseInt(receiptDataMap.get("Items")),
-						company
-					);
-				}catch(Exception e){
-					throw new BadFileException("File was missing information.");
-				}
+				Receipt receipt = new Receipt(
+					Integer.parseInt(receiptDataMap.get("Receipt ID")),
+					receiptDataMap.get("Date"),
+					ProductType.valueOf(receiptDataMap.get("Kind")),
+					Double.parseDouble(receiptDataMap.get("Sales")),
+					Integer.parseInt(receiptDataMap.get("Items")),
+					company
+				);
 							
 				resultAssociate.addReceipt(receipt);
 				receiptDataMap.clear();
@@ -71,12 +65,10 @@ public class TXTParser extends Parser {
 		resultAssociate.setName(associateDataMap.get("Name"));
 		resultAssociate.setAfm(associateDataMap.get("AFM"));
 		resultAssociate.setPersonalFile(file);
-		if(!resultAssociate.isValid()) throw new BadFileException("File was missing information.");
 		return resultAssociate;
 	}
 
-	public void addLineToMap(String line, Map<String, String> map){
-		try {
+	public void addLineToMap(String line, Map<String, String> map) throws Exception{
 			String[] data = line.split(":");
 			if(data.length == VALIDLINELENGTH) {
 				map.put(
@@ -84,8 +76,5 @@ public class TXTParser extends Parser {
 					data[DATAVALUE].trim()
 				);
 			}
-		}catch(NullPointerException e) {
-			throw new BadFileException("Empty TXT file.");
-		}
 	}
 }

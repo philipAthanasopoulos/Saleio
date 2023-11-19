@@ -145,3 +145,14 @@ Country: USA
 City: New York
 Street: str
 Number: 18
+
+Receipt ID: 1001
+Date: 11-19-2023
+Kind: Skirts
+Sales: 10000.0
+Items: 100
+Company: Zara inc
+Country: Greece
+City: Athens
+Street: Xalandri
+Number: 11

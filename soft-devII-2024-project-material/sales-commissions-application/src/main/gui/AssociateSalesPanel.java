@@ -160,4 +160,16 @@ public class AssociateSalesPanel extends JPanel {
 		for(ActionListener actionListener : actionListeners)
 			actionListener.actionPerformed(null);
 	}
+
+	public ArrayList<String> getTableTags() {
+		ArrayList<String> tableTags = new ArrayList<>();
+		for(int i = 0; i < tableModel.getRowCount(); i++) tableTags.add((String) tableModel.getValueAt(i, 0));
+		return tableTags;
+	}
+
+	public ArrayList<String> getTableValues() {
+		ArrayList<String> tableValues = new ArrayList<>();
+		for(int i = 0; i < tableModel.getRowCount(); i++) tableValues.add((String) tableModel.getValueAt(i, 1));
+		return tableValues;
+	}
 }

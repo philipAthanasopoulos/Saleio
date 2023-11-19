@@ -32,12 +32,6 @@ public class CellRenderer extends DefaultListCellRenderer {
                 g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 25, 25);
                 super.paintComponent(g);
             }
-            
-            // @Override
-            // protected void paintBorder(Graphics g) {
-            //     g.setColor(getForeground());
-            //     g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 25, 25);
-            // }
         };
         panel.add(label, BorderLayout.CENTER);
         panel.setOpaque(false);

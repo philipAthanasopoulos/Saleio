@@ -22,12 +22,12 @@ public class Receipt {
 	}
 	
 	public boolean isValid() {
-		if (purchaseDate == null || purchaseDate.equals("")) return false;
+		if (purchaseDate == null || purchaseDate.isEmpty()) return false;
 		if (productType == null || productType == ProductType.INVALID) return false;
-		if (getCompanyName() == null || getCompanyName().equals("")) return false;
-		if (getCompanyCountry() == null || getCompanyCountry().equals("")) return false;
-		if (getCompanyCity() == null || getCompanyCity().equals("")) return false;
-		if (getCompanyStreet() == null || getCompanyStreet().equals("")) return false;
+		if (getCompanyName() == null || getCompanyName().isEmpty()) return false;
+		if (getCompanyCountry() == null || getCompanyCountry().isEmpty()) return false;
+		if (getCompanyCity() == null || getCompanyCity().isEmpty()) return false;
+		if (getCompanyStreet() == null || getCompanyStreet().isEmpty()) return false;
 		return true;
 	}
 

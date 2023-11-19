@@ -16,22 +16,22 @@ import javax.swing.JFileChooser;
 public abstract class Reporter {
 	protected Associate associate;
 	
-	public abstract void composeReportFile(String path) throws Exception; // maybe a better name?
+	public abstract void composeReportFile(String path) throws Exception; 
 	
 	public void saveFile() throws Exception{
 
         //TODO : Get gui outttt
         
-		JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Choose a directory to save your file: ");
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int userSelection = fileChooser.showSaveDialog(null);
+		// JFileChooser fileChooser = new JFileChooser();
+        // fileChooser.setDialogTitle("Choose a directory to save your file: ");
+        // fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        // int userSelection = fileChooser.showSaveDialog(null);
 
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File directory = fileChooser.getSelectedFile();
-            String path = directory.getAbsolutePath();
-            composeReportFile(path);
-        }
+        // if (userSelection == JFileChooser.APPROVE_OPTION) {
+        //     File directory = fileChooser.getSelectedFile();
+        //     String path = directory.getAbsolutePath();
+        //     composeReportFile(path);
+        // }
 	}
 
     public static void main(String[] args){

@@ -2,12 +2,13 @@ package main.gui;
 
 import main.domain.*;
 import main.parser.*;
-import main.reporter.*;
+import main.newReporter.*;
 
 import java.util.List;
 import java.util.ArrayList;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -42,26 +43,26 @@ import java.awt.Cursor;
 */
 public class AppGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private String applicationName = "Sales Commissions Application";
-	private List<Associate> associates; 
-	private JList<String> associatesList = new JList<String>(); // change name
-	private JFileChooser fileChooser;
-	private JLabel associateFileLabel;
-	private JTextPane associateFileTextPane;
+	private final JPanel contentPane;
+	private final String applicationName = "Sales Commissions Application";
+	private final List<Associate> associates;
+	private final JList<String> associatesList = new JList<String>(); // change name
+	private final JFileChooser fileChooser;
+	private final JLabel associateFileLabel;
+	private final JTextPane associateFileTextPane;
 	private AssociateSalesPanel associateSalesPanel;
-	private JButton importFileButton;
-	private JButton addReceiptButton;
-	private JButton exportFileButton;
-	private GradientPanel gradientPanel;
-	private GradientPanel sidePanel;
-	private JPanel actionsButtonsPanel;
-	private JScrollPane associateFileScrollPane;
-	private JLabel associateListLabel;
-	private JLabel appTitleLabel;
-	private JScrollPane associatesScrollPane;
-	private JButton displayRawFileButton;
-	private JButton displayFormatedFileButton;
+	private final JButton importFileButton;
+	private final JButton addReceiptButton;
+	private final JButton exportFileButton;
+	private final GradientPanel gradientPanel;
+	private final GradientPanel sidePanel;
+	private final JPanel actionsButtonsPanel;
+	private final JScrollPane associateFileScrollPane;
+	private final JLabel associateListLabel;
+	private final JLabel appTitleLabel;
+	private final JScrollPane associatesScrollPane;
+	private final JButton displayRawFileButton;
+	private final JButton displayFormatedFileButton;
 	DefaultListModel<String> listModel = new DefaultListModel<>();
 
 	public void runApp() {
@@ -169,6 +170,7 @@ public class AppGUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception exception) {
 					JOptionPane.showMessageDialog(null, "File not supported", "Error", JOptionPane.ERROR_MESSAGE);
+					exception.printStackTrace();
 				}
 			}
 		});
@@ -215,11 +217,20 @@ public class AppGUI extends JFrame {
 			FileType[] fileTypes = FileType.values();
 			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ReporterFactory reporterFactory = new ReporterFactory();
-			Reporter reporter = reporterFactory.getReporter(fileTypes[choice].name() , getSelectedAssociate());
+			Reporter reporter = reporterFactory.getReporter(fileTypes[choice].name());
 			try {
-				reporter.saveFile();
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Choose a directory to save your file: ");
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int userSelection = fileChooser.showSaveDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File directory = fileChooser.getSelectedFile();
+					reporter.createAndSaveReport(directory, associateSalesPanel.getTableTags(), associateSalesPanel.getTableValues());
+				}
 			} catch (Exception saveFileException) {
 				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
+				saveFileException.printStackTrace();
 			}
 		});
 		actionsButtonsPanel.add(exportFileButton);
@@ -259,7 +270,15 @@ public class AppGUI extends JFrame {
 		displayRawFileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		displayRawFileButton.setBounds(1394, 165, 69, 32);
 		displayRawFileButton.addActionListener((e) -> {
-			associateFileTextPane.setText(getSelectedAssociate().getRawFile());
+			String rawFileContent;
+			try {
+				rawFileContent = getSelectedAssociate().getRawFile();
+				associateFileTextPane.setText(rawFileContent);
+			} catch (FileNotFoundException FileNotFoundException) {
+				JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
+			} catch (IOException ioException) {
+				JOptionPane.showMessageDialog(null, "Error reading file", "Error", JOptionPane.ERROR_MESSAGE);
+			}
 		});
 		contentPane.add(displayRawFileButton);
 		
@@ -292,7 +311,13 @@ public class AppGUI extends JFrame {
 	}
 	
 	public Associate getSelectedAssociate(){
-		return associates.get(associatesList.getSelectedIndex());
+		Associate result = null;
+		try {
+			result = associates.get(associatesList.getSelectedIndex());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "No associate selected.\nPlease select one , or import a new file first", "Error", JOptionPane.NO_OPTION);
+		}
+		return result;
 	}
 	
 	private void setDisplayedFileIcon(String fileExtension) {

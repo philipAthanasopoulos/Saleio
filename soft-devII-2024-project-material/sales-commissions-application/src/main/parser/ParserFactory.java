@@ -8,6 +8,8 @@ public class ParserFactory {
                 return new TXTParser();
             case "xml":
                 return new XMLParser();
+            case "html":
+                return new HTMLParser();
             default:
                 throw new IllegalArgumentException("File type not supported");
         }

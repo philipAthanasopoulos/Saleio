@@ -7,20 +7,11 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 public class FileAppenderTXT extends FileAppender{
-
 	@Override
-	public void appendReceipt(Receipt receipt, File receiptFile) {
-		try {
-			writer = new BufferedWriter(new FileWriter(receiptFile, true));
-			writer.write("\n");
-			writer.write(receipt.toString());
-			writer.close();
-		} catch (NullPointerException fileNotFoundException) {
-			System.out.println("File not found");
-			fileNotFoundException.printStackTrace();
-		} catch (Exception e) {
-			System.out.println("Something went wrong");
-			e.printStackTrace();
-		}
+	public void appendReceipt(Receipt receipt, File receiptFile) throws Exception{
+		writer = new BufferedWriter(new FileWriter(receiptFile, true));
+		writer.write("\n");
+		writer.write(receipt.toString());
+		writer.close();
     }
 }
