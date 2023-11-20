@@ -40,6 +40,7 @@ public class HTMLReporer extends Reporter{
                     "  font-family: arial, sans-serif;\n" +
                     "  border-collapse: collapse;\n" +
                     "  width: 100%;\n" +
+                    
                     "}\n" +
                     "\n" +
                     "td, th {\n" +
