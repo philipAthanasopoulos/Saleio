@@ -166,6 +166,7 @@ public class AppGUI extends JFrame {
 					listModel.addElement(newAssociate.getName());
 				} catch (NumberFormatException wrongNumberFormat) {
 					JOptionPane.showMessageDialog(null, "Some numerical values may be words", "Error", JOptionPane.ERROR_MESSAGE);
+					wrongNumberFormat.printStackTrace();
 				} catch (IOException ioException) {
 					JOptionPane.showMessageDialog(null, "File not found", "Error", JOptionPane.ERROR_MESSAGE);
 				} catch (Exception exception) {
@@ -328,6 +329,8 @@ public class AppGUI extends JFrame {
 			case "xml":
 				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-code-file-35.png")));
 				break;
+			case "html":
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-html-35.png")));
 			default:
 				break;
 		}
