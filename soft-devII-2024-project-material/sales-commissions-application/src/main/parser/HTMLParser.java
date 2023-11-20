@@ -11,11 +11,9 @@ import java.util.LinkedHashMap;
 
 public class HTMLParser extends Parser{
 
-    private int RECEIPT_DATA_SIZE = 10;
-
     @Override
     public Associate parseAssociateFromFile(File file) throws Exception {
-        Associate resultAssociate = new Associate();
+        Associate resultAssociate;
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         Map<String, String> associateData = new LinkedHashMap<>(0);
         Map<String, String> receiptData = new LinkedHashMap<>(0);
@@ -26,24 +24,24 @@ public class HTMLParser extends Parser{
         while((line = bufferedReader.readLine()) != null){
 
                 if(line.contains("<h1>"))
-                    associateData.put("Name", line.replaceAll("<h1>", "").replaceAll("</h1>", ""));
+                    associateData.put("Name", line.replaceAll("<h1>", "").replaceAll("</h1>", "").trim());
                 if(line.contains("<p>"))
-                    associateData.put("AFM", line.replaceAll("<p>", "").replaceAll("</p>", ""));
+                    associateData.put("AFM", line.replaceAll("<p>", "").replaceAll("</p>", "").trim());
                 if(line.contains("<th>"))
                     while(line.contains("<th>")){
-                        String key = line.replaceAll("<th>", "").replaceAll("</th>", "");
+                        String key = line.replaceAll("<th>", "").replaceAll("</th>", "").trim();
                         receiptData.put(key, "");
                         line = bufferedReader.readLine();
                     }
 
                     
-                    if(line.contains("<td>")){
-                        for(int i = 0; i < RECEIPT_DATA_SIZE; i++){
-                            String value = (line.replaceAll("<td>", "").replaceAll("</td>", ""));
-                            receiptData.put(receiptData.keySet().toArray()[i].toString(), value);
-                            line = bufferedReader.readLine();
-                            System.out.println(value);
-                        }
+                if(line.contains("<td>")){
+                    for(String key : receiptData.keySet()){
+                        String value = line.replaceAll("<td>", "").replaceAll("</td>", "").trim();
+                        receiptData.put(key, value);
+                        line = bufferedReader.readLine();
+                    }
+                
 
                     Address address = new Address(
                         receiptData.get("Country"),
@@ -51,6 +49,7 @@ public class HTMLParser extends Parser{
                         receiptData.get("Street"),
                         Integer.parseInt(receiptData.get("Number"))
                     );
+
 
                     Company company = new Company(
                         receiptData.get("Company"),
@@ -66,8 +65,8 @@ public class HTMLParser extends Parser{
                         company
                     );
 
-                    receipts.add(receipt);
-                    receiptData.clear();
+                        receipts.add(receipt);
+                        clearValues(receiptData);
                 }
         }
         
@@ -80,5 +79,12 @@ public class HTMLParser extends Parser{
         
         bufferedReader.close();
         return resultAssociate;
+    }
+
+
+    public void clearValues(Map<String, String> map){
+        for(String key : map.keySet()){
+            map.put(key, "");
+        }
     }
 }

@@ -1,6 +1,5 @@
 package main.newReporter;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -15,42 +14,39 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
-
 public class XMLReporter extends Reporter{
 
     private Document document;
 
     @Override
     public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
-        DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-		document = documentBuilder.newDocument();
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        document = documentBuilder.newDocument();
 
-        // root element
-        Element root = document.createElement("Report");
-        document.appendChild(root);
+        Element rootElement = createElement("Report", null, null);
+        document.appendChild(rootElement);
 
+        
         cleanTagNames(tags);
-
-        for(int i = 0; i < tags.size(); i++){
-            createElement(tags.get(i), values.get(i), root);
+        for(String tag : tags){
+            createElement(tag, values.get(tags.indexOf(tag)), rootElement);
         }
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource domSource = new DOMSource(document);
 
-		DOMSource domSource = new DOMSource(document);
-		//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-		StreamResult streamResult = new StreamResult(new File(directory + "/Report.xml"));
-		transformer.transform(domSource, streamResult);
+        StreamResult streamResult = new StreamResult(new File(directory + "/Report.xml"));
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.transform(domSource, streamResult);
     }
 
     private void cleanTagNames(ArrayList<String> tags){
-        for(String tag : tags){
-            tag = tag.replaceAll(" ", "");
+        for(int i = 0; i < tags.size(); i++){
+            String tag = tags.get(i);
+            tag = tag.trim().replaceAll(" ", "_");
+            tags.set(i, tag);
         }
     }
 
