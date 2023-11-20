@@ -2,12 +2,13 @@ package main.newReporter;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TXTReporter extends Reporter{
     
     @Override
-    public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception{
+    public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws IOException{
         File reportFile = new File(directory, "report.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(new java.io.FileWriter(reportFile));
 
