@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 
-public class HTMLReporer extends Reporter{
+public class HTMLReporter extends Reporter{
         @Override
         public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
             StringBuilder stringBuilder = new StringBuilder();

@@ -238,7 +238,7 @@ public class AppGUI extends JFrame {
 		
 		appTitleLabel = new JLabel("");
 		appTitleLabel.setIconTextGap(0);
-		appTitleLabel.setIcon(new ImageIcon("C:\\Users\\Philip\\Downloads\\Sale.io (3).png"));
+		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/Sale.io.png")));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
 		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		appTitleLabel.setBounds(0, 0, 322, 147);

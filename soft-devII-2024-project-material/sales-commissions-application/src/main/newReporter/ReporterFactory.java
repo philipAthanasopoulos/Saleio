@@ -8,7 +8,7 @@ public class ReporterFactory {
             case "xml":
                 return new XMLReporter();
             case "html":
-                return new HTMLReporer();
+                return new HTMLReporter();
             default:
                 throw new IllegalArgumentException("File type not supported");
         }
