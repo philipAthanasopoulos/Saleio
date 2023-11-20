@@ -1,18 +1,20 @@
-package main.reporter;
+package main.converter;
 
 import java.io.*;
 
 import main.domain.*;
 
-public class TXTReporter extends Reporter {
+
+public class TXTConverter extends Converter {
 	
-	public TXTReporter(Associate associate){
+	public TXTConverter(Associate associate){
 		this.associate = associate;
 	}
 
     @Override
-    public void composeReportFile(String path) throws IOException{
-        BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.txt"));
+    public File convertFile(String path) throws IOException{
+        File resultFile = new File(path, "report.txt");
+        BufferedWriter writeStream = new BufferedWriter(new FileWriter(resultFile));
 
         writeStream.write(String.format("Name: %s%n", associate.getName()));
         writeStream.write(String.format("AFM: %s%n%n", associate.getAfm()));
@@ -22,5 +24,7 @@ public class TXTReporter extends Reporter {
             writeStream.write(receipt.toString()+"\n");
         
         writeStream.close();
+
+        return resultFile;
     }
 }

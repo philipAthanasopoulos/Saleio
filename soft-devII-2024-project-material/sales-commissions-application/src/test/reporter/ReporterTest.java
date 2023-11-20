@@ -11,13 +11,13 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import main.domain.*;
-import main.reporter.*;
+import main.converter.*;
 import main.parser.*;
 
 public class ReporterTest {
 	
-	Reporter reporterTXT;
-	Reporter reporterXML;
+	Converter reporterTXT;
+	Converter reporterXML;
 	File testFile;
 	File txt;
 	File xml;
@@ -48,20 +48,20 @@ public class ReporterTest {
 	@Test
 	public void testComposeReportFile() {
 		//Rainy day scenarios
-		reporterTXT = new TXTReporter(associateTXT);
-		reporterXML = new XMLReporter(associateXML);
+		reporterTXT = new TXTConverter(associateTXT);
+		reporterXML = new XMLConverter(associateXML);
 		
-		assertThrows(IOException.class, () -> reporterTXT.composeReportFile(txt.getPath()));
+		assertThrows(IOException.class, () -> reporterTXT.convertFile(txt.getPath()));
 		//TODO fix reporterXML
 		//assertThrows(IOException.class, () -> reporterXML.composeReportFile(xml.getPath()));
 		
 		//Happy day scenarios
-		reporterTXT = new TXTReporter(associateTXT);
-		reporterXML = new XMLReporter(associateXML);
+		reporterTXT = new TXTConverter(associateTXT);
+		reporterXML = new XMLConverter(associateXML);
 		
 		try {
-			reporterTXT.composeReportFile(txt.getParent());
-			reporterXML.composeReportFile(xml.getParent());
+			reporterTXT.convertFile(txt.getParent());
+			reporterXML.convertFile(xml.getParent());
 		}catch(IOException e) {
 			fail("EException not supposed to be thrown");
 		}

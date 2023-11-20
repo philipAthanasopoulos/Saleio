@@ -1,4 +1,4 @@
-package main.reporter;
+package main.converter;
 
 import java.io.*;
 
@@ -6,20 +6,20 @@ import main.domain.*;
 
 import main.parser.*;
 
-public class HTMLReporter extends Reporter{
+public class HTMLConverter extends Converter {
 
     final String TAB = "\t";
 
     StringBuilder stringBuilder; 
 
-    public HTMLReporter(Associate associate) {
+    public HTMLConverter(Associate associate) {
         this.associate = associate;
 
         stringBuilder = new StringBuilder();
     }
 
 
-    public void composeReportFile(String path) throws IOException{
+    public File convertFile(String path) throws IOException{
 
         stringBuilder.append("<!DOCTYPE html>\n");
         stringBuilder.append("<html lang=\"en\">\n");
@@ -30,7 +30,8 @@ public class HTMLReporter extends Reporter{
 
         stringBuilder.append("</html>\n");
 
-        exportNewFile(path);
+        File resultFile = exportNewFile(path);
+        return resultFile;
     }
 
     private void writeHead(String title){
@@ -117,14 +118,16 @@ public class HTMLReporter extends Reporter{
         stringBuilder.append(TAB + TAB + "</tr>\n");
     }
 
-    private void exportNewFile(String path) throws IOException{
+    private File exportNewFile(String path) throws IOException{
 
-        BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.html"));
+        File resultFile = new File(path + "/Report.html");
+        BufferedWriter writeStream = new BufferedWriter(new FileWriter(resultFile));
 
         writeStream.write(stringBuilder.toString());
 
         writeStream.close();
 
+        return resultFile;
     }
 
 
@@ -142,12 +145,12 @@ public class HTMLReporter extends Reporter{
             return;
         }
 
-        ReporterFactory rf = new ReporterFactory();
+        ConverterFactory rf = new ConverterFactory();
 
-        Reporter html = rf.getReporter("html", tester);
+        Converter html = rf.getConverter("html", tester);
 
         try{
-            html.composeReportFile(dir+"\\out");
+            html.convertFile(dir+"\\out");
         }catch(Exception e){
             System.out.println(e.toString());
         }

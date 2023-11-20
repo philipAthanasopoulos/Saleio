@@ -1,4 +1,4 @@
-package main.newReporter;
+package main.reporter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class HTMLReporter extends Reporter{
         @Override
-        public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
+        public File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("<html>\n");
             stringBuilder.append("<head>\n");
@@ -29,9 +29,12 @@ public class HTMLReporter extends Reporter{
             stringBuilder.append("</body>\n");
             stringBuilder.append("</html>\n");
 
-            FileWriter fileWriter = new FileWriter(directory + "/Report.html");
+            File resultFile = new File(directory + "/Report.html");
+            FileWriter fileWriter = new FileWriter(resultFile);
             fileWriter.write(stringBuilder.toString());
             fileWriter.close();
+
+            return resultFile;
         }
 
         public String getStyle(){

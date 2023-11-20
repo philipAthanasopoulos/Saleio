@@ -2,7 +2,8 @@ package main.gui;
 
 import main.domain.*;
 import main.parser.*;
-import main.newReporter.*;
+import main.reporter.*;
+import main.converter.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Desktop;
 
 /**
  * The App class is the main class of the application. It is responsible for
@@ -53,7 +55,7 @@ public class AppGUI extends JFrame {
 	private AssociateSalesPanel associateSalesPanel;
 	private final JButton importFileButton;
 	private final JButton addReceiptButton;
-	private final JButton exportFileButton;
+	private final JButton generateReportButton;
 	private final GradientPanel gradientPanel;
 	private final GradientPanel sidePanel;
 	private final JPanel actionsButtonsPanel;
@@ -64,6 +66,7 @@ public class AppGUI extends JFrame {
 	private final JButton displayRawFileButton;
 	private final JButton displayFormatedFileButton;
 	DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JButton convertFileButton;
 
 	public void runApp() {
 		EventQueue.invokeLater(() -> {
@@ -202,19 +205,20 @@ public class AppGUI extends JFrame {
 		});
 		actionsButtonsPanel.add(addReceiptButton);
 		
-		exportFileButton = new JButton("Export as");
-		exportFileButton.setFocusable(false);
-		exportFileButton.setFocusTraversalKeysEnabled(false);
-		exportFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		exportFileButton.setIconTextGap(10);
-		exportFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		exportFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-send-file-30.png")));
-		exportFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
-		exportFileButton.setBorder(null);
-		exportFileButton.setForeground(new Color(255, 255, 255));
-		exportFileButton.setBackground(new Color(0, 128, 128));
-		exportFileButton.setOpaque(false);
-		exportFileButton.addActionListener((e) -> {
+		generateReportButton = new JButton("Generate report");
+		
+		generateReportButton.setFocusable(false);
+		generateReportButton.setFocusTraversalKeysEnabled(false);
+		generateReportButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		generateReportButton.setIconTextGap(10);
+		generateReportButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		generateReportButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-download-pie-chart-report-35.png")));
+		generateReportButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+		generateReportButton.setBorder(null);
+		generateReportButton.setForeground(new Color(255, 255, 255));
+		generateReportButton.setBackground(new Color(0, 128, 128));
+		generateReportButton.setOpaque(false);
+		generateReportButton.addActionListener((e) -> {
 			FileType[] fileTypes = FileType.values();
 			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ReporterFactory reporterFactory = new ReporterFactory();
@@ -227,14 +231,55 @@ public class AppGUI extends JFrame {
 
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					File directory = fileChooser.getSelectedFile();
-					reporter.createAndSaveReport(directory, associateSalesPanel.getTableTags(), associateSalesPanel.getTableValues());
+					File reportFile = reporter.generateReport(directory, associateSalesPanel.getTableTags(), associateSalesPanel.getTableValues());
+					openFile(reportFile);
 				}
 			} catch (Exception saveFileException) {
 				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
 				saveFileException.printStackTrace();
 			}
+			
 		});
-		actionsButtonsPanel.add(exportFileButton);
+		
+		actionsButtonsPanel.add(generateReportButton);
+		
+		convertFileButton = new JButton("Convert file");
+		convertFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		convertFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-convert-35.png")));
+		convertFileButton.setOpaque(false);
+		convertFileButton.setIconTextGap(10);
+		convertFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		convertFileButton.setForeground(Color.WHITE);
+		convertFileButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+		convertFileButton.setFocusable(false);
+		convertFileButton.setFocusTraversalKeysEnabled(false);
+		convertFileButton.setBorder(null);
+		convertFileButton.setBackground(new Color(0, 128, 128));
+		//TODO: convert file method should receive 2 arguments, file to convert and where to save it
+		convertFileButton.addActionListener((e) -> {
+			FileType[] fileTypes = FileType.values();
+			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
+			ConverterFactory converterFactory = new ConverterFactory();
+			Converter converter = converterFactory.getConverter(fileTypes[choice].name(), getSelectedAssociate());
+			try {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Choose a directory to save your file: ");
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int userSelection = fileChooser.showSaveDialog(null);
+
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File directory = fileChooser.getSelectedFile();
+					File reportFile = converter.convertFile(directory.getAbsolutePath());
+					openFile(reportFile);
+				}
+			} catch (Exception saveFileException) {
+				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
+				saveFileException.printStackTrace();
+			}
+			
+			
+		});
+		actionsButtonsPanel.add(convertFileButton);
 		
 		appTitleLabel = new JLabel("");
 		appTitleLabel.setIconTextGap(0);
@@ -333,6 +378,14 @@ public class AppGUI extends JFrame {
 				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-html-35.png")));
 			default:
 				break;
+		}
+	}
+
+	public void openFile(File file) {
+		try {
+			Desktop.getDesktop().open(file);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

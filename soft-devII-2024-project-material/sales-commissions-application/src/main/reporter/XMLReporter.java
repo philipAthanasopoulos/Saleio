@@ -1,4 +1,4 @@
-package main.newReporter;
+package main.reporter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class XMLReporter extends Reporter{
     private Document document;
 
     @Override
-    public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
+    public File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.newDocument();
@@ -37,9 +37,12 @@ public class XMLReporter extends Reporter{
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource domSource = new DOMSource(document);
 
-        StreamResult streamResult = new StreamResult(new File(directory + "/Report.xml"));
+        File resultFile = new File(directory + "/Report.xml");
+        StreamResult streamResult = new StreamResult(resultFile);
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.transform(domSource, streamResult);
+
+        return resultFile;
     }
 
     private void cleanTagNames(ArrayList<String> tags){

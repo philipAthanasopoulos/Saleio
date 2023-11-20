@@ -1,4 +1,4 @@
-package main.reporter;
+package main.converter;
 
 import java.io.File;
 
@@ -17,17 +17,17 @@ import javax.xml.transform.stream.StreamResult;
 
 import main.domain.Associate;
 
-public class XMLReporter extends Reporter {
+public class XMLConverter extends Converter {
 
 	Document document;
 		
-	public XMLReporter(Associate associate){
+	public XMLConverter(Associate associate){
 		this.associate = associate;
 		document = null;
 	}	
 
 	@Override
-	public void composeReportFile(String path) throws Exception {
+	public File convertFile(String path) throws Exception {
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 		document = documentBuilder.newDocument();
@@ -63,10 +63,11 @@ public class XMLReporter extends Reporter {
 
 		DOMSource domSource = new DOMSource(document);
 		//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-		StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
+		File resultFile = new File(path + "/Report.xml");
+		StreamResult streamResult = new StreamResult(resultFile);
 		transformer.transform(domSource, streamResult);
 			
-		
+		return resultFile;
 	}
 
 	private Element createElement(String name, Object data, Element parent){

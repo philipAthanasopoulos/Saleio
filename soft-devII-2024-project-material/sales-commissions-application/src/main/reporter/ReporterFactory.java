@@ -1,4 +1,4 @@
-package main.newReporter;
+package main.reporter;
 
 public class ReporterFactory {
     public Reporter getReporter(String fileType) {

@@ -1,22 +1,20 @@
-package main.reporter;
+package main.converter;
+
+import java.io.File;
 
 import main.domain.Associate;
 
-import java.io.*;
-
-import javax.swing.JFileChooser;
-
 /**
  * @author Philip Athanasopoulos
- * The Reporter class is an abstract class that is used to compose reports
+ * The Converter class is an abstract class that is used to compose reports
  * for the sales of an associate in various formats (txt, xml, etc.).
  * @param associate The associate whose sales are to be reported.
  */
 
-public abstract class Reporter {
+public abstract class Converter {
 	protected Associate associate;
 	
-	public abstract void composeReportFile(String path) throws Exception; 
+	public abstract File convertFile(String path) throws Exception;
 	
 	public void saveFile() throws Exception{
 
@@ -35,7 +33,7 @@ public abstract class Reporter {
 	}
 
     public static void main(String[] args){
-        Reporter rep = new TXTReporter(new Associate());
+        Converter rep = new TXTConverter(new Associate());
         try {
             rep.saveFile();
         } catch (Exception e) {
