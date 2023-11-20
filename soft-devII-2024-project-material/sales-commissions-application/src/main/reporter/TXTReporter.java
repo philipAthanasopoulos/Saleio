@@ -1,26 +1,22 @@
-package main.reporter;
+package main.newReporter;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-import main.domain.*;
-
-public class TXTReporter extends Reporter {
-	
-	public TXTReporter(Associate associate){
-		this.associate = associate;
-	}
-
+public class TXTReporter extends Reporter{
+    
     @Override
-    public void composeReportFile(String path) throws IOException{
-        BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.txt"));
+    public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws IOException{
+        File reportFile = new File(directory, "report.txt");
+        BufferedWriter bufferedWriter = new BufferedWriter(new java.io.FileWriter(reportFile));
 
-        writeStream.write(String.format("Name: %s%n", associate.getName()));
-        writeStream.write(String.format("AFM: %s%n%n", associate.getAfm()));
-        writeStream.write(String.format("Receipts: %n%n"));
-        
-        for(Receipt receipt : associate.getReceipts())
-            writeStream.write(receipt.toString()+"\n");
-        
-        writeStream.close();
+        for(String tag : tags){
+            bufferedWriter.write(tag + ": " + values.get(tags.indexOf(tag)));
+            bufferedWriter.newLine();
+        }
+
+        bufferedWriter.close();
     }
 }

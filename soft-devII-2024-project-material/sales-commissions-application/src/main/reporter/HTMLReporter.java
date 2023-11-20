@@ -1,155 +1,57 @@
-package main.reporter;
+package main.newReporter;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
 
-import main.domain.*;
-
-import main.parser.*;
 
 public class HTMLReporter extends Reporter{
+        @Override
+        public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("<html>\n");
+            stringBuilder.append("<head>\n");
+            stringBuilder.append(getStyle());
+            stringBuilder.append("</head>\n");
+            stringBuilder.append("<body>\n");
+            stringBuilder.append("<table>\n");
+            for(String tag : tags) {
+                stringBuilder.append("<tr>\n");
+                stringBuilder.append("<td>");
+                stringBuilder.append(tag);
+                stringBuilder.append("</td>\n");
+                stringBuilder.append("<td>");
+                stringBuilder.append(values.get(tags.indexOf(tag)));
+                stringBuilder.append("</td>\n");
+                stringBuilder.append("</tr>\n");
+            }
+            stringBuilder.append("</table>\n");
+            stringBuilder.append("</body>\n");
+            stringBuilder.append("</html>\n");
 
-    final String TAB = "\t";
-
-    StringBuilder stringBuilder; 
-
-    public HTMLReporter(Associate associate) {
-        this.associate = associate;
-
-        stringBuilder = new StringBuilder();
-    }
-
-
-    public void composeReportFile(String path) throws IOException{
-
-        stringBuilder.append("<!DOCTYPE html>\n");
-        stringBuilder.append("<html lang=\"en\">\n");
-
-        writeHead("Receipts");
-
-        writeBody();
-
-        stringBuilder.append("</html>\n");
-
-        exportNewFile(path);
-    }
-
-    private void writeHead(String title){
-
-        stringBuilder.append("<head>\n");
-        stringBuilder.append(TAB + "<meta charset=\"UTF-8\">\n");
-        stringBuilder.append(TAB + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-        stringBuilder.append(TAB + "<title>" + title + "</title>\n");
-
-        writeStyle();
-
-        stringBuilder.append("</head>");
-    }
-
-    private void writeStyle(){
-        stringBuilder.append(TAB + "<style>\n");
-        stringBuilder.append(TAB + TAB + "table, th, td {\n");
-        stringBuilder.append(TAB + TAB + TAB + "border: 1px solid black;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + TAB + "table {\n");
-        stringBuilder.append(TAB + TAB + TAB + "border-collapse: collapse;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + TAB + "th, td {\n");
-        stringBuilder.append(TAB + TAB + TAB + "padding: 5px;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + "</style>\n");
-    }
-
-    private void writeBody(){
-        stringBuilder.append("<body>\n");
-
-        stringBuilder.append(TAB + "<h1>" + associate.getName() + "</h1>\n");
-        stringBuilder.append(TAB + "<p>" + "AFM: " + associate.getAfm() + "</p>\n");
-
-        writeTable();
-
-
-        stringBuilder.append("</body>\n");
-    }
-
-    private void writeTable() {
-        stringBuilder.append(TAB + "<table border=\"1\">\n");
-
-        writeTableHeaders();
-
-        for (Receipt receipt : associate.getReceipts()){
-            writeTableRaw(receipt);
+            FileWriter fileWriter = new FileWriter(directory + "/Report.html");
+            fileWriter.write(stringBuilder.toString());
+            fileWriter.close();
         }
 
-        stringBuilder.append(TAB + "</table>\n");
-    }
-
-    private void writeTableHeaders(){
-        stringBuilder.append(TAB + TAB + "<tr>\n");
-
-        stringBuilder.append(TAB + TAB + TAB + "<th>Receipt ID</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Date</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Kind</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Sales</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Items</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Company</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Country</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>City</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Street</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Number</th>\n");
-
-        stringBuilder.append(TAB + TAB + "</tr>\n");
-    }
-
-    private void writeTableRaw(Receipt receipt){
-        stringBuilder.append(TAB + TAB + "<tr>\n");
-
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getReceiptID() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getPurchaseDate() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getProductType() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getTotalSales() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getNumberOfItems() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyName() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCountry() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCity() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreet() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreetNumber() + "</th>\n");
-
-        stringBuilder.append(TAB + TAB + "</tr>\n");
-    }
-
-    private void exportNewFile(String path) throws IOException{
-
-        BufferedWriter writeStream = new BufferedWriter(new FileWriter(path + "/Report.html"));
-
-        writeStream.write(stringBuilder.toString());
-
-        writeStream.close();
-
-    }
-
-
-    public static void main(String[] args){
-        ParserFactory pf = new ParserFactory();
-        Parser p = pf.getParser("txt");
-
-        String dir = System.getProperty("user.dir");
-        Associate tester;
-
-        try{
-            tester = p.parseAssociateFromFile(new File(dir + "\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt"));
-        }catch(Exception e){
-            e.printStackTrace();
-            return;
+        public String getStyle(){
+            return "<style>\n" +
+                    "table {\n" +
+                    "  font-family: arial, sans-serif;\n" +
+                    "  border-collapse: collapse;\n" +
+                    "  width: 100%;\n" +
+                    
+                    "}\n" +
+                    "\n" +
+                    "td, th {\n" +
+                    "  border: 1px solid #dddddd;\n" +
+                    "  text-align: left;\n" +
+                    "  padding: 8px;\n" +
+                    "}\n" +
+                    "\n" +
+                    "tr:nth-child(even) {\n" +
+                    "  background-color: #dddddd;\n" +
+                    "}\n" +
+                    "</style>";
         }
-
-        ReporterFactory rf = new ReporterFactory();
-
-        Reporter html = rf.getReporter("html", tester);
-
-        try{
-            html.composeReportFile(dir+"\\out");
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-    }
 }

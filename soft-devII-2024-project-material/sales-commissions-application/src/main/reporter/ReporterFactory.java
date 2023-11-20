@@ -1,16 +1,14 @@
-package main.reporter;
-
-import main.domain.Associate;
+package main.newReporter;
 
 public class ReporterFactory {
-    public Reporter getReporter(String fileType , Associate associate) {
+    public Reporter getReporter(String fileType) {
         switch(fileType) {
             case "txt":
-                return new TXTReporter(associate);
+                return new TXTReporter();
             case "xml":
-                return new XMLReporter(associate);
+                return new XMLReporter();
             case "html":
-                return new HTMLReporter(associate);
+                return new HTMLReporter();
             default:
                 throw new IllegalArgumentException("File type not supported");
         }

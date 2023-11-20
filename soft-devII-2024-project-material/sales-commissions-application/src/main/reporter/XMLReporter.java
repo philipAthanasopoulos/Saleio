@@ -1,8 +1,7 @@
-package main.reporter;
+package main.newReporter;
 
 import java.io.File;
-
-import main.domain.*;
+import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,70 +14,51 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import main.domain.Associate;
+public class XMLReporter extends Reporter{
 
-public class XMLReporter extends Reporter {
+    private Document document;
 
-	Document document;
-		
-	public XMLReporter(Associate associate){
-		this.associate = associate;
-		document = null;
-	}	
+    @Override
+    public void createAndSaveReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        document = documentBuilder.newDocument();
 
-	@Override
-	public void composeReportFile(String path) throws Exception {
-		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-		document = documentBuilder.newDocument();
+        Element rootElement = createElement("Report", null, null);
+        document.appendChild(rootElement);
 
-		// root element
-		Element agentElem = document.createElement("Agent");
-		document.appendChild(agentElem);
-		
-		createElement("Name", associate.getName(), agentElem);
-		createElement("AFM", associate.getAfm(), agentElem);
-		
-		Element receipts = createElement("Receipts", null, agentElem);
-		
-		for (Receipt receipt : associate.getReceipts()){
-			Element receiptElement = createElement("Receipt", null, receipts);
+        
+        cleanTagNames(tags);
+        for(String tag : tags){
+            createElement(tag, values.get(tags.indexOf(tag)), rootElement);
+        }
 
-			createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
-			createElement("Date", receipt.getPurchaseDate(), receiptElement);
-			createElement("Kind", receipt.getProductType().name(), receiptElement);
-			createElement("Sales", receipt.getTotalSales(), receiptElement);
-			createElement("Items", receipt.getNumberOfItems(), receiptElement);
-			createElement("Company", receipt.getCompanyName(), receiptElement);
-			createElement("Country", receipt.getCompanyCountry(), receiptElement);
-			createElement("City", receipt.getCompanyCity(), receiptElement);
-			createElement("Street", receipt.getCompanyStreet(), receiptElement);
-			createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
-		}
-		
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource domSource = new DOMSource(document);
 
-		DOMSource domSource = new DOMSource(document);
-		//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-		StreamResult streamResult = new StreamResult(new File(path + "/Report.xml"));
-		transformer.transform(domSource, streamResult);
-			
-		
-	}
+        StreamResult streamResult = new StreamResult(new File(directory + "/Report.xml"));
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.transform(domSource, streamResult);
+    }
 
-	private Element createElement(String name, Object data, Element parent){
+    private void cleanTagNames(ArrayList<String> tags){
+        for(int i = 0; i < tags.size(); i++){
+            String tag = tags.get(i);
+            tag = tag.trim().replaceAll(" ", "_");
+            tags.set(i, tag);
+        }
+    }
+
+    private Element createElement(String name, Object data, Element parent){
 		Element retElement = document.createElement(name);
 
-		if(data instanceof String) retElement.appendChild(document.createTextNode((String) data));
-		else if(data instanceof Integer) retElement.appendChild(document.createTextNode(String.valueOf((Integer) data)));
-		else if(data instanceof Double) retElement.appendChild(document.createTextNode(String.valueOf((Double) data)));
-		else retElement.appendChild(document.createTextNode(""));
+        if(data != null)
+            if(data instanceof String) retElement.appendChild(document.createTextNode((String) data));
+            else if(data instanceof Integer) retElement.appendChild(document.createTextNode(String.valueOf((Integer) data)));
+            else if(data instanceof Double) retElement.appendChild(document.createTextNode(String.valueOf((Double) data)));
 
 		if (parent != null) parent.appendChild(retElement);
 		return retElement;
 	}
 }
-
