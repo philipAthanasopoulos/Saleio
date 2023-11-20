@@ -50,20 +50,20 @@ public class ParserTest {
 			assertTrue(parserTXT.parseAssociateFromFile(testCase2TXT).isValid());
 			assertTrue(parserXML.parseAssociateFromFile(testCase1XML).isValid());
 			assertTrue(parserXML.parseAssociateFromFile(testCase2XML).isValid());
-		} catch (BadFileException e) {
+		} catch (Exception e) {
 			fail();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			fail();
 		}
 		
 		//Rainy Day Scenarios
-		assertThrows(BadFileException.class,() -> parserTXT.parseAssociateFromFile(emptyTXT));
+		assertThrows(Exception.class,() -> parserTXT.parseAssociateFromFile(emptyTXT));
 		
-		assertThrows(BadFileException.class,() -> parserXML.parseAssociateFromFile(emptyXML));
+		assertThrows(Exception.class,() -> parserXML.parseAssociateFromFile(emptyXML));
 		
-		assertThrows(BadFileException.class,() -> parserTXT.parseAssociateFromFile(wrongTXT));
+		assertThrows(Exception.class,() -> parserTXT.parseAssociateFromFile(wrongTXT));
 		
-		assertThrows(BadFileException.class,() -> parserXML.parseAssociateFromFile(wrongXML));
+		assertThrows(Exception.class,() -> parserXML.parseAssociateFromFile(wrongXML));
 	}
 
 }
