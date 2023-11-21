@@ -156,3 +156,47 @@ Country: Greece
 City: Athens
 Street: Xalandri
 Number: 11
+
+Receipt ID: 52
+Date: 11-04-2002
+Kind: Coats
+Sales: 10000.0
+Items: 10
+Company: Gucci
+Country: Greece
+City: Athens
+Street: Omonia
+Number: 22
+
+Receipt ID: 2345
+Date: 2345
+Kind: Coats
+Sales: 234543.0
+Items: 42354235
+Company: 3245
+Country: 234
+City: 2342345
+Street: 2345
+Number: 2345
+
+Receipt ID: 1
+Date: 
+Kind: Coats
+Sales: 1.0
+Items: 1
+Company: 
+Country: 
+City: 
+Street: 
+Number: 1
+
+Receipt ID: 23
+Date: 
+Kind: Shirts
+Sales: 100000.0
+Items: 11
+Company: 
+Country: 
+City: 
+Street: 
+Number: 1

@@ -202,6 +202,15 @@ public class AppGUI extends JFrame {
 			ReceiptForm receiptForm = new ReceiptForm(getSelectedAssociate());
 			receiptForm.setLocationRelativeTo(null);
 			receiptForm.setVisible(true);
+			System.out.println("receipt form opened");
+			//if receipt form is disposed, update the associate sales panel
+			receiptForm.addWindowListener(new java.awt.event.WindowAdapter() {
+			    @Override
+			    public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+			    	associateSalesPanel.setAssociate(getSelectedAssociate());
+					displayFormatedFileButton.doClick(0);
+			    }
+			});
 		});
 		actionsButtonsPanel.add(addReceiptButton);
 		

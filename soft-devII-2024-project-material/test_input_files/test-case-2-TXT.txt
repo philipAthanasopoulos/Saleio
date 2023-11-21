@@ -35,3 +35,14 @@ Country: Kazakstan
 City: Ubal
 Street: hazehazel
 Number: 32
+
+Receipt ID: 1
+Date: 
+Kind: Coats
+Sales: 1.0
+Items: 1
+Company: 
+Country: 
+City: 
+Street: 
+Number: 1
