@@ -42,18 +42,7 @@ public class XMLConverter extends Converter {
 		Element receipts = createElement("Receipts", null, agentElem);
 		
 		for (Receipt receipt : associate.getReceipts()){
-			Element receiptElement = createElement("Receipt", null, receipts);
-
-			createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
-			createElement("Date", receipt.getPurchaseDate(), receiptElement);
-			createElement("Kind", receipt.getProductType().name(), receiptElement);
-			createElement("Sales", receipt.getTotalSales(), receiptElement);
-			createElement("Items", receipt.getNumberOfItems(), receiptElement);
-			createElement("Company", receipt.getCompanyName(), receiptElement);
-			createElement("Country", receipt.getCompanyCountry(), receiptElement);
-			createElement("City", receipt.getCompanyCity(), receiptElement);
-			createElement("Street", receipt.getCompanyStreet(), receiptElement);
-			createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
+			writeReceipt(receipt, receipts);
 		}
 		
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -68,6 +57,21 @@ public class XMLConverter extends Converter {
 		transformer.transform(domSource, streamResult);
 			
 		return resultFile;
+	}
+
+	private void writeReceipt(Receipt receipt, Element parent){
+			Element receiptElement = createElement("Receipt", null, parent);
+
+			createElement("ReceiptID", receipt.getReceiptID(), receiptElement);
+			createElement("Date", receipt.getPurchaseDate(), receiptElement);
+			createElement("Kind", receipt.getProductType().name(), receiptElement);
+			createElement("Sales", receipt.getTotalSales(), receiptElement);
+			createElement("Items", receipt.getNumberOfItems(), receiptElement);
+			createElement("Company", receipt.getCompanyName(), receiptElement);
+			createElement("Country", receipt.getCompanyCountry(), receiptElement);
+			createElement("City", receipt.getCompanyCity(), receiptElement);
+			createElement("Street", receipt.getCompanyStreet(), receiptElement);
+			createElement("Number", receipt.getCompanyStreetNumber(), receiptElement);
 	}
 
 	private Element createElement(String name, Object data, Element parent){
