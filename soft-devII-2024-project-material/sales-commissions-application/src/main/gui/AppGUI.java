@@ -35,6 +35,7 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Graphics;
 
 /**
  * The App class is the main class of the application. It is responsible for
@@ -247,7 +248,6 @@ public class AppGUI extends JFrame {
 				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
 				saveFileException.printStackTrace();
 			}
-			
 		});
 		
 		actionsButtonsPanel.add(generateReportButton);
