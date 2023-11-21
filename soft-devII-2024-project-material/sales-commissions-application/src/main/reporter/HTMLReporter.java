@@ -9,25 +9,26 @@ public class HTMLReporter extends Reporter{
         @Override
         public File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("<html>\n");
-            stringBuilder.append("<head>\n");
-            stringBuilder.append(getStyle());
-            stringBuilder.append("</head>\n");
-            stringBuilder.append("<body>\n");
-            stringBuilder.append("<table>\n");
-            for(String tag : tags) {
-                stringBuilder.append("<tr>\n");
-                stringBuilder.append("<td>");
-                stringBuilder.append(tag);
-                stringBuilder.append("</td>\n");
-                stringBuilder.append("<td>");
-                stringBuilder.append(values.get(tags.indexOf(tag)));
-                stringBuilder.append("</td>\n");
-                stringBuilder.append("</tr>\n");
-            }
-            stringBuilder.append("</table>\n");
-            stringBuilder.append("</body>\n");
-            stringBuilder.append("</html>\n");
+            stringBuilder.append("<html>\n")
+                         .append("<head>\n")
+                         .append(getStyle())
+                         .append("</head>\n")
+                         .append("<body>\n")
+                         .append("<table>\n");
+                         
+            for(String tag : tags) 
+                stringBuilder.append("<tr>\n")
+                             .append("<td>")
+                             .append(tag)
+                             .append("</td>\n")
+                             .append("<td>")
+                             .append(values.get(tags.indexOf(tag)))
+                             .append("</tr>\n")
+                             .append("</td>\n");
+                
+            stringBuilder.append("</table>\n")
+                         .append("</body>\n")
+                         .append("</html>\n");
 
             File resultFile = new File(directory + "/Report.html");
             FileWriter fileWriter = new FileWriter(resultFile);

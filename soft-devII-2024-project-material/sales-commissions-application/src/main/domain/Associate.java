@@ -3,9 +3,6 @@ package main.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.parser.Parser;
-import main.parser.ParserFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -157,19 +154,4 @@ public class Associate {
 
 		return productTypes;
 	}
-
-	public static void main(String[] args) {
-		File file = new File("C:\\Users\\Philip\\Desktop\\UOI\\SD2\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt");
-		ParserFactory parserFactory = new ParserFactory();
-		Parser parser = parserFactory.getParser("text/plain");
-		try {
-			Associate associate =  parser.parseAssociateFromFile(file);
-			System.out.println(associate.getReceipts().get(0).toString());
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }

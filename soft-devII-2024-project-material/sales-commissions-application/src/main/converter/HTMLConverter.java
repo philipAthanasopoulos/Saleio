@@ -7,150 +7,120 @@ import main.domain.*;
 import main.parser.*;
 
 public class HTMLConverter extends Converter {
-
     final String TAB = "\t";
-
     StringBuilder stringBuilder; 
 
     public HTMLConverter(Associate associate) {
         this.associate = associate;
-
         stringBuilder = new StringBuilder();
     }
 
-
     public File convertFile(String path) throws IOException{
-
-        stringBuilder.append("<!DOCTYPE html>\n");
-        stringBuilder.append("<html lang=\"en\">\n");
-
-        writeHead("Receipts");
-
-        writeBody();
-
+        stringBuilder.append("<!DOCTYPE html>\n")
+                     .append("<html lang=\"en\">\n");
+        addHead("Receipts");
+        addBody();
         stringBuilder.append("</html>\n");
 
         File resultFile = exportNewFile(path);
         return resultFile;
     }
 
-    private void writeHead(String title){
-
-        stringBuilder.append("<head>\n");
-        stringBuilder.append(TAB + "<meta charset=\"UTF-8\">\n");
-        stringBuilder.append(TAB + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-        stringBuilder.append(TAB + "<title>" + title + "</title>\n");
-
-        writeStyle();
-
+    private void addHead(String title){
+        stringBuilder.append("<head>\n")
+                     .append(TAB + "<meta charset=\"UTF-8\">\n")
+                     .append(TAB + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
+                     .append(TAB + "<title>" + title + "</title>\n");
+        addStyle();
         stringBuilder.append("</head>");
     }
 
-    private void writeStyle(){
-        stringBuilder.append(TAB + "<style>\n");
-        stringBuilder.append(TAB + TAB + "table, th, td {\n");
-        stringBuilder.append(TAB + TAB + TAB + "border: 1px solid black;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + TAB + "table {\n");
-        stringBuilder.append(TAB + TAB + TAB + "border-collapse: collapse;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + TAB + "th, td {\n");
-        stringBuilder.append(TAB + TAB + TAB + "padding: 5px;\n");
-        stringBuilder.append(TAB + TAB + "}\n");
-        stringBuilder.append(TAB + "</style>\n");
+    private void addStyle(){
+        stringBuilder.append(TAB + "<style>\n")
+                     .append(TAB + TAB + "table, th, td {\n")
+                     .append(TAB + TAB + TAB + "border: 1px solid black;\n")
+                     .append(TAB + TAB + "}\n")
+                     .append(TAB + TAB + "table {\n")
+                     .append(TAB + TAB + TAB + "border-collapse: collapse;\n")
+                     .append(TAB + TAB + "}\n")
+                     .append(TAB + TAB + "th, td {\n")
+                     .append(TAB + "</style>\n")
+                     .append(TAB + TAB + TAB + "padding: 5px;\n")
+                     .append(TAB + TAB + "}\n");
     }
 
-    private void writeBody(){
-        stringBuilder.append("<body>\n");
-
-        stringBuilder.append(TAB + "<h1>" + associate.getName() + "</h1>\n");
-        stringBuilder.append(TAB + "<p>" + "AFM: " + associate.getAfm() + "</p>\n");
-
-        writeTable();
-
-
+    private void addBody(){
+        String name = associate.getName();
+        stringBuilder.append("<body>\n")
+                     .append(TAB + "<h1>" + name + "</h1>\n")
+                     .append(TAB + "<p>" + "AFM: " + name + "</p>\n");
+        addTable();
         stringBuilder.append("</body>\n");
     }
 
-    private void writeTable() {
+    private void addTable() {
         stringBuilder.append(TAB + "<table border=\"1\">\n");
-
-        writeTableHeaders();
-
-        for (Receipt receipt : associate.getReceipts()){
-            writeTableRaw(receipt);
-        }
-
+        addTableHeaders();
+        for (Receipt receipt : associate.getReceipts()) addTableRaw(receipt);
         stringBuilder.append(TAB + "</table>\n");
     }
 
-    private void writeTableHeaders(){
-        stringBuilder.append(TAB + TAB + "<tr>\n");
-
-        stringBuilder.append(TAB + TAB + TAB + "<th>Receipt ID</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Date</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Kind</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Sales</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Items</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Company</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Country</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>City</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Street</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>Number</th>\n");
-
-        stringBuilder.append(TAB + TAB + "</tr>\n");
+    private void addTableHeaders(){
+        stringBuilder.append(TAB + TAB + "<tr>\n")
+                     .append(TAB + TAB + TAB + "<th>Receipt ID</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Date</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Kind</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Sales</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Items</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Company</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Country</th>\n")
+                     .append(TAB + TAB + TAB + "<th>City</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Street</th>\n")
+                     .append(TAB + TAB + TAB + "<th>Number</th>\n")
+                     .append(TAB + TAB + "</tr>\n");
     }
 
-    private void writeTableRaw(Receipt receipt){
-        stringBuilder.append(TAB + TAB + "<tr>\n");
-
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getReceiptID() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getPurchaseDate() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getProductType() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getTotalSales() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getNumberOfItems() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyName() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCountry() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCity() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreet() + "</th>\n");
-        stringBuilder.append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreetNumber() + "</th>\n");
-
-        stringBuilder.append(TAB + TAB + "</tr>\n");
+    private void addTableRaw(Receipt receipt){
+        stringBuilder.append(TAB + TAB + "<tr>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getReceiptID() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getPurchaseDate() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getProductType() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getTotalSales() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getNumberOfItems() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyName() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCountry() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCity() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreet() + "</th>\n")
+                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreetNumber() + "</th>\n")
+                     .append(TAB + TAB + "</tr>\n");
     }
 
     private File exportNewFile(String path) throws IOException{
-
         File resultFile = new File(path + "/Report.html");
         BufferedWriter writeStream = new BufferedWriter(new FileWriter(resultFile));
-
         writeStream.write(stringBuilder.toString());
-
         writeStream.close();
-
         return resultFile;
     }
 
-
     public static void main(String[] args){
-        ParserFactory pf = new ParserFactory();
-        Parser p = pf.getParser("txt");
-
-        String dir = System.getProperty("user.dir");
-        Associate tester;
+        ParserFactory parserFactory = new ParserFactory();
+        Parser parser = parserFactory.getParser("txt");
+        String directory = System.getProperty("user.dir");
+        Associate associate;
 
         try{
-            tester = p.parseAssociateFromFile(new File(dir + "\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt"));
+            associate = parser.parseAssociateFromFile(new File(directory + "\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt"));
         }catch(Exception e){
             e.printStackTrace();
             return;
         }
 
-        ConverterFactory rf = new ConverterFactory();
-
-        Converter html = rf.getConverter("html", tester);
+        ConverterFactory converterFactory = new ConverterFactory();
+        Converter htmlConverter = converterFactory.getConverter("html", associate);
 
         try{
-            html.convertFile(dir+"\\out");
+            htmlConverter.convertFile(directory+"\\out");
         }catch(Exception e){
             System.out.println(e.toString());
         }
