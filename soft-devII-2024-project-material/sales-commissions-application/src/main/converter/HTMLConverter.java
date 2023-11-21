@@ -44,9 +44,9 @@ public class HTMLConverter extends Converter {
                      .append(TAB + TAB + TAB + "border-collapse: collapse;\n")
                      .append(TAB + TAB + "}\n")
                      .append(TAB + TAB + "th, td {\n")
-                     .append(TAB + "</style>\n")
                      .append(TAB + TAB + TAB + "padding: 5px;\n")
-                     .append(TAB + TAB + "}\n");
+                     .append(TAB + TAB + "}\n")
+                     .append(TAB + "</style>\n");
     }
 
     private void addBody(){
