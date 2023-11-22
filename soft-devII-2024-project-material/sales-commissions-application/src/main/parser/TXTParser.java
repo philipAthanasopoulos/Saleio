@@ -13,16 +13,9 @@ public class TXTParser extends Parser {
 	int RECEIPTDATALENGTH = 10;
 	int VALIDLINELENGTH = 2;
 	int ASSOCIATEDATALENGTH = 2;
-
-	@Override
-	public Associate parseAssociateFromFile(File file) throws Exception{
-		Associate resultAssociate = new Associate();
-		setAssociateInfo(file, resultAssociate);
-		setAssociateReceipts(file, resultAssociate);
-		return resultAssociate;
-	}
 	
-	private void setAssociateReceipts(File file, Associate resultAssociate)
+	@Override
+	protected void setAssociateReceipts(File file, Associate resultAssociate)
 	throws FileNotFoundException, IOException, Exception {
 		Map<String, String> receiptDataMap = new LinkedHashMap<String, String>(0);
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -76,7 +69,8 @@ public class TXTParser extends Parser {
 		return receipt;
 	}
 				
-	private void setAssociateInfo(File file, Associate resultAssociate) 
+	@Override
+	protected void setAssociateInfo(File file, Associate resultAssociate) 
 	throws FileNotFoundException, IOException, Exception {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 		Map<String, String> associateDataMap = new LinkedHashMap<String, String>(0);

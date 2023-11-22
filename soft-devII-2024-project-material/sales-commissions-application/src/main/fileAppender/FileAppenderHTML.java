@@ -3,7 +3,6 @@ package main.fileAppender;
 import java.io.*;
 
 import main.domain.*;
-import main.parser.*;
 
 public class FileAppenderHTML extends FileAppender {
 

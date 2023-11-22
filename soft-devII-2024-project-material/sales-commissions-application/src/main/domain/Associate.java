@@ -118,17 +118,18 @@ public class Associate {
 	}
 	
 	public String getFormattedFile() {
-		StringBuilder buffer = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 
-		buffer.append("Name: ").append(name).append("\n")
-				.append("AFM: ").append(afm).append("\n");
-				
-		buffer.append("\n").append("Receipts: \n");
+		stringBuilder.append("Name: ").append(name).append("\n")
+				     .append("AFM: ").append(afm).append("\n")
+				     .append("\n")
+					 .append("Receipts: \n")
+					 .append("\n");
 
-
-		for(Receipt receipt : receipts) buffer.append(receipt.toString()).append("\n");
+		for(Receipt receipt : receipts) stringBuilder.append(receipt.toString())
+													 .append("\n");
 		
-		return buffer.toString();
+		return stringBuilder.toString();
 	}
 
 	public String getRawFile() throws IOException, FileNotFoundException {
