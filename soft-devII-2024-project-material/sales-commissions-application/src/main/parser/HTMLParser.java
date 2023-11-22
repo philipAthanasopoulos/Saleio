@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+//TODO: extract methods , same way as in TXTParser
 public class HTMLParser extends Parser{
 
     @Override

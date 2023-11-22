@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+//TODO: extract methods , same way as in TXTParser
 public class XMLParser extends Parser {
  
     @Override
