@@ -1,7 +1,6 @@
 package main.reporter;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,8 +22,7 @@ public class TXTReporter extends Reporter{
         for (ArrayList<String> row : data) {
             for (String cell : row) {
                 writer.write(cell);
-                writer.write(":");
-                writer.write("\t");
+                writer.write(" ");
             }
             writer.newLine();
         }

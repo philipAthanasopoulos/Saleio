@@ -46,15 +46,17 @@ public class XMLParser extends Parser {
                     getDataFromElement(extractedAttribute,"Company"),
                     address
                 );
-                
-                receipts.add(new Receipt(
+
+                Receipt receipt = new Receipt(
                     Integer.parseInt(getDataFromElement(extractedAttribute, "ReceiptID")),
                     getDataFromElement(extractedAttribute, "Date"),
                     ProductType.valueOf(getDataFromElement(extractedAttribute, "Kind")),
                     Double.parseDouble(getDataFromElement(extractedAttribute, "Sales")),
                     Integer.parseInt(getDataFromElement(extractedAttribute, "Items")),
                     company
-                ));
+                );
+                
+                receipts.add(receipt);
             }
         }
         resultAssociate.setReceipts(receipts);
@@ -63,8 +65,6 @@ public class XMLParser extends Parser {
     @Override
     protected void setAssociateInfo(File file, Associate resultAssociate) throws Exception{
         Document document = getDocumentFromFile(file);
-        
-        //Get name and AFM
         String name = getDataFromDocument(document, "Name");
         String afm = getDataFromDocument(document, "AFM");
         resultAssociate.setName(name);

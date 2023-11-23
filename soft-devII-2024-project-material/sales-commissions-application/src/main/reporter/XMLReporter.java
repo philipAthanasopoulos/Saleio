@@ -63,14 +63,13 @@ public class XMLReporter extends Reporter{
         }
     }
 
-    private Element createElement(String name, ArrayList<String> data, Element parent){
+    private Element createElement(String name, ArrayList<String> row, Element parent){
 		Element retElement = document.createElement(name);
-        if(data == null && parent == null) return retElement;
+        if(row == null && parent == null) return retElement;
         
+        row.remove(0);
         String content = "";
-        for(String cell: data){
-            content += cell + ": ";
-        }
+        for(String cell: row) content += cell + " ";
         
         retElement.appendChild(document.createTextNode(content));
 		parent.appendChild(retElement);

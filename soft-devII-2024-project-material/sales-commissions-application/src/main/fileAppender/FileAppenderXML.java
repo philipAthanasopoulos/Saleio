@@ -1,7 +1,5 @@
 package main.fileAppender;
 
-import main.domain.Receipt;
-
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,41 +30,45 @@ import org.w3c.dom.NodeList;
 public class FileAppenderXML  extends FileAppender{
     Document document;
 
-	@Override
-    public void appendReceipt(Receipt receipt, File receiptFile) throws Exception{
-
+    @Override
+    protected void openFile() throws Exception {
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-        document = documentBuilder.parse(receiptFile);
+        document = documentBuilder.parse(fileToAppend);
         document.getDocumentElement().normalize();
+    }
 
+    @Override
+    protected void writeReceipt() throws Exception {
         NodeList receiptsList = document.getElementsByTagName("Receipts");
-        Element receiptToAdd = document.createElement("Receipt");
+        Element receiptToAppendElement = document.createElement("Receipt");
 
-        //TODO: convert to for loop, maybe with getValues(String value) method
-        createElement("ReceiptID", receipt.getReceiptID(), receiptToAdd);
-        createElement("Date", receipt.getPurchaseDate(), receiptToAdd);
-        createElement("Kind", receipt.getProductType().name(), receiptToAdd);
-        createElement("Sales", receipt.getTotalSales(), receiptToAdd);
-        createElement("Items", receipt.getNumberOfItems(), receiptToAdd);
-        createElement("Company", receipt.getCompanyName(), receiptToAdd);
-        createElement("Country", receipt.getCompanyCountry(), receiptToAdd);
-        createElement("City", receipt.getCompanyCity(), receiptToAdd);
-        createElement("Street", receipt.getCompanyStreet(), receiptToAdd);
-        createElement("Number", receipt.getCompanyStreetNumber(), receiptToAdd);
+        createElement("ReceiptID", receiptToAppend.getReceiptID(), receiptToAppendElement);
+        createElement("Date", receiptToAppend.getPurchaseDate(), receiptToAppendElement);
+        createElement("Kind", receiptToAppend.getProductType().name(), receiptToAppendElement);
+        createElement("Sales", receiptToAppend.getTotalSales(), receiptToAppendElement);
+        createElement("Items", receiptToAppend.getNumberOfItems(), receiptToAppendElement);
+        createElement("Company", receiptToAppend.getCompanyName(), receiptToAppendElement);
+        createElement("Country", receiptToAppend.getCompanyCountry(), receiptToAppendElement);
+        createElement("City", receiptToAppend.getCompanyCity(), receiptToAppendElement);
+        createElement("Street", receiptToAppend.getCompanyStreet(), receiptToAppendElement);
+        createElement("Number", receiptToAppend.getCompanyStreetNumber(), receiptToAppendElement);
 
-        receiptsList.item(0).appendChild(receiptToAdd);
+        receiptsList.item(0).appendChild(receiptToAppendElement);
+    }
 
+    @Override
+    protected void closeFile() throws Exception {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
         transformer.setOutputProperty(OutputKeys.METHOD, "xml");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         DOMSource domSource = new DOMSource(document);
-        StreamResult streamResult = new StreamResult(receiptFile);
+        StreamResult streamResult = new StreamResult(fileToAppend);
         transformer.transform(domSource, streamResult);
 
-        cleanBreakLines(receiptFile);
+        cleanBreakLines(fileToAppend);
     }
 
     //temporay fix for the new line problem

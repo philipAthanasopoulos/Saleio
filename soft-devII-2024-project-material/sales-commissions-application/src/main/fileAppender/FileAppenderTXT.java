@@ -7,11 +7,24 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 
 public class FileAppenderTXT extends FileAppender{
+	
+	private FileWriter fileWriter;
+	private BufferedWriter bufferedWriter;
+
 	@Override
-	public void appendReceipt(Receipt receipt, File receiptFile) throws Exception{
-		writer = new BufferedWriter(new FileWriter(receiptFile, true));
-		writer.write("\n");
-		writer.write(receipt.toString());
-		writer.close();
-    }
+	protected void openFile() throws Exception  {
+		fileWriter = new FileWriter(fileToAppend, true);
+		bufferedWriter = new BufferedWriter(fileWriter);
+	}
+
+	@Override
+	protected void writeReceipt() throws Exception {
+		bufferedWriter.write(receiptToAppend.toString());
+		bufferedWriter.newLine();
+	}
+
+	@Override
+	protected void closeFile() throws Exception {
+		bufferedWriter.close();
+	}
 }
