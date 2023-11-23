@@ -3,8 +3,6 @@ package test.parser;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 import org.junit.Before;
 import org.junit.Test;
