@@ -7,6 +7,8 @@ public class FileAppenderFactory {
                 return new FileAppenderTXT();
             case "xml":
                 return new FileAppenderXML();
+            case "html":
+            	return new FileAppenderHTML();
             default:
                 throw new IllegalArgumentException("File type not supported");
         }
