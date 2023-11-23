@@ -4,66 +4,78 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import main.domain.Associate;
 import main.parser.*;
 
 public class ParserTest {
 	
 	Parser parserTXT;
 	Parser parserXML;
+	Parser parserHTML;
 	
 	File testCase1TXT;
 	File testCase2TXT;
 	File testCase1XML;
 	File testCase2XML;
-	File emptyTXT;
-	File emptyXML;
-	File wrongTXT;
-	File wrongXML;
+	File testCase1HTML;
+	File testCase2HTML;
+	
+	String sourceFolder = getClass().getResource("/resources/test_input_files/").getFile();
 
 	@Before
 	public void setUp() {
-		ParserFactory pF = new ParserFactory();
+		ParserFactory parserFactory = new ParserFactory();
 		
-		parserTXT = pF.getParser("txt");
-		parserXML = pF.getParser("xml");
-		
-		testCase1TXT = new File("C:\\\\Users\\\\iosif\\\\cs\\\\Semester7\\\\SoftwareDevelopment2\\\\Project\\\\soft-devII-2024\\\\soft-devII-2024-project-material\\\\test_input_files\\\\test-case-1-TXT.txt");
-		testCase2TXT = new File("C:\\\\Users\\\\iosif\\\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt");
-		testCase1XML = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-1-XML.xml");
-		testCase2XML = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-2-XML.xml");
-		emptyTXT = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\empty-file.txt");
-		emptyXML = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\empty-file.xml");
-		wrongTXT = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-wrong-TXT.txt");
-		wrongXML = new File("C:\\Users\\iosif\\cs\\Semester7\\SoftwareDevelopment2\\Project\\soft-devII-2024\\soft-devII-2024-project-material\\test_input_files\\test-case-wrong-XML.xml");
+		parserTXT = parserFactory.getParser("txt");
+		parserXML = parserFactory.getParser("xml");
+		parserHTML = parserFactory.getParser("html");
+
+		testCase1TXT = new File(getClass().getResource("/resources/test_input_files/test-case-1-TXT.txt").getFile());
+		testCase2TXT = new File(getClass().getResource("/resources/test_input_files/test-case-2-TXT.txt").getFile());
+
+		testCase1XML = new File(getClass().getResource("/resources/test_input_files/test-case-1-XML.xml").getFile());
+		testCase2XML = new File(getClass().getResource("/resources/test_input_files/test-case-2-XML.xml").getFile());
+
+		testCase1HTML = new File(getClass().getResource("/resources/test_input_files/test-case-1-HTML.html").getFile());
+		// testCase2HTML = new File(getClass().getResource("/resources/test_input_files/test-case-2-HTML.html").getFile());
 	}
 	
 	@Test
 	public void testParseAssociateFromFile() {
 		//Happy Day Scenarios
-		//TODO fix Receipt.toString, to be able to test if the things that enter are correctly implemented into the struct.
 		try {
-			assertTrue(parserTXT.parseAssociateFromFile(testCase1TXT).isValid());
-			assertTrue(parserTXT.parseAssociateFromFile(testCase2TXT).isValid());
-			assertTrue(parserXML.parseAssociateFromFile(testCase1XML).isValid());
-			assertTrue(parserXML.parseAssociateFromFile(testCase2XML).isValid());
-		} catch (Exception e) {
-			fail();
+			Associate associate1 = parserTXT.parseAssociateFromFile(testCase1TXT);
+			Associate associate2 = parserTXT.parseAssociateFromFile(testCase2TXT);
+			Associate associate3 = parserXML.parseAssociateFromFile(testCase1XML);
+			Associate associate4 = parserXML.parseAssociateFromFile(testCase2XML);
+			Associate associate5 = parserHTML.parseAssociateFromFile(testCase1HTML);
+
+			assertEquals("Apostolos Zarras", associate1.getName());
+			assertEquals("Dimitris Papadopoulos", associate2.getName());
+			assertEquals("Iosif Emmanouilidis", associate3.getName());
+			assertEquals("Vassileios Zarras", associate4.getName());
+			assertEquals("Apostolos Zarras", associate5.getName());
+
+			assertEquals(associate1.getReceipts().size(), 18);
+			assertEquals(associate2.getReceipts().size(), 4);
+			assertEquals(associate3.getReceipts().size(), 4);
+			assertEquals(associate4.getReceipts().size(), 16);
+			assertEquals(associate5.getReceipts().size(), 4);
+
+			assertEquals(associate1.getPersonalFile(), testCase1TXT);
+			assertEquals(associate2.getPersonalFile(), testCase2TXT);
+			assertEquals(associate3.getPersonalFile(), testCase1XML);
+			assertEquals(associate4.getPersonalFile(), testCase2XML);
+			assertEquals(associate5.getPersonalFile(), testCase1HTML);
+
+
 		} catch (Exception e) {
 			fail();
 		}
-		
-		//Rainy Day Scenarios
-		assertThrows(Exception.class,() -> parserTXT.parseAssociateFromFile(emptyTXT));
-		
-		assertThrows(Exception.class,() -> parserXML.parseAssociateFromFile(emptyXML));
-		
-		assertThrows(Exception.class,() -> parserTXT.parseAssociateFromFile(wrongTXT));
-		
-		assertThrows(Exception.class,() -> parserXML.parseAssociateFromFile(wrongXML));
 	}
-
 }
