@@ -7,18 +7,31 @@ import java.util.ArrayList;
 
 public class TXTReporter extends Reporter{
     
+    BufferedWriter writer;
+
+    public TXTReporter() {
+        this.fileExtension = "txt";
+    }
+
     @Override
-    public File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws IOException{
-        File resultFile = new File(directory, "report.txt");
-        BufferedWriter bufferedWriter = new BufferedWriter(new java.io.FileWriter(resultFile));
+    protected void openFile() throws IOException {
+        writer = new BufferedWriter(new java.io.FileWriter(reportFile));
+    }
 
-        for(String tag : tags){
-            bufferedWriter.write(tag + ": " + values.get(tags.indexOf(tag)));
-            bufferedWriter.newLine();
+    @Override
+    protected void writeReport(ArrayList<ArrayList<String>> data) throws IOException {
+        for (ArrayList<String> row : data) {
+            for (String cell : row) {
+                writer.write(cell);
+                writer.write(":");
+                writer.write("\t");
+            }
+            writer.newLine();
         }
+    }
 
-        bufferedWriter.close();
-
-        return resultFile;
+    @Override
+    protected void closeFile() throws IOException {
+        writer.close();
     }
 }

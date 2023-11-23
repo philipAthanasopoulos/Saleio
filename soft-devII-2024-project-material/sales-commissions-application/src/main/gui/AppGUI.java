@@ -244,8 +244,8 @@ public class AppGUI extends JFrame {
 
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					File directory = fileChooser.getSelectedFile();
-					File reportFile = reporter.generateReport(directory, associateSalesPanel.getTableTags(), associateSalesPanel.getTableValues());
-					openFile(reportFile);
+					reporter.generateReport(directory, getSelectedAssociate(),associateSalesPanel.getTableData());
+					openFile(reporter.getReportFile());
 				}
 			} catch (Exception saveFileException) {
 				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);
@@ -393,7 +393,7 @@ public class AppGUI extends JFrame {
 		}
 	}
 
-	public void openFile(File file) {
+	private void openFile(File file) {
 		try {
 			Desktop.getDesktop().open(file);
 		} catch (IOException e) {

@@ -10,15 +10,24 @@ import java.util.ArrayList;
 public abstract class Reporter {
     File reportFile;
     Associate associate;
-    ArrayList<ProductType> productsToReport;
     String fileExtension;
     
-    public void generateReport(File directory, Associate associate, ArrayList<ProductType> productsToReport) throws Exception {
+    public void generateReport(File directory, Associate associate ,ArrayList<ArrayList<String>> data) throws Exception {
         this.associate = associate;
-        this.productsToReport = productsToReport;
         this.reportFile = new File(directory, associate.getName() + "." + fileExtension);
         openFile();
-        
+        writeReport(data);
+        closeFile();
     };
+
+    protected abstract void openFile() throws Exception;
+
+    protected abstract void writeReport(ArrayList<ArrayList<String>> data) throws Exception;
+
+    protected abstract void closeFile() throws Exception;
+
+    public File getReportFile() {
+        return reportFile;
+    }
 
 }

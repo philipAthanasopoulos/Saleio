@@ -172,4 +172,14 @@ public class AssociateSalesPanel extends JPanel {
 		for(int i = 0; i < tableModel.getRowCount(); i++) tableValues.add((String) tableModel.getValueAt(i, 1));
 		return tableValues;
 	}
+
+	public ArrayList<ArrayList<String>> getTableData() {
+		ArrayList<ArrayList<String>> tableData = new ArrayList<>();
+		for(int i = 0; i < tableModel.getRowCount(); i++) {
+			ArrayList<String> row = new ArrayList<>();
+			for(int j = 0; j < tableModel.getColumnCount(); j++) row.add((String) tableModel.getValueAt(i, j));
+			tableData.add(row);
+		}
+		return tableData;
+	}
 }
