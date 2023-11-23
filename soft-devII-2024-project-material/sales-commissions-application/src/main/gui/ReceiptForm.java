@@ -220,9 +220,7 @@ public class ReceiptForm extends JFrame {
 				company 
 			);
 			try{
-				fileAppender.appendReceipt(receipt, associate.getPersonalFile());
-				associate.addReceipt(receipt);
-				//close the window
+				fileAppender.appendReceipt(receipt, associate);
 				dispose();
 			} catch (NullPointerException nullPointerException){
 				JOptionPane.showMessageDialog(null, "Associate file not found");
