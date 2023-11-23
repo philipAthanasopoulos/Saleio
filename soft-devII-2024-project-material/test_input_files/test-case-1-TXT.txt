@@ -1,0 +1,202 @@
+Name: Apostolos Zarras 
+AFM: 130456093
+
+Receipts:
+
+Receipt ID: 1
+Date: 25/2/2014
+Kind: Coats
+Sales: 2000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 2
+Date: 25/2/2014
+Kind: Coats
+Sales: 4000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 3
+Date: 25/2/2014
+Kind: Shirts
+Sales: 4000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 4
+Date: 25/2/2014
+Kind: Skirts
+Sales: 1000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 5
+Date: 25/2/2014
+Kind: Skirts
+Sales: 1000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 6
+Date: 25/2/2014
+Kind: Trousers
+Sales: 5000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi 
+Number: 10
+
+Receipt ID: 123
+Date: 12/12/2012
+Kind: Skirts
+Sales: 123
+Items: 123
+Company: Company
+Country: Greece
+City: Athens
+Street: Kifisias
+Number: 123
+
+Receipt ID: 1234
+Date: asdf
+Kind: Skirts
+Sales: 1234.0
+Items: 1234
+Company: 1234
+Country: 1234
+City: 1234
+Street: 1324
+Number: 1234
+
+Receipt ID: 23452345
+Date: 87345648765
+Kind: Skirts
+Sales: 2.3452345E7
+Items: 23452345
+Company: Menidi
+Country: Menidi
+City: Menidi
+Street: Menidi
+Number: 1234
+
+Receipt ID: 1234
+Date: 1234
+Kind: Skirts
+Sales: 1234.0
+Items: 1234
+Company: 123
+Country: 1234
+City: 1234
+Street: 1324123
+Number: 12341234
+
+Receipt ID: 435543
+Date: 2345
+Kind: Coats
+Sales: 2345.0
+Items: 2345
+Company: 2345
+Country: 2345
+City: 2345
+Street: 23452345
+Number: 2345
+
+Receipt ID: 43
+Date: 2345
+Kind: Coats
+Sales: 2345.0
+Items: 2345
+Company: 2345
+Country: 2345
+City: 2345
+Street: 2345
+Number: 2345
+
+Receipt ID: 2000
+Date: 11-04-2023
+Kind: Belts
+Sales: 2000.0
+Items: 100
+Company: Google
+Country: USA
+City: New York
+Street: str
+Number: 18
+
+Receipt ID: 1001
+Date: 11-19-2023
+Kind: Skirts
+Sales: 10000.0
+Items: 100
+Company: Zara inc
+Country: Greece
+City: Athens
+Street: Xalandri
+Number: 11
+
+Receipt ID: 52
+Date: 11-04-2002
+Kind: Coats
+Sales: 10000.0
+Items: 10
+Company: Gucci
+Country: Greece
+City: Athens
+Street: Omonia
+Number: 22
+
+Receipt ID: 2345
+Date: 2345
+Kind: Coats
+Sales: 234543.0
+Items: 42354235
+Company: 3245
+Country: 234
+City: 2342345
+Street: 2345
+Number: 2345
+
+Receipt ID: 1
+Date: 
+Kind: Coats
+Sales: 1.0
+Items: 1
+Company: 
+Country: 
+City: 
+Street: 
+Number: 1
+
+Receipt ID: 23
+Date: 
+Kind: Shirts
+Sales: 100000.0
+Items: 11
+Company: 
+Country: 
+City: 
+Street: 
+Number: 1
