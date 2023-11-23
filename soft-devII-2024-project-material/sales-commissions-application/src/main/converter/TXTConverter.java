@@ -8,23 +8,30 @@ import main.domain.*;
 public class TXTConverter extends Converter {
 	
 	public TXTConverter(Associate associate){
-		this.associate = associate;
+        this.extension = "txt";
 	}
 
     @Override
-    public File convertFile(String path) throws IOException{
-        File resultFile = new File(path, "report.txt");
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(resultFile));
-
+    public void writeAssociateInfo(Associate associate) throws IOException{
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(convertedFile));
         bufferedWriter.write(String.format("Name: %s%n", associate.getName()));
         bufferedWriter.write(String.format("AFM: %s%n%n", associate.getAfm()));
+        bufferedWriter.close();
+    }
+
+    @Override
+    public void writeReceipts(Associate associate) throws IOException{
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(convertedFile, true));
         bufferedWriter.write(String.format("Receipts: %n%n"));
         
         for(Receipt receipt : associate.getReceipts())
             bufferedWriter.write(receipt.toString()+"\n");
         
         bufferedWriter.close();
+    }
 
-        return resultFile;
+    @Override
+    public void saveFile() throws IOException{
+        convertedFile.createNewFile();
     }
 }

@@ -20,7 +20,7 @@ public class HTMLParser extends Parser{
             if(line.contains("<h1>"))
                 associateData.put("Name", line.replaceAll("<h1>", "").replaceAll("</h1>", "").trim());
             if(line.contains("<p>"))
-                associateData.put("AFM", line.replaceAll("<p>", "").replaceAll("</p>", "").trim());
+                associateData.put("AFM", line.replaceAll("<p>", "").replaceAll("</p>", "").replaceAll("[a-zA-Z:]","").trim());
         }
 
         resultAssociate.setName(associateData.get("Name"));
