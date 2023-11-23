@@ -6,13 +6,18 @@ import main.domain.*;
 
 import main.parser.*;
 
+//TODO: FIX ME. 
+//      1. The Document library used in XML Converter can also be used here.
+
+//supress implement warning
+@SuppressWarnings("all")
 public class HTMLConverter extends Converter {
     final String TAB = "\t";
     StringBuilder stringBuilder; 
 
-    public HTMLConverter(Associate associate) {
-        this.associate = associate;
+    public HTMLConverter() {
         stringBuilder = new StringBuilder();
+        this.extension = "html";
     }
 
     public File convertFile(String path) throws IOException{
@@ -102,26 +107,5 @@ public class HTMLConverter extends Converter {
         return resultFile;
     }
 
-    public static void main(String[] args){
-        ParserFactory parserFactory = new ParserFactory();
-        Parser parser = parserFactory.getParser("txt");
-        String directory = System.getProperty("user.dir");
-        Associate associate;
-
-        try{
-            associate = parser.parseAssociateFromFile(new File(directory + "\\soft-devII-2024-project-material\\test_input_files\\test-case-2-TXT.txt"));
-        }catch(Exception e){
-            e.printStackTrace();
-            return;
-        }
-
-        ConverterFactory converterFactory = new ConverterFactory();
-        Converter htmlConverter = converterFactory.getConverter("html", associate);
-
-        try{
-            htmlConverter.convertFile(directory+"\\out");
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-    }
+   
 }

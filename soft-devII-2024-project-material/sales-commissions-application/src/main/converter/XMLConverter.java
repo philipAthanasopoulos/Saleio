@@ -21,7 +21,7 @@ public class XMLConverter extends Converter {
 
 	Document document;
 		
-	public XMLConverter(Associate associate){
+	public XMLConverter(){
 		this.extension = "xml";
 	}	
 
@@ -31,6 +31,8 @@ public class XMLConverter extends Converter {
 		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 		document = documentBuilder.newDocument();
 		Element agentElem = document.getDocumentElement();
+		agentElem = document.createElement("Agent");
+		document.appendChild(agentElem);
 		createElement("Name", associate.getName(), agentElem);
 		createElement("AFM", associate.getAfm(), agentElem);
 	}
@@ -40,9 +42,9 @@ public class XMLConverter extends Converter {
 		Element agentElem = document.getDocumentElement();
 		Element receipts = createElement("Receipts", null, agentElem);
 		
-		for (Receipt receipt : associate.getReceipts()){
+		for (Receipt receipt : associate.getReceipts())
 			writeReceipt(receipt, receipts);
-		}
+		
 	}
 
 	@Override
@@ -57,39 +59,6 @@ public class XMLConverter extends Converter {
 		StreamResult streamResult = new StreamResult(convertedFile);
 		transformer.transform(domSource, streamResult);
 	}
-
-	// @Override
-	// public File convertFile(String path) throws Exception {
-	// 	DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-	// 	DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-	// 	document = documentBuilder.newDocument();
-
-	// 	// root element
-	// 	Element agentElem = document.createElement("Agent");
-	// 	document.appendChild(agentElem);
-		
-	// 	createElement("Name", associate.getName(), agentElem);
-	// 	createElement("AFM", associate.getAfm(), agentElem);
-		
-	// 	Element receipts = createElement("Receipts", null, agentElem);
-		
-	// 	for (Receipt receipt : associate.getReceipts()){
-	// 		writeReceipt(receipt, receipts);
-	// 	}
-		
-	// 	TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	// 	Transformer transformer = transformerFactory.newTransformer();
-	// 	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-	// 	transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-
-	// 	DOMSource domSource = new DOMSource(document);
-	// 	//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-	// 	File resultFile = new File(path + "/Report.xml");
-	// 	StreamResult streamResult = new StreamResult(resultFile);
-	// 	transformer.transform(domSource, streamResult);
-			
-	// 	return resultFile;
-	// }
 
 	private void writeReceipt(Receipt receipt, Element parent){
 			Element receiptElement = createElement("Receipt", null, parent);

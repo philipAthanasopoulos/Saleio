@@ -272,7 +272,7 @@ public class AppGUI extends JFrame {
 			FileType[] fileTypes = FileType.values();
 			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ConverterFactory converterFactory = new ConverterFactory();
-			Converter converter = converterFactory.getConverter(fileTypes[choice].name(), getSelectedAssociate());
+			Converter converter = converterFactory.getConverter(fileTypes[choice].name());
 			try {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Choose a directory to save your file: ");

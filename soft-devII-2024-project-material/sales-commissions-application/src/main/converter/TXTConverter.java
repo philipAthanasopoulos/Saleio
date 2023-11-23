@@ -7,7 +7,7 @@ import main.domain.*;
 
 public class TXTConverter extends Converter {
 	
-	public TXTConverter(Associate associate){
+	public TXTConverter(){
         this.extension = "txt";
 	}
 
@@ -32,6 +32,6 @@ public class TXTConverter extends Converter {
 
     @Override
     public void saveFile() throws IOException{
-        convertedFile.createNewFile();
+        // convertedFile.createNewFile();
     }
 }

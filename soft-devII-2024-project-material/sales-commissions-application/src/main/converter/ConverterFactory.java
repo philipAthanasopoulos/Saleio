@@ -1,16 +1,14 @@
 package main.converter;
 
-import main.domain.Associate;
-
 public class ConverterFactory {
-    public Converter getConverter(String fileType , Associate associate) {
+    public Converter getConverter(String fileType) {
         switch(fileType) {
             case "txt":
-                return new TXTConverter(associate);
+                return new TXTConverter();
             case "xml":
-                return new XMLConverter(associate);
+                return new XMLConverter();
             case "html":
-                return new HTMLConverter(associate);
+                return new HTMLConverter();
             default:
                 throw new IllegalArgumentException("File type not supported");
         }
