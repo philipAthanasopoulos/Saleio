@@ -21,9 +21,8 @@ public class HTMLConverter extends Converter {
         addHead("Receipts");
         addBody();
         stringBuilder.append("</html>\n");
-
-        File resultFile = exportNewFile(path);
-        return resultFile;
+        
+        return exportNewFile(path);
     }
 
     private void addHead(String title){
