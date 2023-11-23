@@ -190,7 +190,7 @@ public class ReceiptForm extends JFrame {
 		addReceiptButton.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 13));
-		addReceiptButton.setIcon(new ImageIcon(ReceiptForm.class.getResource("/resources/icons8-add-35.png")));
+		addReceiptButton.setIcon(new ImageIcon(ReceiptForm.class.getResource("/resources/icons/icons8-add-35.png")));
 		addReceiptButton.setOpaque(true);
 		//TODO : FIX ME FIX ME FIX ME , color is not working
 		addReceiptButton.setBackground(new Color(255, 255, 255));

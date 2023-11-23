@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -125,14 +126,14 @@ public class AppGUI extends JFrame {
 		
 		associateListLabel = new JLabel("Associates");
 		associateListLabel.setIconTextGap(10);
-		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-admin-30.png")));
+		associateListLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-admin-30.png")));
 		associateListLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		associateListLabel.setBounds(450, 157, 148, 44);
 		contentPane.add(associateListLabel);
 		
 		associateFileLabel = new JLabel("No file to show");
 		associateFileLabel.setIconTextGap(0);
-		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-file-35.png")));
+		associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-file-35.png")));
 		associateFileLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		associateFileLabel.setBounds(1584, 157, 320, 44);
 		contentPane.add(associateFileLabel);	
@@ -147,6 +148,7 @@ public class AppGUI extends JFrame {
 		actionsButtonsPanel.setBounds(0, 278, 322, 267);
 		sidePanel.add(actionsButtonsPanel);
 		actionsButtonsPanel.setLayout(new GridLayout(0, 1, 0, 0));
+
 				
 		importFileButton = new JButton("Import file");
 		importFileButton.setDebugGraphicsOptions(DebugGraphics.NONE_OPTION);
@@ -156,7 +158,7 @@ public class AppGUI extends JFrame {
 		importFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		importFileButton.setIconTextGap(10);
 		importFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-file-30.png")));
+		importFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-add-file-30.png")));
 		importFileButton.addActionListener((e) -> {
 			if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				File selectedFile = fileChooser.getSelectedFile();
@@ -193,7 +195,7 @@ public class AppGUI extends JFrame {
 		addReceiptButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addReceiptButton.setIconTextGap(10);
 		addReceiptButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-add-receipt-30.png")));
+		addReceiptButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-add-receipt-30.png")));
 		addReceiptButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		addReceiptButton.setBorder(null);
 		addReceiptButton.setForeground(new Color(255, 255, 255));
@@ -222,7 +224,7 @@ public class AppGUI extends JFrame {
 		generateReportButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		generateReportButton.setIconTextGap(10);
 		generateReportButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		generateReportButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-download-pie-chart-report-35.png")));
+		generateReportButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-download-pie-chart-report-35.png")));
 		generateReportButton.setFont(new Font("SansSerif", Font.BOLD, 18));
 		generateReportButton.setBorder(null);
 		generateReportButton.setForeground(new Color(255, 255, 255));
@@ -254,7 +256,7 @@ public class AppGUI extends JFrame {
 		
 		convertFileButton = new JButton("Convert file");
 		convertFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		convertFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-convert-35.png")));
+		convertFileButton.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-convert-35.png")));
 		convertFileButton.setOpaque(false);
 		convertFileButton.setIconTextGap(10);
 		convertFileButton.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -292,7 +294,7 @@ public class AppGUI extends JFrame {
 		
 		appTitleLabel = new JLabel("");
 		appTitleLabel.setIconTextGap(0);
-		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/Sale.io.png")));
+		appTitleLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/Sale.io.png")));
 		appTitleLabel.setForeground(new Color(255, 255, 255));
 		appTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
 		appTitleLabel.setBounds(0, 0, 322, 147);
@@ -350,7 +352,7 @@ public class AppGUI extends JFrame {
 		contentPane.add(gradientPanel);
 		
 		JLabel lblSalesAnalysis = new JLabel("Sales Analysis");
-		lblSalesAnalysis.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-estimate-35.png")));
+		lblSalesAnalysis.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-estimate-35.png")));
 		lblSalesAnalysis.setIconTextGap(10);
 		lblSalesAnalysis.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		lblSalesAnalysis.setBounds(955, 157, 211, 44);
@@ -378,13 +380,13 @@ public class AppGUI extends JFrame {
 	private void setDisplayedFileIcon(String fileExtension) {
 		switch(fileExtension){
 			case "txt":
-				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-txt-35.png")));
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-txt-35.png")));
 				break;
 			case "xml":
-				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-code-file-35.png")));
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-code-file-35.png")));
 				break;
 			case "html":
-				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons8-html-35.png")));
+				associateFileLabel.setIcon(new ImageIcon(AppGUI.class.getResource("/resources/icons/icons8-html-35.png")));
 			default:
 				break;
 		}

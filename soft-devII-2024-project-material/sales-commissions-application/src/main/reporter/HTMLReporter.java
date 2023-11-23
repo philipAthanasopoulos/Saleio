@@ -13,9 +13,25 @@ public class HTMLReporter extends Reporter{
                          .append("<head>\n")
                          .append(getStyle())
                          .append("</head>\n")
-                         .append("<body>\n")
-                         .append("<table>\n");
+                         .append("<body>\n");
                          
+            addTable(tags, values, stringBuilder);
+                             
+            stringBuilder.append("</body>\n")
+                         .append("</html>\n");
+                         
+
+            File resultFile = new File(directory + "/Report.html");
+            FileWriter fileWriter = new FileWriter(resultFile);
+            fileWriter.write(stringBuilder.toString());
+            fileWriter.close();
+
+            return resultFile;
+        }
+
+        private void addTable(ArrayList<String> tags, ArrayList<String> values, StringBuilder stringBuilder) {
+            stringBuilder.append("<table>\n");
+
             for(String tag : tags) 
                 stringBuilder.append("<tr>\n")
                              .append("<td>")
@@ -25,17 +41,8 @@ public class HTMLReporter extends Reporter{
                              .append(values.get(tags.indexOf(tag)))
                              .append("</tr>\n")
                              .append("</td>\n");
-                
-            stringBuilder.append("</table>\n")
-                         .append("</body>\n")
-                         .append("</html>\n");
-
-            File resultFile = new File(directory + "/Report.html");
-            FileWriter fileWriter = new FileWriter(resultFile);
-            fileWriter.write(stringBuilder.toString());
-            fileWriter.close();
-
-            return resultFile;
+                             
+            stringBuilder.append("</table>\n");
         }
 
         public String getStyle(){

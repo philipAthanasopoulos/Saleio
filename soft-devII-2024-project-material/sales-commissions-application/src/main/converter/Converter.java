@@ -16,28 +16,5 @@ public abstract class Converter {
 	
 	public abstract File convertFile(String path) throws Exception;
 	
-	public void saveFile() throws Exception{
-
-        //TODO : Get gui outttt
-        
-		// JFileChooser fileChooser = new JFileChooser();
-        // fileChooser.setDialogTitle("Choose a directory to save your file: ");
-        // fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        // int userSelection = fileChooser.showSaveDialog(null);
-
-        // if (userSelection == JFileChooser.APPROVE_OPTION) {
-        //     File directory = fileChooser.getSelectedFile();
-        //     String path = directory.getAbsolutePath();
-        //     composeReportFile(path);
-        // }
-	}
-
-    public static void main(String[] args){
-        Converter rep = new TXTConverter(new Associate());
-        try {
-            rep.saveFile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+	public void saveFile() throws Exception{};
 }

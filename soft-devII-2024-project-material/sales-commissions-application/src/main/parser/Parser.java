@@ -14,6 +14,15 @@ import main.domain.*;
 
 public abstract class Parser {
 
-	public abstract Associate parseAssociateFromFile(File file) throws  Exception;
+	public Associate parseAssociateFromFile(File file) throws  Exception {
+		Associate resultAssociate = new Associate();
+        setAssociateInfo(file, resultAssociate);
+        setAssociateReceipts(file, resultAssociate);
+        return resultAssociate;
+	};
+
+	protected abstract void setAssociateInfo(File file, Associate resultAssociate) throws Exception;
+
+	protected abstract void setAssociateReceipts(File file, Associate resultAssociate) throws Exception;
 	
 }

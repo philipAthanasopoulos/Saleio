@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Agent>
+    <Name> Iosif Emmanouilidis </Name>
+    <AFM> 171765698 </AFM>
+    <Receipts>
+        <Receipt>
+            <ReceiptID> 169 </ReceiptID>
+            <Date> 06/11/2023 </Date>
+            <Kind> Coats </Kind>
+            <Sales> 2650 </Sales>
+            <Items> 60 </Items>
+            <Company> Zara </Company>
+            <Country> Greece </Country>
+            <City> Ioannina </City>
+            <Street> Ch. Trikoupi </Street>
+            <Number> 28 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 186 </ReceiptID>
+            <Date> 08/11/2023 </Date>
+            <Kind> Shirts </Kind>
+            <Sales> 1000 </Sales>
+            <Items> 10 </Items>
+            <Company> Benetton </Company>
+            <Country> Greece </Country>
+            <City> Ioannina </City>
+            <Street> Ch. Trikoupi </Street>
+            <Number> 6 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID>43872</ReceiptID>
+            <Date>2345</Date>
+            <Kind>Skirts</Kind>
+            <Sales>4.3623456E7</Sales>
+            <Items>35</Items>
+            <Company>653</Company>
+            <Country>2436</Country>
+            <City>432782365</City>
+            <Street>234</Street>
+            <Number>234</Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID>8934027</ReceiptID>
+            <Date>2345</Date>
+            <Kind>Coats</Kind>
+            <Sales>2345.0</Sales>
+            <Items>2343245</Items>
+            <Company>2345</Company>
+            <Country>23452345</Country>
+            <City>2345</City>
+            <Street>3245</Street>
+            <Number>2345</Number>
+        </Receipt>
+    </Receipts>
+</Agent>

@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 import java.util.*;
 
 import main.domain.*;
-import main.parser.*;
 
 public class FileAppenderHTML extends FileAppender {
 
