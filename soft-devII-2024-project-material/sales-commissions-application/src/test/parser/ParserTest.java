@@ -59,6 +59,13 @@ public class ParserTest {
 			assertEquals("Apostolos Zarras", associate5.getName());
 			assertEquals("George Johnson", associate6.getName());
 
+			assertEquals(associate1.getAfm(), "130456093");
+			assertEquals(associate2.getAfm(), "130456093");
+			assertEquals(associate3.getAfm(), "171765698");
+			assertEquals(associate4.getAfm(), "130456097");
+			assertEquals(associate5.getAfm(), "130456093");
+			assertEquals(associate6.getAfm(), "23847568" );
+
 			assertEquals(associate1.getReceipts().size(), 18);
 			assertEquals(associate2.getReceipts().size(), 4);
 			assertEquals(associate3.getReceipts().size(), 4);

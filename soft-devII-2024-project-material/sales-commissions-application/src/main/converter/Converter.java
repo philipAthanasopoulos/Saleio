@@ -12,9 +12,24 @@ import main.domain.Associate;
  */
 
 public abstract class Converter {
-	protected Associate associate;
+	protected File convertedFile = null;
+	protected String extension;
 	
-	public abstract File convertFile(String path) throws Exception;
+	public void convertFile(Associate associate , File directory) throws Exception {
+		convertedFile = new File(directory, associate.getName() + "." + extension);
+		writeAssociateInfo(associate);
+		writeReceipts(associate);
+		saveFile();
+	};
+
+	protected abstract void writeAssociateInfo(Associate associate) throws Exception;
+
+	protected abstract void writeReceipts(Associate associate) throws Exception;
+
+	protected abstract void saveFile() throws Exception;
+
+	public File getConvertedFile() {
+		return convertedFile;
+	}
 	
-	public void saveFile() throws Exception{};
 }

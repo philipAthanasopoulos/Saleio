@@ -231,6 +231,7 @@ public class AppGUI extends JFrame {
 		generateReportButton.setBackground(new Color(0, 128, 128));
 		generateReportButton.setOpaque(false);
 		generateReportButton.addActionListener((e) -> {
+			//TODO : extract method
 			FileType[] fileTypes = FileType.values();
 			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ReporterFactory reporterFactory = new ReporterFactory();
@@ -280,8 +281,8 @@ public class AppGUI extends JFrame {
 
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					File directory = fileChooser.getSelectedFile();
-					File reportFile = converter.convertFile(directory.getAbsolutePath());
-					openFile(reportFile);
+					converter.convertFile(getSelectedAssociate(),directory);
+					openFile(converter.getConvertedFile());
 				}
 			} catch (Exception saveFileException) {
 				JOptionPane.showMessageDialog(null, "Error saving file", "Error", JOptionPane.ERROR_MESSAGE);

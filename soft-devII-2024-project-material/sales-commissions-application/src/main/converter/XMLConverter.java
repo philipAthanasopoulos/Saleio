@@ -22,42 +22,74 @@ public class XMLConverter extends Converter {
 	Document document;
 		
 	public XMLConverter(Associate associate){
-		this.associate = associate;
-		document = null;
+		this.extension = "xml";
 	}	
 
 	@Override
-	public File convertFile(String path) throws Exception {
+	protected void writeAssociateInfo(Associate associate) throws Exception {
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 		document = documentBuilder.newDocument();
-
-		// root element
-		Element agentElem = document.createElement("Agent");
-		document.appendChild(agentElem);
-		
+		Element agentElem = document.getDocumentElement();
 		createElement("Name", associate.getName(), agentElem);
 		createElement("AFM", associate.getAfm(), agentElem);
-		
+	}
+
+	@Override
+	protected void writeReceipts(Associate associate) throws Exception {
+		Element agentElem = document.getDocumentElement();
 		Element receipts = createElement("Receipts", null, agentElem);
 		
 		for (Receipt receipt : associate.getReceipts()){
 			writeReceipt(receipt, receipts);
 		}
-		
+	}
+
+	@Override
+	protected void saveFile() throws Exception {
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //TODO: check if this is needed
 		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 
 		DOMSource domSource = new DOMSource(document);
 		//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
-		File resultFile = new File(path + "/Report.xml");
-		StreamResult streamResult = new StreamResult(resultFile);
+		StreamResult streamResult = new StreamResult(convertedFile);
 		transformer.transform(domSource, streamResult);
-			
-		return resultFile;
 	}
+
+	// @Override
+	// public File convertFile(String path) throws Exception {
+	// 	DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+	// 	DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+	// 	document = documentBuilder.newDocument();
+
+	// 	// root element
+	// 	Element agentElem = document.createElement("Agent");
+	// 	document.appendChild(agentElem);
+		
+	// 	createElement("Name", associate.getName(), agentElem);
+	// 	createElement("AFM", associate.getAfm(), agentElem);
+		
+	// 	Element receipts = createElement("Receipts", null, agentElem);
+		
+	// 	for (Receipt receipt : associate.getReceipts()){
+	// 		writeReceipt(receipt, receipts);
+	// 	}
+		
+	// 	TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	// 	Transformer transformer = transformerFactory.newTransformer();
+	// 	transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+	// 	transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+
+	// 	DOMSource domSource = new DOMSource(document);
+	// 	//TODO File is still saved with INCORRECT PATH pls fix so that throws IOException when path is wrong
+	// 	File resultFile = new File(path + "/Report.xml");
+	// 	StreamResult streamResult = new StreamResult(resultFile);
+	// 	transformer.transform(domSource, streamResult);
+			
+	// 	return resultFile;
+	// }
 
 	private void writeReceipt(Receipt receipt, Element parent){
 			Element receiptElement = createElement("Receipt", null, parent);
