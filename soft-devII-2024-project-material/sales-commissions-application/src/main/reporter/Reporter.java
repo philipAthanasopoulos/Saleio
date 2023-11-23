@@ -1,11 +1,24 @@
 package main.reporter;
 
 import java.io.File;
+import main.domain.*;
 
 import java.util.ArrayList;
 
+
+
 public abstract class Reporter {
+    File reportFile;
+    Associate associate;
+    ArrayList<ProductType> productsToReport;
+    String fileExtension;
     
-    public abstract File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values) throws Exception;
+    public void generateReport(File directory, Associate associate, ArrayList<ProductType> productsToReport) throws Exception {
+        this.associate = associate;
+        this.productsToReport = productsToReport;
+        this.reportFile = new File(directory, associate.getName() + "." + fileExtension);
+        openFile();
+        
+    };
 
 }
