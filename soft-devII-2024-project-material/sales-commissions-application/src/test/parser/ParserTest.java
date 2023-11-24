@@ -12,13 +12,17 @@ import main.parser.*;
 
 public class ParserTest {
 	
-	Parser parserTXT;
-	Parser parserXML;
-	Parser parserHTML;
+	Parser parserTXT = null;
+	Parser parserXML = null;
+	Parser parserHTML = null;
 	
-	File testCase1TXT;
-	File testCase1XML;
-	File testCase1HTML;
+	File testCase1TXT = null;
+	File testCase1XML = null;
+	File testCase1HTML = null;
+
+	Associate associate1 = null;
+	Associate associate2 = null;
+	Associate associate3 = null;
 
 	@Before
 	public void setUp() {
@@ -37,29 +41,28 @@ public class ParserTest {
 	public void testParseAssociateFromFile() {
 		//Happy Day Scenarios
 		try {
-			Associate associate1 = parserTXT.parseAssociateFromFile(testCase1TXT);
-			Associate associate2 = parserXML.parseAssociateFromFile(testCase1XML);
-			Associate associate3 = parserHTML.parseAssociateFromFile(testCase1HTML);
-
-			assertEquals("Apostolos Zarras", associate1.getName());
-			assertEquals("Iosif Emmanouilidis", associate2.getName());
-			assertEquals("Apostolos Zarras", associate3.getName());
-
-			assertEquals(associate1.getAfm(), "130456093");
-			assertEquals(associate2.getAfm(), "171765698");
-			assertEquals(associate3.getAfm(), "130456093");
-
-			assertEquals(associate1.getReceipts().size(), 18);
-			assertEquals(associate2.getReceipts().size(), 4);
-			assertEquals(associate3.getReceipts().size(), 4);
-
-			assertEquals(associate1.getPersonalFile(), testCase1TXT);
-			assertEquals(associate2.getPersonalFile(), testCase1XML);
-			assertEquals(associate3.getPersonalFile(), testCase1HTML);
-
-			//TODO: Check if the receipts are correct
+			 associate1 = parserTXT.parseAssociateFromFile(testCase1TXT);
+			 associate2 = parserXML.parseAssociateFromFile(testCase1XML);
+			 associate3 = parserHTML.parseAssociateFromFile(testCase1HTML);
 		} catch (Exception e) {
-			fail();
+			e.printStackTrace();
+			fail("Exception thrown when parsing associate from file");
 		}
+
+		assertEquals("Apostolos Zarras", associate1.getName());
+		assertEquals("Iosif Emmanouilidis", associate2.getName());
+		assertEquals("Apostolos Zarras", associate3.getName());
+
+		assertEquals(associate1.getAfm(), "130456093");
+		assertEquals(associate2.getAfm(), "171765698");
+		assertEquals(associate3.getAfm(), "130456093");
+
+		assertEquals(associate1.getReceipts().size(), 18);
+		assertEquals(associate2.getReceipts().size(), 4);
+		assertEquals(associate3.getReceipts().size(), 4);
+
+		assertEquals(associate1.getPersonalFile(), testCase1TXT);
+		assertEquals(associate2.getPersonalFile(), testCase1XML);
+		assertEquals(associate3.getPersonalFile(), testCase1HTML);
 	}
 }

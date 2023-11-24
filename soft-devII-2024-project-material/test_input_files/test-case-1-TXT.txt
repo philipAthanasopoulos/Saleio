@@ -200,3 +200,15 @@ Country:
 City: 
 Street: 
 Number: 1
+
+
+Receipt ID: 11
+Date: 11
+Kind: Skirts
+Sales: 1.0
+Items: 1
+Company: 1
+Country: 1
+City: 1
+Street: 1
+Number: 1

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -36,7 +35,6 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
-import java.awt.Graphics;
 
 /**
  * The App class is the main class of the application. It is responsible for
@@ -233,7 +231,7 @@ public class AppGUI extends JFrame {
 		generateReportButton.addActionListener((e) -> {
 			//TODO : extract method
 			FileType[] fileTypes = FileType.values();
-			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
+			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Generate report as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ReporterFactory reporterFactory = new ReporterFactory();
 			Reporter reporter = reporterFactory.getReporter(fileTypes[choice].name());
 			try {
@@ -270,7 +268,7 @@ public class AppGUI extends JFrame {
 		//TODO: convert file method should receive 2 arguments, file to convert and where to save it
 		convertFileButton.addActionListener((e) -> {
 			FileType[] fileTypes = FileType.values();
-			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Export as", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
+			int choice = JOptionPane.showOptionDialog(null, "Choose file type", "Convert file to", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, fileTypes , null);
 			ConverterFactory converterFactory = new ConverterFactory();
 			Converter converter = converterFactory.getConverter(fileTypes[choice].name());
 			try {

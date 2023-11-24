@@ -9,6 +9,11 @@ public class Company {
 		this.companyAddress = companyAddress;
 	}
 
+	public Company(String companyName, String companyCountry, String companyCity, String companyStreet, int companyStreetNumber){
+		this.companyName = companyName;
+		this.companyAddress = new Address(companyCountry, companyCity, companyStreet, companyStreetNumber);
+	}
+
 	public String getCompanyName() {
 		return this.companyName;
 	}

@@ -18,7 +18,7 @@ public class ReceiptTest {
 			+ "Country: Greece\r\n"
 			+ "City: Drama\r\n"
 			+ "Street: Papandreou\r\n"
-			+ "Number: 46\r\n";
+			+ "Number: 46";
 
 	@Test
 	public void testReceiptIntStringProductTypeDoubleIntCompany() {

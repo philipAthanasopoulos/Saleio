@@ -9,12 +9,21 @@ public class Receipt {
 	private Company company;
 	
 	public Receipt(int receiptID, String purchaseDate, ProductType productType, double totalSales, int numberOfItems, Company company) {
-		this.productType = productType;
 		this.receiptID = receiptID;
 		this.purchaseDate = purchaseDate;
+		this.productType = productType;
 		this.totalSales = totalSales;
 		this.numberOfItems = numberOfItems;
 		this.company  = company; //TODO : Where is company constructed? Let's work on this
+	}
+
+	public Receipt(int receiptID, String purchaseDate, ProductType productType, double totalSales, int numberOfItems, String companyName, String companyCountry, String companyCity, String companyStreet, int companyStreetNumber) {
+		this.receiptID = receiptID;
+		this.purchaseDate = purchaseDate;
+		this.productType = productType;
+		this.totalSales = totalSales;
+		this.numberOfItems = numberOfItems;
+		this.company = new Company(companyName, companyCountry, companyCity, companyStreet, companyStreetNumber);
 	}
 
 	public Receipt() {
@@ -89,6 +98,6 @@ public class Receipt {
 			   "Country: " + getCompanyCountry() + "\r\n" +
 			   "City: " + getCompanyCity() + "\r\n" +
 			   "Street: " + getCompanyStreet() + "\r\n" +
-			   "Number: " + getCompanyStreetNumber() + "\r\n";
+			   "Number: " + getCompanyStreetNumber();
 	}
 }

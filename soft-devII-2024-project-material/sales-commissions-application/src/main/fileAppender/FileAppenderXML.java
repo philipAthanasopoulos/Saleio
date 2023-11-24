@@ -64,6 +64,7 @@ public class FileAppenderXML  extends FileAppender{
         transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
         transformer.setOutputProperty(OutputKeys.METHOD, "xml");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.ENCODING,"UTF-8");
         DOMSource domSource = new DOMSource(document);
         StreamResult streamResult = new StreamResult(fileToAppend);
         transformer.transform(domSource, streamResult);
@@ -79,7 +80,7 @@ public class FileAppenderXML  extends FileAppender{
 
         while((line = fileReader.readLine()) != null) 
             if(!line.trim().isEmpty()) 
-                fileWriter.write(line + System.getProperty("line.separator"));
+                fileWriter.write(line + System.getProperty("line.separator")); // "\n" doesnt work for some reason
         
         fileReader.close();
         fileWriter.close();

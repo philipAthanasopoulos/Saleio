@@ -23,10 +23,15 @@ public class Associate {
 	}
 
 	public Associate(){ //tmp empty constructor
-		name = "Tmp";
-		afm = "123";
-		receipts = new ArrayList<Receipt>();
-		personalFile = null;
+		this.name = "Tmp";
+		this.afm = "123";
+		this.receipts = new ArrayList<Receipt>();
+		this.personalFile = null;
+	}
+
+	public Associate(File personalFile) {
+		this.personalFile = personalFile;
+		this.receipts = new ArrayList<Receipt>();
 	}
 
 	public double calculateTotalSales(){
@@ -127,7 +132,7 @@ public class Associate {
 					 .append("\n");
 
 		for(Receipt receipt : receipts) stringBuilder.append(receipt.toString())
-													 .append("\n");
+													 .append("\n\n");
 		
 		return stringBuilder.toString();
 	}

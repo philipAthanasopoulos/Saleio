@@ -15,5 +15,17 @@
             <Street>Ch. Trikoupi</Street>
             <Number>28</Number>
         </Receipt>
+        <Receipt>
+            <ReceiptID>170</ReceiptID>
+            <Date>06/11/2023</Date>
+            <Kind>Coats</Kind>
+            <Sales>2650.0</Sales>
+            <Items>60</Items>
+            <Company>Zara</Company>
+            <Country>Greece</Country>
+            <City>Ioannina</City>
+            <Street>Ch. Trikoupi</Street>
+            <Number>28</Number>
+        </Receipt>
     </Receipts>
 </Agent>

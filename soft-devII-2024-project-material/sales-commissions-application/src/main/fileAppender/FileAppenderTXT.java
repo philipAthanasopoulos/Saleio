@@ -1,8 +1,5 @@
 package main.fileAppender;
 
-import main.domain.Receipt;
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 
@@ -19,8 +16,9 @@ public class FileAppenderTXT extends FileAppender{
 
 	@Override
 	protected void writeReceipt() throws Exception {
-		bufferedWriter.write(receiptToAppend.toString());
 		bufferedWriter.newLine();
+		bufferedWriter.newLine();
+		bufferedWriter.write(receiptToAppend.toString());
 	}
 
 	@Override
