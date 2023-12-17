@@ -10,8 +10,8 @@ public abstract class FileAppender {
     protected Receipt receiptToAppend;
 
     public void appendReceipt(Receipt receipt, Associate associate) throws Exception {
-        fileToAppend = associate.getPersonalFile();
-        receiptToAppend = receipt;
+        this.fileToAppend = associate.getPersonalFile();
+        this.receiptToAppend = receipt;
         associate.addReceipt(receipt);
 
         openFile();

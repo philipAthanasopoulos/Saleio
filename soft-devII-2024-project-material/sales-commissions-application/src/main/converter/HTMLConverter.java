@@ -6,106 +6,67 @@ import main.domain.*;
 
 import main.parser.*;
 
-//TODO: FIX ME. 
-//      1. The Document library used in XML Converter can also be used here.
+import org.jsoup.*;
+import org.jsoup.nodes.*;
+import org.jsoup.select.*;
 
-//supress implement warning
+
+
 @SuppressWarnings("all")
 public class HTMLConverter extends Converter {
-    final String TAB = "\t";
-    StringBuilder stringBuilder; 
 
+    Document document;
+    
     public HTMLConverter() {
-        stringBuilder = new StringBuilder();
-        this.extension = "html";
+        extension = "html";
     }
 
-    public File convertFile(String path) throws IOException{
-        stringBuilder.append("<!DOCTYPE html>\n")
-                     .append("<html lang=\"en\">\n");
-        addHead("Receipts");
-        addBody();
-        stringBuilder.append("</html>\n");
-        
-        return exportNewFile(path);
+    @Override
+    protected void writeAssociateInfo(Associate associate) throws Exception {
+        document = Jsoup.parse(convertedFile, "UTF-8", "");
+        document.append("<html><head></head><body></body></html>");
+        document.head().append(getStye());
+        document.body().append("<h1>" + associate.getName() + "</h1>");
+        document.body().append("<p>" + associate.getAfm() + "</p>");
     }
 
-    private void addHead(String title){
-        stringBuilder.append("<head>\n")
-                     .append(TAB + "<meta charset=\"UTF-8\">\n")
-                     .append(TAB + "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n")
-                     .append(TAB + "<title>" + title + "</title>\n");
-        addStyle();
-        stringBuilder.append("</head>");
+    @Override
+    protected void writeReceipts(Associate associate) throws Exception {
+        Element table = document.body().append("<table></table>");
+        table.append("<tr><th>Receipt ID</th>");
+        table.append("<th>Receipt Date</th>");
+        table.append("<th>Receipt Kind</th>");
+        table.append("<th>Receipt Amount</th>");
+        table.append("<th>Receipt Company</th>");
+        table.append("<th>Receipt Country</th>");
+        table.append("<th>Receipt City</th>");
+        table.append("<th>Receipt Street</th>");
+        table.append("<th>Receipt Number</th></tr>");
+
+
+        for (Receipt receipt : associate.getReceipts()) {
+            table.append("<tr><td>" + receipt.getReceiptID() + "</td>");
+            table.append("<td>" + receipt.getPurchaseDate() + "</td>");
+            table.append("<td>" + receipt.getProductType() + "</td>");
+            table.append("<td>" + receipt.getTotalSales() + "</td>");
+            table.append("<td>" + receipt.getCompanyName() + "</td>");
+            table.append("<td>" + receipt.getCompanyCountry() + "</td>");
+            table.append("<td>" + receipt.getCompanyCity() + "</td>");
+            table.append("<td>" + receipt.getCompanyStreet() + "</td>");
+            table.append("<td>" + receipt.getCompanyStreetNumber() + "</td></tr>");
+        }
     }
 
-    private void addStyle(){
-        stringBuilder.append(TAB + "<style>\n")
-                     .append(TAB + TAB + "table, th, td {\n")
-                     .append(TAB + TAB + TAB + "border: 1px solid black;\n")
-                     .append(TAB + TAB + "}\n")
-                     .append(TAB + TAB + "table {\n")
-                     .append(TAB + TAB + TAB + "border-collapse: collapse;\n")
-                     .append(TAB + TAB + "}\n")
-                     .append(TAB + TAB + "th, td {\n")
-                     .append(TAB + TAB + TAB + "padding: 5px;\n")
-                     .append(TAB + TAB + "}\n")
-                     .append(TAB + "</style>\n");
+    @Override
+    protected void saveFile() throws Exception {
+        FileWriter writer = new FileWriter(convertedFile);
+        writer.write(document.outerHtml());
+        writer.close();
     }
 
-    private void addBody(){
-        String name = associate.getName();
-        stringBuilder.append("<body>\n")
-                     .append(TAB + "<h1>" + name + "</h1>\n")
-                     .append(TAB + "<p>" + "AFM: " + name + "</p>\n");
-        addTable();
-        stringBuilder.append("</body>\n");
-    }
 
-    private void addTable() {
-        stringBuilder.append(TAB + "<table border=\"1\">\n");
-        addTableHeaders();
-        for (Receipt receipt : associate.getReceipts()) addTableRaw(receipt);
-        stringBuilder.append(TAB + "</table>\n");
+    private String getStye(){
+        return "<style>table, th, td {border: 1px solid black;}</style>";
     }
-
-    private void addTableHeaders(){
-        stringBuilder.append(TAB + TAB + "<tr>\n")
-                     .append(TAB + TAB + TAB + "<th>Receipt ID</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Date</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Kind</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Sales</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Items</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Company</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Country</th>\n")
-                     .append(TAB + TAB + TAB + "<th>City</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Street</th>\n")
-                     .append(TAB + TAB + TAB + "<th>Number</th>\n")
-                     .append(TAB + TAB + "</tr>\n");
-    }
-
-    private void addTableRaw(Receipt receipt){
-        stringBuilder.append(TAB + TAB + "<tr>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getReceiptID() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getPurchaseDate() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getProductType() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getTotalSales() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getNumberOfItems() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyName() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCountry() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyCity() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreet() + "</th>\n")
-                     .append(TAB + TAB + TAB + "<th>" + receipt.getCompanyStreetNumber() + "</th>\n")
-                     .append(TAB + TAB + "</tr>\n");
-    }
-
-    private File exportNewFile(String path) throws IOException{
-        File resultFile = new File(path + "/Report.html");
-        BufferedWriter writeStream = new BufferedWriter(new FileWriter(resultFile));
-        writeStream.write(stringBuilder.toString());
-        writeStream.close();
-        return resultFile;
-    }
-
    
 }

@@ -6,6 +6,8 @@ import java.util.*;
 
 import main.domain.*;
 
+
+
 public class TXTParser extends Parser {
 
 	int DATANAMEINDEX = 0;
@@ -15,10 +17,10 @@ public class TXTParser extends Parser {
 	int ASSOCIATEDATALENGTH = 2;
 	
 	@Override
-	protected void setAssociateReceipts(File file, Associate resultAssociate)
+	protected void setAssociateReceipts()
 	throws FileNotFoundException, IOException, Exception {
 		Map<String, String> receiptDataMap = new LinkedHashMap<String, String>(0);
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(fileToParse));
 		String line;
 
 		moveReaderToReceiptsSection(bufferedReader);
@@ -28,7 +30,7 @@ public class TXTParser extends Parser {
 			
 			if(receiptMapIsFull(receiptDataMap)){
 				Receipt receipt = getReceiptFromMap(receiptDataMap);
-				resultAssociate.addReceipt(receipt);
+				associateToParse.addReceipt(receipt);
 				receiptDataMap.clear();
 			}
 		}
@@ -70,18 +72,18 @@ public class TXTParser extends Parser {
 	}
 				
 	@Override
-	protected void setAssociateInfo(File file, Associate resultAssociate) 
+	protected void setAssociateInfo() 
 	throws FileNotFoundException, IOException, Exception {
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(fileToParse));
 		Map<String, String> associateDataMap = new LinkedHashMap<String, String>(0);
 		String line;
 		for(int i = 0; i < ASSOCIATEDATALENGTH; i++){
 			line = bufferedReader.readLine();
 			addLineToMap(line, associateDataMap);
 		}
-		resultAssociate.setName(associateDataMap.get("Name"));
-		resultAssociate.setAfm(associateDataMap.get("AFM"));
-		resultAssociate.setPersonalFile(file);
+		associateToParse.setName(associateDataMap.get("Name"));
+		associateToParse.setAfm(associateDataMap.get("AFM"));
+		associateToParse.setPersonalFile(fileToParse);
 
 		bufferedReader.close();
 	}

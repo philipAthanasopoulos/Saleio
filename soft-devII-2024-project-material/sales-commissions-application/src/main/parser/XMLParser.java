@@ -20,8 +20,8 @@ public class XMLParser extends Parser {
 
     @Override
     //TODO: extract method
-    protected void setAssociateReceipts(File file, Associate resultAssociate) throws Exception{
-        Document document = getDocumentFromFile(file);
+    protected void setAssociateReceipts() throws Exception{
+        Document document = getDocumentFromFile(fileToParse);
 
         //Get all receipts
         ArrayList<Receipt> receipts = new ArrayList<>();
@@ -59,23 +59,23 @@ public class XMLParser extends Parser {
                 receipts.add(receipt);
             }
         }
-        resultAssociate.setReceipts(receipts);
+        associateToParse.setReceipts(receipts);
     }
 
     @Override
-    protected void setAssociateInfo(File file, Associate resultAssociate) throws Exception{
-        Document document = getDocumentFromFile(file);
+    protected void setAssociateInfo() throws Exception{
+        Document document = getDocumentFromFile(fileToParse);
         String name = getDataFromDocument(document, "Name");
         String afm = getDataFromDocument(document, "AFM");
-        resultAssociate.setName(name);
-        resultAssociate.setAfm(afm);
-        resultAssociate.setPersonalFile(file);
+        associateToParse.setName(name);
+        associateToParse.setAfm(afm);
+        associateToParse.setPersonalFile(fileToParse);
     }
 
-    private Document getDocumentFromFile(File file) throws ParserConfigurationException, SAXException, IOException {
+    private Document getDocumentFromFile(File fileToParse) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        Document document = documentBuilder.parse(file);
+        Document document = documentBuilder.parse(fileToParse);
         document.getDocumentElement().normalize();
         return document;
     }

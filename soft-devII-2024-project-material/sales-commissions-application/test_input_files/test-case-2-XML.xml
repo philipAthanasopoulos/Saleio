@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Agent>
     <Name> Vassileios Zarras </Name>
     <AFM> 130456097 </AFM>
@@ -158,42 +157,6 @@
             <City> Ioannina </City>
             <Street> Kaloudi </Street>
             <Number> 10 </Number>
-        </Receipt>
-        <Receipt>
-            <ReceiptID>123456</ReceiptID>
-            <Date>2022-01-01</Date>
-            <Kind>Skirts</Kind>
-            <Sales> 7000 </Sales>
-            <Items>2</Items>
-            <Company>Acme Inc.</Company>
-            <Country>USA</Country>
-            <City>New York</City>
-            <Street>Broadway</Street>
-            <Number>123</Number>
-        </Receipt>
-        <Receipt>
-            <ReceiptID>1</ReceiptID>
-            <Date>2</Date>
-            <Kind>Skirts</Kind>
-            <Sales>500.0</Sales>
-            <Items>222222</Items>
-            <Company>mamalakis</Company>
-            <Country>jordan</Country>
-            <City>city</City>
-            <Street>bamboleiro</Street>
-            <Number>100</Number>
-        </Receipt>
-        <Receipt>
-            <ReceiptID>1234</ReceiptID>
-            <Date>1234</Date>
-            <Kind>Coats</Kind>
-            <Sales>1234.0</Sales>
-            <Items>1234</Items>
-            <Company>1234</Company>
-            <Country>1234</Country>
-            <City>1234</City>
-            <Street>1234</Street>
-            <Number>1234</Number>
         </Receipt>
     </Receipts>
 </Agent>

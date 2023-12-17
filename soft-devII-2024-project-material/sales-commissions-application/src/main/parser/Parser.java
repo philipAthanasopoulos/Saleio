@@ -1,6 +1,5 @@
 package main.parser;
 
-
 import java.io.*;
 
 import main.domain.*;
@@ -13,16 +12,19 @@ import main.domain.*;
  */
 
 public abstract class Parser {
+	protected File fileToParse;
+	protected Associate associateToParse;
 
 	public Associate parseAssociateFromFile(File file) throws  Exception {
-		Associate resultAssociate = new Associate();
-        setAssociateInfo(file, resultAssociate);
-        setAssociateReceipts(file, resultAssociate);
-        return resultAssociate;
+		this.associateToParse = new Associate();
+		this.fileToParse = file;
+		setAssociateInfo();
+		setAssociateReceipts();
+		return associateToParse;
 	};
 
-	protected abstract void setAssociateInfo(File file, Associate resultAssociate) throws Exception;
+	protected abstract void setAssociateInfo() throws Exception;
 
-	protected abstract void setAssociateReceipts(File file, Associate resultAssociate) throws Exception;
+	protected abstract void setAssociateReceipts() throws Exception;
 	
 }
