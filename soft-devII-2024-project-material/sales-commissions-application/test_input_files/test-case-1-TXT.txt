@@ -1,5 +1,5 @@
-Name: Apostolos Zarras
-AFM: 130456093
+Name: John Doe
+AFM: 123456789
 
 Receipts:
 
@@ -8,63 +8,63 @@ Date: 25/2/2014
 Kind: Coats
 Sales: 2000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: Fashion Hub
+Country: France
+City: Paris
+Street: Rue de la Mode
+Number: 42
 
 Receipt ID: 2
 Date: 25/2/2014
 Kind: Coats
 Sales: 4000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: StyleCrafters
+Country: Italy
+City: Milan
+Street: Via Eleganza
+Number: 28
 
 Receipt ID: 3
 Date: 25/2/2014
 Kind: Shirts
 Sales: 4000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: Trendy Threads
+Country: Spain
+City: Barcelona
+Street: Calle Estilo
+Number: 15
 
 Receipt ID: 4
 Date: 25/2/2014
 Kind: Skirts
 Sales: 1000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: Chic Couture
+Country: Germany
+City: Berlin
+Street: Mode Straße
+Number: 7
 
 Receipt ID: 5
 Date: 25/2/2014
 Kind: Skirts
 Sales: 1000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: Vogue Styles
+Country: Netherlands
+City: Amsterdam
+Street: Fashion Avenue
+Number: 12
 
 Receipt ID: 6
 Date: 25/2/2014
 Kind: Trousers
 Sales: 5000
 Items: 10
-Company: Hand Made Clothes
-Country: Greece
-City: Ioannina
-Street: Kaloudi 
-Number: 10
+Company: Urban Tailors
+Country: Sweden
+City: Stockholm
+Street: Trendy Street
+Number: 20

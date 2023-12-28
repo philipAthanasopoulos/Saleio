@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 
 public class HTMLReporter extends Reporter{
-        @Override
         public File generateReport(File directory, ArrayList<String> tags, ArrayList<String> values ) throws Exception {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("<html>\n")
