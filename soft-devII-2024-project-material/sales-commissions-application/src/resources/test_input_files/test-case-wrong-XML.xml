@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Agent>
+    <Receipts>
+        <Receipt>
+            <ReceiptID> 169 </ReceiptID>
+            <Date> 06/11/2023 </Date>
+            <Kind> Coats </Kind>
+            <Sales> 2650 </Sales>
+            <Items> 60 </Items>
+            <Company> Zara </Company>
+            <Country> Greece </Country>
+            <Number> 28 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 186 </ReceiptID>
+            <Date> 08/11/2023 </Date>
+            <Kind> Shirts </Kind>
+            <Sales> 1000 </Sales>
+            <Items> 10 </Items>
+            <Company> Benetton </Company>
+            <Country> Greece </Country>
+            <City> Ioannina </City>
+            <Street> Ch. Trikoupi </Street>
+            <Number> 6 </Number>
+        </Receipt>
+    </Receipts>
+</Agent>

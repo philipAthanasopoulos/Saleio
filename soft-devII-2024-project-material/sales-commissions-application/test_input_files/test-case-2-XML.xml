@@ -1,0 +1,162 @@
+<Agent>
+    <Name> Alexis Papadopoulos </Name>
+    <AFM> 987654321 </AFM>
+    <Receipts>
+        <Receipt>
+            <ReceiptID> 1 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Jackets </Kind>
+            <Sales> 2500 </Sales>
+            <Items> 8 </Items>
+            <Company> Fashion Trends </Company>
+            <Country> Spain </Country>
+            <City> Barcelona </City>
+            <Street> Passeig de la Moda </Street>
+            <Number> 25 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 2 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Dresses </Kind>
+            <Sales> 3500 </Sales>
+            <Items> 12 </Items>
+            <Company> Elegance Boutique </Company>
+            <Country> Italy </Country>
+            <City> Rome </City>
+            <Street> Via della Bellezza </Street>
+            <Number> 18 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 3 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Shirts </Kind>
+            <Sales> 2800 </Sales>
+            <Items> 10 </Items>
+            <Company> StyleCrafters </Company>
+            <Country> France </Country>
+            <City> Paris </City>
+            <Street> Rue de la Mode </Street>
+            <Number> 30 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 4 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Trousers </Kind>
+            <Sales> 1200 </Sales>
+            <Items> 5 </Items>
+            <Company> Vogue Styles </Company>
+            <Country> Netherlands </Country>
+            <City> Amsterdam </City>
+            <Street> Fashion Avenue </Street>
+            <Number> 12 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 5 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Skirts </Kind>
+            <Sales> 2000 </Sales>
+            <Items> 8 </Items>
+            <Company> Chic Couture </Company>
+            <Country> Germany </Country>
+            <City> Berlin </City>
+            <Street> Mode Straße </Street>
+            <Number> 7 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 6 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Jeans </Kind>
+            <Sales> 3000 </Sales>
+            <Items> 15 </Items>
+            <Company> Urban Tailors </Company>
+            <Country> Sweden </Country>
+            <City> Stockholm </City>
+            <Street> Trendy Street </Street>
+            <Number> 20 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 7 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Jackets </Kind>
+            <Sales> 2500 </Sales>
+            <Items> 8 </Items>
+            <Company> Fashion Trends </Company>
+            <Country> Spain </Country>
+            <City> Barcelona </City>
+            <Street> Passeig de la Moda </Street>
+            <Number> 25 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 8 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Dresses </Kind>
+            <Sales> 3500 </Sales>
+            <Items> 12 </Items>
+            <Company> Elegance Boutique </Company>
+            <Country> Italy </Country>
+            <City> Rome </City>
+            <Street> Via della Bellezza </Street>
+            <Number> 18 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 9 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Shirts </Kind>
+            <Sales> 2800 </Sales>
+            <Items> 10 </Items>
+            <Company> StyleCrafters </Company>
+            <Country> France </Country>
+            <City> Paris </City>
+            <Street> Rue de la Mode </Street>
+            <Number> 30 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 10 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Trousers </Kind>
+            <Sales> 1200 </Sales>
+            <Items> 5 </Items>
+            <Company> Vogue Styles </Company>
+            <Country> Netherlands </Country>
+            <City> Amsterdam </City>
+            <Street> Fashion Avenue </Street>
+            <Number> 12 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 11 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Skirts </Kind>
+            <Sales> 2000 </Sales>
+            <Items> 8 </Items>
+            <Company> Chic Couture </Company>
+            <Country> Germany </Country>
+            <City> Berlin </City>
+            <Street> Mode Straße </Street>
+            <Number> 7 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 12 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Jeans </Kind>
+            <Sales> 3000 </Sales>
+            <Items> 15 </Items>
+            <Company> Urban Tailors </Company>
+            <Country> Sweden </Country>
+            <City> Stockholm </City>
+            <Street> Trendy Street </Street>
+            <Number> 20 </Number>
+        </Receipt>
+        <Receipt>
+            <ReceiptID> 14 </ReceiptID>
+            <Date> 15/5/2015 </Date>
+            <Kind> Jeans </Kind>
+            <Sales> 4500 </Sales>
+            <Items> 20 </Items>
+            <Company> Mode Masters </Company>
+            <Country> Belgium </Country>
+            <City> Brussels </City>
+            <Street> Rue de la Mode </Street>
+            <Number> 15 </Number>
+        </Receipt>
+    </Receipts>
+</Agent>
